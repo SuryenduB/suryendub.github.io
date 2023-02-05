@@ -11,7 +11,9 @@ To enable the identity platform to issue ID tokens for your app, you need to ena
 
 
 ## App Settings
-Here is a snippet from the appsettings.json file of a web application:
+Here is a snippet from the appsettings.json file of a web application:  
+
+![image](https://github.com/SuryenduB/suryendub.github.io/raw/master/assets/img/AppSetting.jpg)
 ```json
 "AzureAd": {
     "Instance": "https://login.microsoftonline.com",
