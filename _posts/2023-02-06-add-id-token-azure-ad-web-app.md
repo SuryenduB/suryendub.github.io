@@ -1,3 +1,10 @@
+---
+layout: post
+title: Enable ID Tokens from Application Manifest
+subtitle: Enable the identity platform to issue ID tokens for your app
+tags: [AzureAD , Oauth]
+---
+
 # Enable ID Tokens from Application Manifest
 
 To enable the identity platform to issue ID tokens for your app, you need to enable the hybrid flow. The hybrid flow combines the use of the authorization code grant for obtaining access tokens and OpenID Connect (OIDC) for getting ID tokens.
