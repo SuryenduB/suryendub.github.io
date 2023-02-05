@@ -35,6 +35,7 @@ Here is a snippet from the appsettings.json file of a web application:
        "url": "https://localhost:7046/signin-oidc",
        "type": "web"
     }]
+    ```
 
         
 
