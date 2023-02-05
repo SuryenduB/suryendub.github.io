@@ -1,13 +1,13 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: Technical Consultant | AZ-500 | AZ-700 | AZ-900 | SC-300 | SC-200 | SC-900
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+My name is Suryendu Bhattacharyya. I have the following qualities:  
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+### **Technical Consultant** 
+* AZ-500 | AZ-700 | AZ-900 | SC-300 | SC-200 | SC-900
 
 What else do you need?
 
