@@ -22,9 +22,10 @@ author: Suryendu Bhattacharyya
 navbar-links:
   About Me: "aboutme"
   Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+    - Tech Community Blogs: "https://techcommunity.microsoft.com/"
+    - Azure Portal: "https://portal.azure.com/"
+    - MIM Official Documentation: "https://learn.microsoft.com/en-us/microsoft-identity-manager/microsoft-identity-manager-2016"
+  Author's home: "aboutme"
 
 ################
 # --- Logo --- #
