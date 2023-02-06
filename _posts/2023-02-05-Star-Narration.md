@@ -1,3 +1,13 @@
+---
+layout: post
+title: STAR Method of Narration
+subtitle: A structured approach for answering behavioral interview questions
+cover-img: /assets/img/path.jpg
+thumbnail-img: /assets/img/thumb.png
+share-img: /assets/img/path.jpg
+tags: [interview , security]
+---
+
 # STAR Method of Narration
 
 The STAR method is a structured approach for answering behavioral interview questions, particularly those that ask about past experiences. STAR stands for:
