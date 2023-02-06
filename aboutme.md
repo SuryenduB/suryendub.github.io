@@ -8,8 +8,10 @@ My name is Suryendu Bhattacharyya, Microsoft Security Consultant with expertise 
 
 
 ### **Technical Certifications** 
-|Certificate|About|
-|:-------------:|:------:|
+| Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|
+| Row 1, Column 1 | Row 1, Column 2 | Row 1, Column 3 |
+| Row 2, Column 1 | Row 2, Column 2 | Row 2, Column 3 |
 
 
 
