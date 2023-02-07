@@ -38,6 +38,20 @@ For more information:
 ![Condition](/assets/img/sta-cond-diag.jpg)  
 
 We will use Powershell to Create resources . However I will add the screenshot of the Role Condition Action Pane from Azure Portal.  
+If we express the condition in code, it will look like following.
+```
+(
+    (
+        !(ActionMatches{'Microsoft.Storage/storageAccounts/blobServices/containers/blobs/read'}
+        AND NOT
+        SubOperationMatches{'Blob.List'})
+    )
+    OR
+    (
+        @Resource[Microsoft.Storage/storageAccounts/blobServices/containers/blobs/tags:Project<$key_case_sensitive$>] StringEquals 'Prod'
+    )
+)
+```
 ## Upload  new blob with index tags
 ```powershell
 Connect-AzAccount
