@@ -22,7 +22,7 @@ author: Suryendu Bhattacharyya
 navbar-links:
   About Me: "aboutme"
   Resources:
-    - Tech Community Blogs: "https://techcommunity.microsoft.com/"
+    - Tech Community Blogs: "https://techcommunity.microsoft.com/t5/security-compliance-and-identity/ct-p/MicrosoftSecurityandCompliance"
     - Azure Portal: "https://portal.azure.com/"
     - MIM Official Documentation: "https://learn.microsoft.com/en-us/microsoft-identity-manager/microsoft-identity-manager-2016"
   Author's home: "aboutme"
