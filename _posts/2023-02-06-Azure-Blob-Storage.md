@@ -100,7 +100,7 @@ Get-AzStorageBlob -Container $containerName -Blob file2.txt -Context $ctx
 
 ```
 
-You will get the following output.
+You will get the following output when accessing file2.txt. User will be able to access file1.txt. 
 ```
 Get-AzStorageBlob -Container $containerName -Blob file2.txt -Context $ctx 
 Get-AzStorageBlob : Service request failed.                                                                   
