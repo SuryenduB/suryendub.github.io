@@ -30,4 +30,9 @@ In today's fast-paced digital landscape, it's more important than ever to ensure
 [Emptydc.com](https://www.emptydc.com/)| A Blog About Microsoft Security By Jan Geisbauer| Cloud Security
 [ThatLazyAdmin](https://www.thatlazyadmin.com/)| A Blog on  Azure, Powershell by Shaun, a driven consultant excited about all things Microsoft | Azure
 [Cyber geeks](https://cybergeeks.cloud/)| Cyber ​​Geeks was originally conceived as a collaborative space between members and enthusiasts in the areas of information security, compliance, and cloud computing by Tiago Souza Cyber Security Technical Specialist at Microsoft | Cloud Security , Threat Protection. 
+[SecureCloudBlog](https://securecloud.blog/)| Joosua Santasalo Principal Security Researcher with Secureworks, Hacker, NodeJS dev and blogger! I am former security consultant/developer turned full-time researcher Previously I’ve done security related work, and security tooling development for more than 10 years.I specialize in Microsoft technologies; Main focus on Azure, Azure AD, and M365. Node.js comes into picture, as it’s my nr. 1 tool for testing and developing tooling solutions for Azure & Azure AD In terms of recognition, I am really honored and humbled to be selected as one of the Microsoft MVP’s globally for Azure Award category. I’ve been also publicly recognized by MSRC on multiple occasions (MSRC acknowledgments) for my security research efforts related to MSRC Bug Bounties | Azure , Cloud Security, Identity
+[dirkjanm.io](dirkjanm.io) |Dirk-jan Mollema Hacker, red teamer, researcher. Likes to write infosec-focussed Python tools. This is my personal blog containing research on topics I find interesting, such as (Azure) Active Directory internals, protocols and vulnerabilities.Business info at outsidersecurity.nl | Azure , Cloud Security, Identity
+[Chris Brumm](https://chris-brumm.medium.com/) | | Azure , Cloud Security, Identity
+
+
 
