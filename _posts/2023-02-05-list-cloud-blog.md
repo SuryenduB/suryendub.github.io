@@ -34,6 +34,6 @@ In today's fast-paced digital landscape, it's more important than ever to ensure
 [dirkjanm.io](dirkjanm.io) |Dirk-jan Mollema Hacker, red teamer, researcher. Likes to write infosec-focussed Python tools. This is my personal blog containing research on topics I find interesting, such as (Azure) Active Directory internals, protocols and vulnerabilities.Business info at outsidersecurity.nl | Azure , Cloud Security, Identity
 [Chris Brumm](https://chris-brumm.medium.com/) | | Azure , Cloud Security, Identity
 [Thomas Naunheim](https://www.cloud-architekt.net/)|Thomas Naunheim : This blog is about sharing thoughts, research results and real-world experiences on IAM + Security in Microsoft Azure.| Azure , Cloud Security, Identity
-
-
+[NATE HUTCHINSON](https://www.natehutchinson.co.uk/) | Microsoft 365 Solutions Specialist for a West Yorkshire based, Microsoft Gold partner dealing with all aspects of IT with a focus on Microsoft 365 SaaS products and services especially within the security and compliance sector. | Azure , Identity
+[georgeollis.com/](https://www.georgeollis.com/) | This blog will be used for information, blogs and guides on Microsoft Azure.A bit about  George, he is Cloud Solution Architect at Microsoft.| Azure
 
