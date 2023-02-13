@@ -1,16 +1,16 @@
 ---
 layout: post
 
-title: Deploying Microsoft Defender for Cloud for Storage using Terraform
-subtitle: A Comprehensive Guide for Enterprise Azure Security
+title: Enabling Microsoft Defender for Cloud Plan using Terraform
+subtitle: Securing Azure Cloud Environment with Terraform and Microsoft Defender
 cover-img: /assets/img/tf-storage.jpg
 thumbnail-img: /assets/img/tf-storage.jpg
 share-img: /assets/img/tf-storage.jpg
-tags: [Azure security, Microsoft Defender for Cloud, Terraform, Infrastructure as Code, Azure resources, AzureRM Provider]
+tags: [Azure security, Microsoft Defender for Cloud, Terraform, Infrastructure as Code, Azure resources, AzureRM Provider, Security API, MDC , IAC]
 ---
 
 
-# Deploying Microsoft Defender for Cloud (MDC) for Storage using Terraform
+# Enabling Microsoft Defender for Cloud Plan using Terraform
 
 Terraform is a widely adopted **Infrastructure as Code (IAC)** tool that is utilized extensively by enterprises that prioritize Azure security. It is recommended to deploy all Azure security-related configurations using Terraform to ensure consistency.  
 
@@ -216,7 +216,7 @@ resource "azurerm_security_center_subscription_pricing" "mdc_Containers" {
 
 
 ```
-In the examples above, we are enabling Defender for Storage in our Subscription For other plans, check out the Terraform documentation.
+In the examples above, we are enabling Defender plans in our Subscription.  For other plans, check out the [Terraform documentation](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/security_center_subscription_pricing).
 Run the following three commands to deploy the configuration from main.tf in order.  
 >Terraform init  
   
@@ -235,5 +235,5 @@ You can verify the configuration deployed in Azure Portal.
 
 
 
-In conclusion, Terraform is a popular Infrastructure as Code tool for deploying Azure resources, especially for enterprises focused on Azure security. This guide provides information on how to deploy Microsoft Defender for Cloud (MDC) for storage using Terraform and the necessary files in the workspace. Terraform is recommended for managing MDC exclusively to ensure consistency, and its use is supported by the AzureRM Provider documentation.
+In conclusion, Terraform is a popular Infrastructure as Code tool for deploying Azure resources, especially for enterprises focused on Azure security. This guide provides information on how to deploy Microsoft Defender for Cloud (MDC) plans  using Terraform and the necessary files in the workspace. Terraform is recommended for managing MDC exclusively to ensure consistency, and its use is supported by the AzureRM Provider documentation.
 
