@@ -39,7 +39,7 @@ One more use case  for Authentication Context is to enforce stringent authentica
 
  3. Select the **Authentication Context** in the PIM settings for the respective roles.
  
-### **Create **Authentication Strength** in Azure AD Portal.**
+### **Create Authentication Strength in Azure AD Portal.**
 You  need to create a custom Authentication Strength. This is required to chose a different authentication method from one required for sign-in. In this tutorial , you need to  set  **SMS** single factor authentication, as the authentication method. 
 >Note:  Users in our tenant need to perform MFA  using **Microsoft Authenticator** app push notification.
 
