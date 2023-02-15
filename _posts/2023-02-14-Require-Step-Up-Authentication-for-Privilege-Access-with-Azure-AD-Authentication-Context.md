@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Require Step Up Authentication for Privilege Access with Azure AD Authentication Context
+title: Step Up Authentication for Privilege Access with Azure AD Authentication Context
 subtitle: Don't leave your Azure AD environment vulnerable - Take action to secure it now!
 cover-img: /assets/img/PIM-Role-Assignment-Nestor.jpg
 thumbnail-img:  /assets/img/PIM.jpg
