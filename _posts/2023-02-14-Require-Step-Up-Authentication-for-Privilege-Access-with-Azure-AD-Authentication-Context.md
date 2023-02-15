@@ -110,7 +110,7 @@ Navigate to Azure AD Privileged Identity Management -> Azure Resources -> Select
 
 1. Follow the  step 1-2 from previous section.
 2. Click on Activate under Action for Contributor Role.
-3. Notice user will not be prompted for MFA.
+3. In this instance, user will not be prompted for MFA.
 
 
 ![Activate-Contributor](/assets/img/PIM-Role-Activate-Contributor.jpg)
