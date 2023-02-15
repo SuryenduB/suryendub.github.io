@@ -4,7 +4,7 @@ title: Require Step Up Authentication for Privilege Access with Azure AD Authent
 subtitle: Don't leave your Azure AD environment vulnerable - Take action to secure it now!
 cover-img: /assets/img/PIM-Role-Assignment-Nestor.jpg
 thumbnail-img:  /assets/img/PIM.jpg
-share-img: /assets/img/PIM.jpg
+share-img: /assets/img/PIM-Role-Setting-Owner.jpg
 tags: [Azure, Azure AD, security, MFA,PIM, Privileged Identity Management]
 ---
 
@@ -81,10 +81,10 @@ Confirm your settings and set Enable policy On.
 
 7. Select Create to create to enable your policy.
 
-### **Add the authentication context in the PIM settings for the respective role.**
+### **Add the Authentication Context in the PIM settings for the respective role.**
 Navigate to Azure AD Privileged Identity Management -> Azure Resources -> Select the Resource -> Select Setting. 
  Modify following setting  **On activation , required**.
-    Select  **Authentication Context** for Owner role and **Azure MFA** for contributor role.
+    Select  **Authentication Context** for Owner role and **Azure MFA** for Contributor role.
 
 ![Owner-Role-Setting](/assets/img/PIM-Role-Setting-Owner.jpg)
 ![Contributor-Role-Setting](/assets/img/PIM-Role-Setting-Contributor.jpg)
