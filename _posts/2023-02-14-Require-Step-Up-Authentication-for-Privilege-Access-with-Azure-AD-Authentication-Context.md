@@ -5,9 +5,9 @@ subtitle: Don't leave your Azure AD environment vulnerable - Take action to secu
 cover-img: /assets/img/PIM-Role-Assignment-Nestor.jpg
 thumbnail-img:  /assets/img/PIM.jpg
 share-img: /assets/img/PIM.jpg
-tags:[Azure, Azure AD, security, MFA,PIM, Privileged Identity Management]
+tags: [Azure, Azure AD, security, MFA,PIM, Privileged Identity Management]
 ---
-![image](https://user-images.githubusercontent.com/53970796/218956405-b3a379c1-ec6a-4907-92db-2b5735338a57.png)
+
 
 # Tutorial : Require Step Up Authentication for Privilege Access with Azure AD Authentication Context
 
