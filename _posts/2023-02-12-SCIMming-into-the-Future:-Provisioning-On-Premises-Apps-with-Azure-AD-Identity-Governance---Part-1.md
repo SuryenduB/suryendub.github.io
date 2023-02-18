@@ -39,7 +39,7 @@ In this multi-part blog series, we shall delve into the following aspects:
 
 2. We will host the application in Azure App Services.
 
-4. [We will set up Azure AD On-Premises SCIM Application and set up provisioning.](/_posts/2023-02-17-SCIMming-into-the-Future:-Provisioning-On-Premises-Apps-with-Azure-AD-Identity-Governance---Part-2.md)
+4. [We will set up Azure AD On-Premises SCIM Application and set up provisioning.](/2023-02-17-SCIMming-into-the-Future:-Provisioning-On-Premises-Apps-with-Azure-AD-Identity-Governance---Part-2.md)
 
 5. We will Create Access Package and automatic assignment policy to assign the application to new hires (provisioning).
 
