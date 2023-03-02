@@ -208,6 +208,7 @@ provider "aws" {
   region = "us-east-1"
 }
 ```
+
 Use provider alias functionality , and add another provider for us-west region . While creating the resources using the tf script , reference the appropriate provider (using the alias).
 
 > You have 5-7 developers working on your terraform project (using terraform OSS), and you saved the terraform state in a remote S3 bucket . However , sometimes you are observing inconsistencies in the provisioned infrastructure / failure in the code . You have traced this problem to simultaneous/concurrent runs of terraform apply command for 2/more developers . What can you do to fix this problem 
