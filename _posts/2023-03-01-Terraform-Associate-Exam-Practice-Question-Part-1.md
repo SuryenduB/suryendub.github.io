@@ -125,7 +125,7 @@ True
 
 
 
-> By default, provisioners that fail will also cause the Terraform apply itself to fail. How do you change this
+> By default, provisioners that fail will also cause the Terraform apply itself to fail. How do you change this?
 
 The on_failure setting can be used to change this.
 
@@ -176,7 +176,7 @@ You should reject their request , and tell them that rather module composition s
 
 Implement a Private module registry in Terraform cloud , and ask teams to reference them.
 
->  
+ 
 ```terraform
 resource "aws_s3_bucket" "example" {
   bucket = "my-test-s3-terraform-bucket"
