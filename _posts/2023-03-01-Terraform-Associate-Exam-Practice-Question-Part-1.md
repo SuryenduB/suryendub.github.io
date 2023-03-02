@@ -187,7 +187,7 @@ resource "aws_iam_role" "test_role" {
   …}
 
   ```
-> Due to the way that the application code is written , the s3 bucket must be created before the test role is created , otherwise there will be a problem. How can you ensure that
+> Due to the way that the application code is written above , the s3 bucket must be created before the test role is created , otherwise there will be a problem. How can you ensure that ?
 
 Add explicit dependency using depends_on . This will ensure the correct order of resource creation.
 
@@ -199,15 +199,7 @@ Use the terraform setting ***‘required_version’*** and set it to > 0.12. Thi
 
 Use terraform console command to have an interactive UI with full access to the underlying terraform state to run your interpolations , and debug at real-time.
 
-> Please identify the offerings which are unique to Terraform Enterprise , and not available in either Terraform OSS , or Terraform Cloud. There can be more than one answer
 
-A>SAML/SSO**  
-B. Sentinel  
-C>Audit Logs**  
-D>Private Network Connectivity**  
-E. Full API Coverage  
-F. VCS Integration  
-G>Clustering**
 
 > Your team has started using terraform OSS in a big way , and now wants to deploy multi region deployments (DR) in aws using the same terraform files . You want to deploy the same infra (VPC,EC2 …) in both us-east-1 ,and us-west-2 using the same script , and then peer the VPCs across both the regions to enable DR traffic. But , when you run your script , all resources are getting created in only the default provider region. What should you do? Your provider setting is as below
 ```terraform
@@ -223,10 +215,14 @@ Use provider alias functionality , and add another provider for us-west region .
 Enable terraform state locking for the S3 backend using DynamoDB table. This prevents others from acquiring the lock and potentially corrupting your state.
 
 > You have written a terraform IaC script which was working till yesterday , but is giving some vague error from today , which you are unable to understand . You want more detailed logs that could potentially help you troubleshoot the issue , and understand the root cause. What can you do to enable this setting? Please note , you are using terraform OSS  
-Enable TF_LOG to the log level DEBUG , and then set TF_LOG_PATH to the log sink file location . Terraform debug logs will be dumped to the sink path ,even in terraform OSS
 
-> What does terraform refresh command do  
+Enable TF_LOG to the log level DEBUG , and then set TF_LOG_PATH to the log sink file location . Terraform debug logs will be dumped to the sink path ,even in terraform OSS.
+
+> What does terraform refresh command do?  
+
 Terraform refresh syncs the state file with the real world infrastructure.  It does not affect the actual target infra / the terraform code file in any fashion.
+
+
  >Given the below resource configuration 
 ```terraform
 resource "aws_instance" "web" {
@@ -234,6 +230,6 @@ resource "aws_instance" "web" {
   count = 4
 }
 ```
->What does the terraform resource address ‘aws_instance.web’ refer to
+>What does the terraform resource address ‘aws_instance.web’ refer to?
 
 It refers to all 4 web instances , together , for further individual segregation , indexing is required , with a 0 based index.
