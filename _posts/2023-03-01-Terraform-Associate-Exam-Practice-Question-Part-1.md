@@ -17,7 +17,7 @@ tags: [IAC,Terraform,Exam,Certification]
   In the context of Infrastructure as Code (IaC), idempotence refers to the property of a configuration management tool or script that ensures that multiple executions of the same script or tool result in the same outcome as the first execution, regardless of the number of times the script or tool is run.In other words, an idempotent IaC tool or script will only make changes to the infrastructure that are necessary to achieve the desired state, and will not make redundant changes or cause unintended side effects.This is an important concept in IaC because it allows for consistent and predictable infrastructure deployment and management, reduces the risk of errors and misconfigurations, and simplifies troubleshooting and debugging.
 
 
-> What is cloud-agnostic in terms of provisioning tools?**
+> What is cloud-agnostic in terms of provisioning tools
 
 
  Cloud-agnostic provisioning tools are tools that allow for the deployment and management of infrastructure resources across multiple cloud environments or providers, without being tied to a specific cloud platform or vendor.These tools are designed to provide a high degree of flexibility and portability, allowing organizations to leverage multiple cloud providers or switch between providers as needed, without having to re-write their infrastructure code or modify their deployment processes.
@@ -125,7 +125,7 @@ True
 
 
 
-> By default, provisioners that fail will also cause the Terraform apply itself to fail. How do you change this?**
+> By default, provisioners that fail will also cause the Terraform apply itself to fail. How do you change this
 
 The on_failure setting can be used to change this.
 
@@ -153,7 +153,7 @@ resource "aws_instance" "web" {
 
 ```
 
-> How do you define destroy provisioner and give an example?**
+> How do you define destroy provisioner and give an example
 
 You can define destroy provisioner with the parameter when
 ```terraform
@@ -167,7 +167,7 @@ provisioner "remote-exec" {
 
 ```
 
-> Your application team resources want to contribute to IaC coding practices . They want you to refactor your code to be reusable , and wants you to create as many modules as possible , along with 3-4 levels of child modules , and also modules as wrappers for even simple resource types. What should your response be to the above?**
+> Your application team resources want to contribute to IaC coding practices . They want you to refactor your code to be reusable , and wants you to create as many modules as possible , along with 3-4 levels of child modules , and also modules as wrappers for even simple resource types. What should your response be to the above
 
 You should reject their request , and tell them that rather module composition should be used . Module nesting should not be more than 1 level , and also , modules should not be simple wrappers around basic resources.
 
@@ -187,15 +187,15 @@ resource "aws_iam_role" "test_role" {
   …}
 
   ```
-> Due to the way that the application code is written , the s3 bucket must be created before the test role is created , otherwise there will be a problem. How can you ensure that?**
+> Due to the way that the application code is written , the s3 bucket must be created before the test role is created , otherwise there will be a problem. How can you ensure that
 
 Add explicit dependency using depends_on . This will ensure the correct order of resource creation.
 
-> You have created a terraform script that uses a lot of new constructs that have been introduced in terraform v0.12  . However , many developers who are cloning the script from your git repo , are using v0.11 , and getting errors , and raising hundreds of tickets. What can be done from your end to solve this problem?**
+> You have created a terraform script that uses a lot of new constructs that have been introduced in terraform v0.12  . However , many developers who are cloning the script from your git repo , are using v0.11 , and getting errors , and raising hundreds of tickets. What can be done from your end to solve this problem
 
 Use the terraform setting ***‘required_version’*** and set it to > 0.12. This will ensure that developers are forced to use v0.12 , and does not use anything else.
 
-> Your developers are facing a lot of problem while writing complex expressions involving difficult interpolations . They have to run the terraform plan every time and check whether there are errors , and also check terraform apply to print the value as a temporary output for debugging purposes. What should be done to avoid this?**
+> Your developers are facing a lot of problem while writing complex expressions involving difficult interpolations . They have to run the terraform plan every time and check whether there are errors , and also check terraform apply to print the value as a temporary output for debugging purposes. What should be done to avoid this
 
 Use terraform console command to have an interactive UI with full access to the underlying terraform state to run your interpolations , and debug at real-time.
 
@@ -218,7 +218,7 @@ provider "aws" {
 ```
 Use provider alias functionality , and add another provider for us-west region . While creating the resources using the tf script , reference the appropriate provider (using the alias).
 
-> You have 5-7 developers working on your terraform project (using terraform OSS), and you saved the terraform state in a remote S3 bucket . However , sometimes you are observing inconsistencies in the provisioned infrastructure / failure in the code . You have traced this problem to simultaneous/concurrent runs of terraform apply command for 2/more developers . What can you do to fix this problem ?**
+> You have 5-7 developers working on your terraform project (using terraform OSS), and you saved the terraform state in a remote S3 bucket . However , sometimes you are observing inconsistencies in the provisioned infrastructure / failure in the code . You have traced this problem to simultaneous/concurrent runs of terraform apply command for 2/more developers . What can you do to fix this problem 
 
 Enable terraform state locking for the S3 backend using DynamoDB table. This prevents others from acquiring the lock and potentially corrupting your state.
 
