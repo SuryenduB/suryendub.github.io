@@ -78,7 +78,7 @@ resource "azurerm_virtual_network" "secondary" {
 ```
  this example, there are two provider blocks that define two separate Azure provider configurations, one named ***azurerm*** and the other named ***azurerm.secondary***. The features block is empty, indicating that the default feature set for each provider should be used. Two virtual networks are then defined as ***azurerm_virtual_network*** resources. The first virtual network, named primary, uses the default azurerm provider configuration, and is created in the westus region with a resource group named primary-resource-group. The second virtual network, named secondary, uses the azurerm.secondary provider configuration, which is aliased as secondary, and is created in the eastus region with a resource group named secondary-resource-group.By using different provider configurations, you can deploy and manage resources across multiple Azure environments or subscriptions using a single Terraform configuration file.
 
-6.**What is the CLI configuration File?**
+> What is the CLI configuration File?
 
  The CLI configuration file in Terraform, commonly known as ***terraform.rc*** is a file that allows you to configure various settings related to the Terraform CLI, such as default values for command-line options, logging settings, and plugin directory locations. The CLI configuration file is optional and can be created in the user's home directory or in the directory where Terraform is being executed.
 
@@ -93,7 +93,7 @@ default_plan_out = "terraform.tfplan"
 ```
 In this example, the ***default_plan_out*** option is used to set a default value for the plan command's -out option, which specifies the path to the file where the Terraform execution plan should be saved. With this configuration, whenever the ***plan*** command is executed without specifying the ***-out*** option, Terraform will use the value specified in the ***terraform.rc*** file. Other settings that can be configured in the CLI configuration file include the location of the plugin cache directory, the logging level for Terraform output, and the settings for the Terraform backend. By configuring the CLI using the ***terraform.rc*** file, you can customize the behavior of the Terraform CLI to better fit your workflow and environment.
 
-7. **How do you inspect the current state of the infrastructure applied?**  
+7>How do you inspect the current state of the infrastructure applied 
  You can inspect the current state of the infrastructure managed by Terraform using the ***terraform state*** command. This command allows you to view and manage the state of resources that are being managed by Terraform.
 
 Here are some of the most common subcommands that can be used with ***terraform state***:
@@ -125,7 +125,7 @@ True
 
 
 
-8. **By default, provisioners that fail will also cause the Terraform apply itself to fail. How do you change this?**
+> By default, provisioners that fail will also cause the Terraform apply itself to fail. How do you change this?**
 
 The on_failure setting can be used to change this.
 
@@ -153,7 +153,7 @@ resource "aws_instance" "web" {
 
 ```
 
-9. **How do you define destroy provisioner and give an example?**
+> How do you define destroy provisioner and give an example?**
 
 You can define destroy provisioner with the parameter when
 ```terraform
@@ -167,16 +167,16 @@ provisioner "remote-exec" {
 
 ```
 
-10. **Your application team resources want to contribute to IaC coding practices . They want you to refactor your code to be reusable , and wants you to create as many modules as possible , along with 3-4 levels of child modules , and also modules as wrappers for even simple resource types. What should your response be to the above?**
+> Your application team resources want to contribute to IaC coding practices . They want you to refactor your code to be reusable , and wants you to create as many modules as possible , along with 3-4 levels of child modules , and also modules as wrappers for even simple resource types. What should your response be to the above?**
 
 You should reject their request , and tell them that rather module composition should be used . Module nesting should not be more than 1 level , and also , modules should not be simple wrappers around basic resources.
 
 
-11. **Your company has been using Terraform Cloud for a some time now . But every team is creating their own modules , and there is no standardization of the modules , with each team creating the resources in their own unique way . You want to enforce a standardization of the modules across the enterprise . What should be your approach.**
+> Your company has been using Terraform Cloud for a some time now . But every team is creating their own modules , and there is no standardization of the modules , with each team creating the resources in their own unique way . You want to enforce a standardization of the modules across the enterprise . What should be your approach
 
 Implement a Private module registry in Terraform cloud , and ask teams to reference them.
 
-12. 
+>  
 ```terraform
 resource "aws_s3_bucket" "example" {
   bucket = "my-test-s3-terraform-bucket"
@@ -187,29 +187,29 @@ resource "aws_iam_role" "test_role" {
   …}
 
   ```
-**Due to the way that the application code is written , the s3 bucket must be created before the test role is created , otherwise there will be a problem. How can you ensure that?**
+> Due to the way that the application code is written , the s3 bucket must be created before the test role is created , otherwise there will be a problem. How can you ensure that?**
 
 Add explicit dependency using depends_on . This will ensure the correct order of resource creation.
 
-13. **You have created a terraform script that uses a lot of new constructs that have been introduced in terraform v0.12  . However , many developers who are cloning the script from your git repo , are using v0.11 , and getting errors , and raising hundreds of tickets. What can be done from your end to solve this problem?**
+> You have created a terraform script that uses a lot of new constructs that have been introduced in terraform v0.12  . However , many developers who are cloning the script from your git repo , are using v0.11 , and getting errors , and raising hundreds of tickets. What can be done from your end to solve this problem?**
 
 Use the terraform setting ***‘required_version’*** and set it to > 0.12. This will ensure that developers are forced to use v0.12 , and does not use anything else.
 
-14. **Your developers are facing a lot of problem while writing complex expressions involving difficult interpolations . They have to run the terraform plan every time and check whether there are errors , and also check terraform apply to print the value as a temporary output for debugging purposes. What should be done to avoid this?**
+> Your developers are facing a lot of problem while writing complex expressions involving difficult interpolations . They have to run the terraform plan every time and check whether there are errors , and also check terraform apply to print the value as a temporary output for debugging purposes. What should be done to avoid this?**
 
 Use terraform console command to have an interactive UI with full access to the underlying terraform state to run your interpolations , and debug at real-time.
 
-15.**Please identify the offerings which are unique to Terraform Enterprise , and not available in either Terraform OSS , or Terraform Cloud. There can be more than one answer.**
+> Please identify the offerings which are unique to Terraform Enterprise , and not available in either Terraform OSS , or Terraform Cloud. There can be more than one answer
 
-A. **SAML/SSO**  
+A>SAML/SSO**  
 B. Sentinel  
-C. **Audit Logs**  
-D. **Private Network Connectivity**  
+C>Audit Logs**  
+D>Private Network Connectivity**  
 E. Full API Coverage  
 F. VCS Integration  
-G. **Clustering**
+G>Clustering**
 
-16. **Your team has started using terraform OSS in a big way , and now wants to deploy multi region deployments (DR) in aws using the same terraform files . You want to deploy the same infra (VPC,EC2 …) in both us-east-1 ,and us-west-2 using the same script , and then peer the VPCs across both the regions to enable DR traffic. But , when you run your script , all resources are getting created in only the default provider region. What should you do? Your provider setting is as below-**
+> Your team has started using terraform OSS in a big way , and now wants to deploy multi region deployments (DR) in aws using the same terraform files . You want to deploy the same infra (VPC,EC2 …) in both us-east-1 ,and us-west-2 using the same script , and then peer the VPCs across both the regions to enable DR traffic. But , when you run your script , all resources are getting created in only the default provider region. What should you do? Your provider setting is as below
 ```terraform
 # The default provider configuration
 provider "aws" {
@@ -218,22 +218,22 @@ provider "aws" {
 ```
 Use provider alias functionality , and add another provider for us-west region . While creating the resources using the tf script , reference the appropriate provider (using the alias).
 
-17. **You have 5-7 developers working on your terraform project (using terraform OSS), and you saved the terraform state in a remote S3 bucket . However , sometimes you are observing inconsistencies in the provisioned infrastructure / failure in the code . You have traced this problem to simultaneous/concurrent runs of terraform apply command for 2/more developers . What can you do to fix this problem ?**
+> You have 5-7 developers working on your terraform project (using terraform OSS), and you saved the terraform state in a remote S3 bucket . However , sometimes you are observing inconsistencies in the provisioned infrastructure / failure in the code . You have traced this problem to simultaneous/concurrent runs of terraform apply command for 2/more developers . What can you do to fix this problem ?**
 
 Enable terraform state locking for the S3 backend using DynamoDB table. This prevents others from acquiring the lock and potentially corrupting your state.
 
-18. **You have written a terraform IaC script which was working till yesterday , but is giving some vague error from today , which you are unable to understand . You want more detailed logs that could potentially help you troubleshoot the issue , and understand the root cause. What can you do to enable this setting? Please note , you are using terraform OSS.**  
+> You have written a terraform IaC script which was working till yesterday , but is giving some vague error from today , which you are unable to understand . You want more detailed logs that could potentially help you troubleshoot the issue , and understand the root cause. What can you do to enable this setting? Please note , you are using terraform OSS  
 Enable TF_LOG to the log level DEBUG , and then set TF_LOG_PATH to the log sink file location . Terraform debug logs will be dumped to the sink path ,even in terraform OSS
 
-19. **What does terraform refresh command do ?**  
+> What does terraform refresh command do  
 Terraform refresh syncs the state file with the real world infrastructure.  It does not affect the actual target infra / the terraform code file in any fashion.
-20. **Given the below resource configuration -**
+ >Given the below resource configuration 
 ```terraform
 resource "aws_instance" "web" {
   # ...
   count = 4
 }
 ```
-21. **What does the terraform resource address ‘aws_instance.web’ refer to?** 
+>What does the terraform resource address ‘aws_instance.web’ refer to
 
 It refers to all 4 web instances , together , for further individual segregation , indexing is required , with a 0 based index.
