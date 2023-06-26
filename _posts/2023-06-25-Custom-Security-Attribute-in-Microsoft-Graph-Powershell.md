@@ -111,6 +111,18 @@ The first test checks that a new directory attribute set is created when it does
 The second test checks that a new custom security attribute definition is created when it doesn't already exist. The test starts by arranging the input variables (`$attributeSetName` and `$attributes`) and generates a unique ID for the custom security attribute definition. It then attempts to retrieve the attribute definition from the Microsoft Graph API, using the generated ID. Finally, it asserts that the attribute definition was actually created by checking that it is not null or empty. If the attribute definition couldn't be found, the test fails.
 
 Overall, this test validates that the `New-SBCustomSecurityAttribute` function behaves correctly under specific test cases. If any of the tests fail, it means that there is a problem with the functionality of the function being tested or the environment in which it is being run.
+```xml
+<results>
+          <test-suite type="TestFixture" name="New-SBCustomSecurityAttribute" executed="True" result="Success" success="True" time="5.8525" asserts="0" description="New-SBCustomSecurityAttribute">
+            <results>
+              <test-suite type="TestFixture" name="New-SBCustomSecurityAttribute.When processing attributes" executed="True" result="Success" success="True" time="5.796" asserts="0" description="New-SBCustomSecurityAttribute.When processing attributes">
+                <results>
+                  <test-case description="creates a new directory attribute set when it doesn't exist" name="New-SBCustomSecurityAttribute.When processing attributes.creates a new directory attribute set when it doesn't exist" time="5.5141" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="creates a new custom security attribute definition when it doesn't exist" name="New-SBCustomSecurityAttribute.When processing attributes.creates a new custom security attribute definition when it doesn't exist" time="0.2039" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+ </results>
+```
 
 ```powershell
 # Import the CreateCustomSecurityAttribute script file
@@ -171,6 +183,7 @@ Describe "New-SBCustomSecurityAttribute" {
 
 ```
 You can also verify the changes in Azure Portal.
+![alt text](/assets/img/TestAttributeSet.png)
 
 
 
