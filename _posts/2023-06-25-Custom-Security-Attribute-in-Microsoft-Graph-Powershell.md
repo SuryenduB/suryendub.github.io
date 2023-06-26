@@ -170,6 +170,7 @@ Describe "New-SBCustomSecurityAttribute" {
 
 
 ```
+You can also verify the changes in Azure Portal.
 
 
 
