@@ -1,3 +1,14 @@
+---
+layout: post
+title: Restricting Access to User Data in Entra ID (Azure AD)
+
+cover-img: /assets/img/taras-shypka-iFSvn82XfGo-unsplash.jpg
+thumbnail-img: /assets/img/taras-shypka-iFSvn82XfGo-unsplash.jpg
+share-img: /assets/img/taras-shypka-iFSvn82XfGo-unsplash.jpg
+tags: [ Azure Active Directory, EntraID , AzureAD , MicrosoftGraph]
+
+---
+
 # 🔒 Restricting Access to User Data in Entra ID (Azure AD) 🔒
 
 🚀 **One of the biggest drawbacks of the latest Lifestyle Workflow is that it does not allow custom security attributes for writing business logic.** 📊
