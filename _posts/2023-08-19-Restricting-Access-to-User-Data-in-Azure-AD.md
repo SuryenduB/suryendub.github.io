@@ -50,4 +50,6 @@ $AuthorizationPolicy['defaultUserRolePermissions'] | ConvertTo-Json
 
 ```
 
-## Note : This setting is meant for special circumstances, so Microsoft don't recommend setting the flag to $false
+## Note: This setting is meant for special circumstances, so Microsoft doesn't recommend setting the flag to $false
+
+![Example image](/assets/img/taras-shypka-iFSvn82XfGo-unsplash.jpg)  
