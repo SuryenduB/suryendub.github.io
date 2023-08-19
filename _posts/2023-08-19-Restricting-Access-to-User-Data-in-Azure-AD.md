@@ -11,13 +11,15 @@ tags: [ Azure Active Directory, EntraID , AzureAD , MicrosoftGraph]
 
 # 🔒 Restricting Access to User Data in Entra ID (Azure AD) 🔒
 
-🚀 **One of the biggest drawbacks of the latest Lifestyle Workflow is that it does not allow custom security attributes for writing business logic.** 📊
+
 
 Let's address one of the key concerns: default permissions for member users. By default, Entra ID (Azure AD) allows any user to access and read data about other users, which can potentially expose sensitive information to unintended parties. 🕵️‍♂️
 
 Imagine this scenario: if you want to take action on user objects based on their termination reason,or Perhaps you want to seamlessly transition an employee from a higher pay scale to a tax consultant application. 💼
 
 **However, these details are confidential and should be restricted from other users.**
+
+🚀 **One of the biggest drawbacks of the latest Lifestyle Workflow is that it does not allow custom security attributes for writing business logic.** 📊
 
 In Entra ID, you can restrict the access to the default user settings to read all user attributes.
 
