@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Introducing the Azure AD Bulk Upload API, The Next Generation of Provisioning for Enterprise IAM
+title: Embracing the Future of Identity Provisioning with Entra ID
+subtitle : Introducing the Azure AD Bulk Upload API, The Next Generation of Provisioning for Enterprise IAM
 
 cover-img: /assets/img/Existing%20Identity%20Enterprise%20.jpg
 thumbnail-img: /assets/img/Future%20Identity%20Enterprise%20Bulk%20API%20.jpg
@@ -10,7 +11,7 @@ tags: [ Azure Active Directory, EntraID , AzureAD , MicrosoftGraph , Provisionin
 ---
 # Replacing MIM: Introducing the Azure AD Bulk Upload API, The Next Generation of Provisioning for Enterprise IAM
 
-In a manner reminiscent of the content presented on this blog "MIM and Beyond," each successive release from Microsoft, n with the introduction of new Entra ID releases, demonstrates a gradual and purposeful shift towards more effectively replacing Microsoft Identity Manager (MIM).
+As the name of this blog ("MIM and Beyond") suggests, one of the key themes of this blog is to explore how the enterprise can move to a new IAM approach from on-prem based MIM reliant IAM Architecture.  Each successive release from Microsoft,  with the introduction of new Entra ID releases, demonstrates a gradual and purposeful shift towards more effectively replacing Microsoft Identity Manager (MIM).
 
 Within enterprise environments, Microsoft Identity Manager (MIM) offers a distinctive capability by virtue of its comprehensive integration prowess. This is exemplified through the utilization of the [Extensible Connectivity 2.0 Management Agent Reference](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/forefront-2010/bb891983(v=vs.100) "ECMA"), the [Windows PowerShell Connector](https://learn.microsoft.com/en-us/microsoft-identity-manager/reference/microsoft-identity-manager-2016-connector-powershell "Optional title"), and the [Grendfelt Powershell Management Agent](https://github.com/sorengranfeldt/psma "psma"). These mechanisms enable seamless connections with various systems encompassing the enterprise landscape.
 
@@ -74,7 +75,9 @@ Update-MgBetaOrganization -OrganizationId $OrgID -BodyParameter $params
 You can verify the  value of the OnPremesisSyncEnabled property, you can use the Select statement as follows:
 
 ```powershell
+
 Get-MgOrganization | Select OnPremisesSyncEnabled
+
 ```
 
 However, this approach makes me nervous for the following reason.
@@ -95,13 +98,15 @@ We select a small batch of users for gradual migration. Develop a clear plan out
 
 - Temporarily stop identity synchronization. This will prevent Azure AD Connect from updating the cloud-based identity with any changes made to the on-premises identity.
 
-```PowerShell
+```powerShell
+
     Set-ADSyncScheduler -SyncCycleEnabled $false
+
 ```
 
 - Move the designated users outside the scope of Azure AD Connect. This can be done by creating a new, separate OU in Active Directory (AD) and moving the users to that OU.
 
-```PowerShell
+```powerShell
 # Connect to Active Directory
 Import-Module ActiveDirectory
 
@@ -116,7 +121,7 @@ Move-ADObject -Identity $user2DN -TargetPath "OU=NonCloudSynced,DC=example,DC=co
 
 **3.Resume synchronization and force a delta sync. This will synchronize the cloud-based identities with the on-premises identities, but only for the users that have been moved to the new OU.
 
-```PowerShell
+```powerShell
 Set-ADSyncScheduler -SyncCycleEnabled $true
 Start-ADSyncSyncCycle -PolicyType Delta
 ```
@@ -158,4 +163,6 @@ else {
 ```
 
 The original AD identities cannot be moved back to their initial structure, as they would be matched again with the cloud-based identities. Ideally, the on-premises AD account would be disabled or permanently deleted after a grace period. It is sometimes necessary to tweak the immutableId, but this is not strictly required.
+
+In this article, we explored the future of identity provisioning and how Entra ID is poised to replace Active Directory as the central hub for identity management. We discussed the benefits of moving to Entra ID, including its support for modern authentication methods, its cloud-native agility, and its simplified lifecycle management. We also outlined the steps involved in migrating from Active Directory to Entra ID, including a phased approach that can help organizations transition in a controlled and thoughtful manner.
 
