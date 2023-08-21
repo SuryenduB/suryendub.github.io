@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Embracing the Future of Identity Provisioning with Entra ID
+title: Embracing the Future of Identity Provisioning with Entra ID Part 1
 subtitle : Introducing the Azure AD Bulk Upload API, The Next Generation of Provisioning for Enterprise IAM
 
 cover-img: /assets/img/Existing%20Identity%20Enterprise%20.jpg
@@ -90,11 +90,11 @@ However, this approach makes me nervous for the following reason.
 
 A phased approach to convert hybrid users into cloud users can offer a prudent and controlled transition.
 
-**1. Assessment and Planning 📊
+**Assessment and Planning** 📊
 
 We select a small batch of users for gradual migration. Develop a clear plan outlining the migration timeline, potential challenges, and mitigation strategies.
 
-**2. Pilot Phase 🛫
+**Pilot Phase** 🛫
 
 - Temporarily stop identity synchronization. This will prevent Azure AD Connect from updating the cloud-based identity with any changes made to the on-premises identity.
 
@@ -107,29 +107,32 @@ We select a small batch of users for gradual migration. Develop a clear plan out
 - Move the designated users outside the scope of Azure AD Connect. This can be done by creating a new, separate OU in Active Directory (AD) and moving the users to that OU.
 
 ```powerShell
+
 # Connect to Active Directory
-Import-Module ActiveDirectory
+ Import-Module ActiveDirectory
 
 # Get the distinguished names (DNs) of the users to move
-$user1DN = (Get-ADUser -Identity User1).DistinguishedName
-$user2DN = (Get-ADUser -Identity User2).DistinguishedName
+ $user1DN = (Get-ADUser -Identity User1).DistinguishedName
+ $user2DN = (Get-ADUser -Identity User2).DistinguishedName
 
 # Move the users to the new OU
-Move-ADObject -Identity $user1DN -TargetPath "OU=NonCloudSynced,DC=example,DC=com"
-Move-ADObject -Identity $user2DN -TargetPath "OU=NonCloudSynced,DC=example,DC=com"
+ Move-ADObject -Identity $user1DN -TargetPath "OU=NonCloudSynced,DC=example,DC=com"
+ Move-ADObject -Identity $user2DN -TargetPath "OU=NonCloudSynced,DC=example,DC=com"
+
 ```
 
-**3.Resume synchronization and force a delta sync. This will synchronize the cloud-based identities with the on-premises identities, but only for the users that have been moved to the new OU.
+**Resume synchronization** and force a delta sync. This will synchronize the cloud-based identities with the on-premises identities, but only for the users that have been moved to the new OU.
 
 ```powerShell
 Set-ADSyncScheduler -SyncCycleEnabled $true
 Start-ADSyncSyncCycle -PolicyType Delta
 ```
 
-**4. Restore users from the recycle bin in Azure AD. These users are now orphaned, so they need to be restored before they can be used.
-**5. Fix any attributes and data for the 'new' users. This may include updating their passwords, email addresses, or other attributes.
+**Restore users from the recycle bin in Azure AD**. These users are now orphaned, so they need to be restored before they can be used.
+**Fix any attributes and data for the 'new' users**. Sometimes it’s necessary to tweak the immutableId, but this isn’t strictly required.
 
 ```powershell
+
 $OldUPN = "firstname.lastname@example.com"
 $cloudTenant = "onprem.onmicrosoft.com"
 $UserName = ($OldUPN -split '@')[0]
