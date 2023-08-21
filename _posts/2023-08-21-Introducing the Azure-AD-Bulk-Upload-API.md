@@ -40,6 +40,122 @@ The Azure AD provisioning service just got a major upgrade making us one step cl
 ![Placeholder for Image For New Enterprise Architecture](/assets/img/Future%20Identity%20Enterprise%20Bulk%20API%20.jpg)
 
 
-## Describe how to convert normal user to Cloud Only User
+## Steps for Removing Active Directory from Identity Lifecycle Process
 
-## Describe once the connection is broken how you can leverage Bulk API to update the user
+### The Big Bang Approach
+
+This method involves turning off directory sync, converting users to Cloud Only Users, and uninstalling Azure AD Connect. A key part of this approach is connecting HR data with Entra ID seamlessly.
+
+```Powershell
+
+# Connect to the Microsoft Graph API with Organization.ReadWrite.All permission scope
+Connect-MgGraph -scopes Organization.ReadWrite.All
+
+# Check if the Microsoft.Graph.Beta.Identity.DirectoryManagement module is installed, and install it if necessary
+$module = Get-Module "Microsoft.Graph.Beta.Identity.DirectoryManagement" -ListAvailable
+if($null -eq $module)
+{
+    Install-Module Microsoft.Graph.Beta.Identity.DirectoryManagement -scope currentuser -force
+}
+
+# Get the ID of the current organization
+$OrgID = (Get-MgOrganization).id
+
+# Define parameters to update the organization's on-premises sync settings
+$params = @{
+ onPremisesSyncEnabled = $null
+}
+
+# Update the organization's on-premises sync settings using the Microsoft.Graph.Beta.Identity.DirectoryManagement module
+Update-MgBetaOrganization -OrganizationId $OrgID -BodyParameter $params
+
+```
+
+You can verify the  value of the OnPremesisSyncEnabled property, you can use the Select statement as follows:
+
+```powershell
+Get-MgOrganization | Select OnPremisesSyncEnabled
+```
+
+However, this approach makes me nervous for the following reason.
+
+1. The success of the Big Bang Approach depends on how well HR data and Entra ID integrate. Keep in mind that this integration is still in the early stages, so be cautious when rolling it out across your organization. Make sure the integration is solid before taking this big step. Building a complex integration process that matches all the requirements of an enterprise takes considerable skills and iterative development phases.
+
+2. Once you disable sync for the whole organization, reversing users back to on-prem managed hybrid users gets tricky. So, think things through before jumping into this major change.
+
+### A Thoughtful Transition: Phased Conversion from Hybrid Users to Cloud Users
+
+A phased approach to convert hybrid users into cloud users can offer a prudent and controlled transition.
+
+**1. Assessment and Planning 📊
+
+We select a small batch of users for gradual migration. Develop a clear plan outlining the migration timeline, potential challenges, and mitigation strategies.
+
+**2. Pilot Phase 🛫
+
+- Temporarily stop identity synchronization. This will prevent Azure AD Connect from updating the cloud-based identity with any changes made to the on-premises identity.
+
+```PowerShell
+    Set-ADSyncScheduler -SyncCycleEnabled $false
+```
+
+- Move the designated users outside the scope of Azure AD Connect. This can be done by creating a new, separate OU in Active Directory (AD) and moving the users to that OU.
+
+```PowerShell
+# Connect to Active Directory
+Import-Module ActiveDirectory
+
+# Get the distinguished names (DNs) of the users to move
+$user1DN = (Get-ADUser -Identity User1).DistinguishedName
+$user2DN = (Get-ADUser -Identity User2).DistinguishedName
+
+# Move the users to the new OU
+Move-ADObject -Identity $user1DN -TargetPath "OU=NonCloudSynced,DC=example,DC=com"
+Move-ADObject -Identity $user2DN -TargetPath "OU=NonCloudSynced,DC=example,DC=com"
+```
+
+**3.Resume synchronization and force a delta sync. This will synchronize the cloud-based identities with the on-premises identities, but only for the users that have been moved to the new OU.
+
+```PowerShell
+Set-ADSyncScheduler -SyncCycleEnabled $true
+Start-ADSyncSyncCycle -PolicyType Delta
+```
+
+**4. Restore users from the recycle bin in Azure AD. These users are now orphaned, so they need to be restored before they can be used.
+**5. Fix any attributes and data for the 'new' users. This may include updating their passwords, email addresses, or other attributes.
+
+```powershell
+$OldUPN = "firstname.lastname@example.com"
+$cloudTenant = "onprem.onmicrosoft.com"
+$UserName = ($OldUPN -split '@')[0]
+$oldSuffix = ($OldUPN -split '@')[1]
+$tempUPN = "${UserName}@${cloudTenant}"
+$NewUPN = $OldUPN 
+
+
+$filterUrl = "https://graph.microsoft.com/v1.0/directory/deletedItems/microsoft.graph.user?\$filter=endsWith(userPrincipalName,'$OldUPN')&\$count=true"
+
+$deletedObj = Invoke-MgGraphRequest -Uri $filterUrl -Method Get -ErrorAction Stop -Headers @{ConsistencyLevel = 'eventual' }
+
+if ($deletedObj.'@odata.count' -eq 0) {
+    # Output error or do nothing
+    Write-Error "User $OldUPN not found in deleted items"
+}
+else {
+    $userId = $deletedObj.Value[0].id
+    Write-Output $userId
+
+    Restore-MgDirectoryDeletedItem -DirectoryObjectId $userId | Out-Null
+    Invoke-MgGraphRequest -Uri "https://graph.microsoft.com/v1.0/users/$userId" -Method PATCH -Body @{ OnPremisesImmutableId = $null } -Debug
+    Start-Sleep -Seconds 10
+    Update-MgUser -UserId $OldUPN -OnPremisesImmutableId " "
+    Start-Sleep -Seconds 5
+    $userObj = Get-MgUser -UserId $NewUPN -Property OnPremisesImmutableId
+    if ($null -eq $userObj.OnPremisesImmutableId) {
+        "All good!"
+    }
+}
+```
+
+The original AD identities cannot be moved back to their initial structure, as they would be matched again with the cloud-based identities. Ideally, the on-premises AD account would be disabled or permanently deleted after a grace period. It is sometimes necessary to tweak the immutableId, but this is not strictly required.
+
