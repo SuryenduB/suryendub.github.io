@@ -1,13 +1,13 @@
 ---
 layout: post
-title: Introducing the Entra ID (Formerly Known As Azure AD) Bulk Upload API, The Next Generation of Provisioning for Enterprise IAM - Part 2
-cover-img: /assets/img/Existing Identity Enterprise .jpg
+title: Embracing the New: A Journey from  Legacy Hybrid Chaos to Modern Identity Management
+cover-img: /assets/img/Future Identity Enterprise Bulk API .jpg
 thumbnail-img: /assets/img/Future Identity Enterprise Bulk API .jpg
 share-img: /assets/img/Future Identity Enterprise Bulk API .jpg
 tags: [ Azure Active Directory, EntraID , AzureAD , MicrosoftGraph , Provisioning , BulkAPI , MIM]
 
 ---
-# Embracing the New: A Journey from Hybrid Legacy Chaos to Modern Identity Management
+#  The Next Generation of Provisioning for Enterprise IAM - Part 2
 
 Continuing the same discussion from my Previous article [The Next Generation of Provisioning for Enterprise IAM](https://suryendub.github.io/2023-08-21-Introducing-the-Azure-AD-Bulk-Upload-API/), we did manage to break the link between on premise active directory and Entra ID , for our Pilot Users. We Managed to restore the user with same attributes as cloud only user.
 
