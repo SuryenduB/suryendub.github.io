@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Introducing the Entra ID (Formerly Known As Azure AD) Bulk Upload API, The Next Generation of Provisioning for Enterprise IAM - Part 2
-subtitle: Embracing the New: A Journey from Hybrid Legacy Chaos to Modern User Management
 cover-img: /assets/img/Existing Identity Enterprise .jpg
 thumbnail-img: /assets/img/Future Identity Enterprise Bulk API .jpg
 share-img: /assets/img/Future Identity Enterprise Bulk API .jpg
