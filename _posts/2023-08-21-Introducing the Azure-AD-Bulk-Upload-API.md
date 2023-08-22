@@ -124,8 +124,10 @@ We select a small batch of users for gradual migration. Develop a clear plan out
 **Resume synchronization** and force a delta sync. This will synchronize the cloud-based identities with the on-premises identities, but only for the users that have been moved to the new OU.
 
 ```powerShell
-Set-ADSyncScheduler -SyncCycleEnabled $true
-Start-ADSyncSyncCycle -PolicyType Delta
+
+ Set-ADSyncScheduler -SyncCycleEnabled $true
+ Start-ADSyncSyncCycle -PolicyType Delta
+
 ```
 
 **Restore users from the recycle bin in Azure AD**. These users are now orphaned, so they need to be restored before they can be used.
@@ -155,14 +157,13 @@ else {
 
     Restore-MgDirectoryDeletedItem -DirectoryObjectId $userId | Out-Null
     Invoke-MgGraphRequest -Uri "https://graph.microsoft.com/v1.0/users/$userId" -Method PATCH -Body @{ OnPremisesImmutableId = $null } -Debug
-    Start-Sleep -Seconds 10
-    Update-MgUser -UserId $OldUPN -OnPremisesImmutableId " "
     Start-Sleep -Seconds 5
     $userObj = Get-MgUser -UserId $NewUPN -Property OnPremisesImmutableId
     if ($null -eq $userObj.OnPremisesImmutableId) {
         "All good!"
     }
 }
+
 ```
 
 The original AD identities cannot be moved back to their initial structure, as they would be matched again with the cloud-based identities. Ideally, the on-premises AD account would be disabled or permanently deleted after a grace period. It is sometimes necessary to tweak the immutableId, but this is not strictly required.
