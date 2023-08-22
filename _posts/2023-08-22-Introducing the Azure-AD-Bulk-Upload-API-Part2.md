@@ -103,18 +103,18 @@ For Our integration scenario, we will use the Powershell Client provided by Micr
 This connector will be used to Provision users who are transformed into cloud-only users in the first part of this blog [series](https://suryendub.github.io/2023-08-21-Introducing-the-Azure-AD-Bulk-Upload-API/).
 
 
-Microsoft Provides a Powershell Script [CSV2SCIM](https://github.com/AzureAD/entra-id-inbound-provisioning/blob/main/PowerShell/CSV2SCIM) to read CSV files that we fetch from our HR Data source using Rest API and and automatically provisions user accounts in our Target Directory Entra ID.  This PowerShell script also supports extending the schema of our provisioning app that we will use to map our HR Data Source custom attributes and it also supports management functions such as reading the provisioning logs and restarting the job.
+Microsoft Provides a Powershell Script [CSV2SCIM](https://github.com/AzureAD/entra-id-inbound-provisioning/blob/main/PowerShell/CSV2SCIM) to read CSV files that we fetch from our HR Data source using Rest API and automatically provisions user accounts in our Target Directory Entra ID.  This PowerShell script also supports extending the schema of our provisioning app that we will use to map our HR Data Source custom attributes and it also supports management functions such as reading the provisioning logs and restarting the job.
 
 - The Powershell client [CSV2SCIM](https://github.com/AzureAD/entra-id-inbound-provisioning/blob/main/PowerShell/CSV2SCIM) sends a POST request to provisioning /bulkUpload API endpoint associated with the provisioning app.
 
 - If successful, an Accepted 202 Status is returned.
-- The Azure AD Provisioning Service processes the data received, applies the attribute mapping rules and completes user provisioning.
+- The Azure AD Provisioning Service processes the data received, applies the attribute mapping rules, and completes user provisioning.
 - Depending on the provisioning app configured, the user is provisioned to Entra ID for cloud-only users.
 The API Client then queries the provisioning logs API endpoint for the status of each record sent.
 
 ### Extending provisioning job schema
 
-In our CSV file fetched from HR data source, we have attributes that are not present in standard SCIM schema. attributes, We need to include these attributes  as part of our  API-driven provisioning.
+In our CSV file fetched from the HR data source, we have attributes that are not present in the standard SCIM schema. attributes, We need to include these attributes  as part of our  API-driven provisioning.
 
 I will explain how to extend our API-driven provisioning app to process additional custom attributes using our Powershell Client.
 
@@ -182,7 +182,7 @@ Once I verified that the AttributeMapping file is valid, we can run the followin
 .\CSV2SCIM.ps1  -Path 'UserFile.CSV' -AttributeMapping $AttributeMapping >  BulkRequestPayloadHRUser.json
 ```
 
-- In my test environment runnung the script results in the following BulkUpload json.
+- In my test environment running the script results in the following BulkUpload json.
 
 
 
@@ -249,9 +249,9 @@ Once I verified that the AttributeMapping file is valid, we can run the followin
 
 ## Upload bulk request payload using Managed Identity Credential
 
-I have modified script Microsoft provided to use with Managed Identity that we have set up in the previous step.
+I have modified the script Microsoft provided to use with Managed Identity that we set up in the previous step.
 
-I had to remove the references for ClientID and Client Certificate and Used the following line to connect using Managed Identity. I am using a systen assigned managed Identity. If you are using a user assigned managed identity , you will need to add support for Client ID parameter.
+I had to remove the references for ClientID and Client Certificate and Used the following line to connect using Managed Identity. I am using a systen assigned managed Identity. If you are using a user assigned managed identity, you will need to add support for the Client ID parameter.
 
 ```powershell
       Connect-MgGraph -Identity
@@ -266,17 +266,17 @@ I had to remove the references for ClientID and Client Certificate and Used the 
 
 ```
 
-Once we run the script you will be able to verify that attribiutes for users in scope (Previously Hybrid Synced User) is now getting updated using the new application.
+Once we run the script you will be able to verify that attributes for users in scope (Previously Hybrid Synced User) are now getting updated using the new application.
 
-Now that We are provisioning directly from HR application to Entra ID , without requiring Hybrid Identity setup we can conclude we  have removed our dependency on Active Directory and Microsoft Identity Manager.
+Now that we are provisioning directly from HR application to Entra ID, without requiring Hybrid Identity setup we can conclude we  have removed our dependency on Active Directory and Microsoft Identity Manager.
 
 ## Conclusion
 
-In this article, we've made big changes to how we handle user accounts and access. We started by decoupling from our enterprise user accounts from the regular Hybrid IAM System components Azure AD Connect , Microsoft Identity Manager and Azure AD Connect from the cloud-based Entra ID for a small group of users. These users got set up in the cloud just like before but now as Cloud Users.
+In this article, we've made big changes to how we handle user accounts and access. We started by decoupling our enterprise user accounts from the regular Hybrid IAM System components Azure AD Connect, Microsoft Identity Manager, and Azure AD Connect from the cloud-based Entra ID for a small group of users. These users got set up in the cloud just like before but now as Cloud Users.
 
 Moving forward, we managed to directly connect our HR Data System to Entra ID. This means we're skipping the old-fashioned ways of connecting different systems. We got help from a special tool provided by Microsoft, which allows us to do a lot of actions quickly.
 
-We carefully set up our Powershell Client, making sure it's safe and ready to work. We also made sure everything is secure. We locked the doors by using Managed Identity so only the from within our enterprise  we can trigger the provisioning Job.
+We carefully set up our Powershell Client, making sure it's safe and ready to work. We also made sure everything is secure. We locked the doors by using Managed Identity so only from within our enterprise  we can trigger the provisioning Job.
 
 With all these changes, we've made our user accounts and access more modern and easier to manage. We don't need to rely on old systems like before. Instead, we've built a better way to make sure the right people can access the right things at the right times.
 
