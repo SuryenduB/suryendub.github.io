@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Embracing the New: A Journey from  Legacy Hybrid Chaos to Modern Identity Management
+title: Embracing the New, A Journey from  Legacy Hybrid Chaos to Modern Identity Management
 cover-img: /assets/img/Future Identity Enterprise Bulk API .jpg
 thumbnail-img: /assets/img/Future Identity Enterprise Bulk API .jpg
 share-img: /assets/img/Future Identity Enterprise Bulk API .jpg
