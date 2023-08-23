@@ -208,7 +208,7 @@ Once I verified that the AttributeMapping file is valid, we can run the followin
                                                                                                            "OrgUnitPath":  "/Test Unit/No Auto License",
                                                                                                            "Career_Step":  "",
                                                                                                            "Business_Unit":  "",
-                                                                                                           "employeeID":  "115173495437605234463",
+                                                                                                           "employeeID":  "ababaobcaoba",
                                                                                                            "PrimaryEmail":  "admintest1@SuryenduB.com"
                                                                                                        },
                                         "addresses":  [
@@ -226,7 +226,7 @@ Once I verified that the AttributeMapping file is valid, we can run the followin
                                                                                                            "manager":  {
                                                                                                                            "value":  null
                                                                                                                        },
-                                                                                                           "employeeNumber":  "C03iz4kfa",
+                                                                                                           "employeeNumber":  "abjossa",
                                                                                                            "department":  null,
                                                                                                            "costCenter":  null
                                                                                                        },
