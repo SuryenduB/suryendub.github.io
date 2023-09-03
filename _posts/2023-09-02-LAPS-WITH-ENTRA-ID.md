@@ -155,8 +155,8 @@ Using normal credentials as local admin introduces security risks, as credential
 
 Here are some additional tips for implementing and managing LAPS:
 
-- Make sure that all of your devices are enrolled in Azure AD.
-- Create an account protection policy in Intune that specifies LAPS as the password management solution.
+- Make sure that all of your devices are joined in Azure AD and enrolled in Intune.
+- Create an account protection policy in Intune for LAPS and assign it to all devices.
 - Configure the LAPS policy settings to meet your organization's needs.
-Regularly rotate the local administrator passwords.
+- Regularly rotate the local administrator passwords.
 - Test the LAPS solution to ensure that it is working properly.
