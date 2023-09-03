@@ -9,7 +9,7 @@ tags: [ Azure Active Directory, EntraID, MicrosoftEntra, Security, LAPS]
 
 ---
 
-# Title
+# How to Implement and Manage LAPS for Microsoft Entra ID and Intune
 
 ## Implement and manage LAPS for Microsoft Entra ID
 
