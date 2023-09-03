@@ -5,7 +5,7 @@ subtitle :  A step-by-step guide to securing your local administrator passwords 
 cover-img: /assets/img/LAPSTitle.jpg
 thumbnail-img: /assets/img/LAPSTitle.jpg
 share-img: /assets/img/LAPSTitle.jpg
-tags: [ Azure Active Directory, EntraID, MicrosoftEntra , Security , LAPS]
+tags: [ Azure Active Directory, EntraID, MicrosoftEntra, Security, LAPS]
 
 ---
 
@@ -54,7 +54,7 @@ I consistently seek to achieve configurations through Microsoft Graph API calls,
 
 In this case however Microsoft Document for LAPS setting is inadequate.
 Commandlet `Update-MgBetaPolicyDeviceRegistrationPolicy` is not working as expected.
-I tried runnung with the Debug Switch to realize it is sending `PATCH` method however as per the [documentation](https://techcommunity.microsoft.com/t5/microsoft-entra-azure-ad-blog/important-update-to-deviceregistrationpolicy-resource-type-for/ba-p/3912000) we will require `PUT` method and send all the properties.
+I tried running with the Debug Switch to realize it is sending the `PATCH` method however as per the [documentation](https://techcommunity.microsoft.com/t5/microsoft-entra-azure-ad-blog/important-update-to-deviceregistrationpolicy-resource-type-for/ba-p/3912000) we will require `PUT` method and send all the properties.
 
 ```powershell
 # Import the JSON file as a PowerShell object
@@ -99,7 +99,7 @@ Invoke-MgGraphRequest `
 
 ## Configuring LAPS using Intune
 
- Here are the revised instructions for creating an account protection policy in Intune:
+
 
 **To create an account protection policy in Intune, follow these steps:**
 
@@ -120,7 +120,7 @@ Invoke-MgGraphRequest `
 ![Specify Entra ID as Backup Directory](https://learn.microsoft.com/en-us/mem/intune/protect/media/windows-laps-policy/specify-the-backup-directory.png#lightbox)
 
 ## Read Device Password
-If Everything goes right , you will be able to retrieve the password by following method.
+If Everything goes right, you will be able to retrieve the password by the following method.
 
 To view the local administrator password in the Microsoft Entra admin center, follow these steps:
 
@@ -131,11 +131,11 @@ To view the local administrator password in the Microsoft Entra admin center, fo
 ![Read LAPS Password](https://techcommunity.microsoft.com/t5/image/serverpage/image-id/463474i5B6E9E0092683EB5/image-dimensions/2000?v=v2&px=-1)
 
 You can also review the password using the Microsoft Intune admin center:
+- In Intune, select **Devices** in the navigation pane.
+- Choose **All devices** and then select the appropriate device.
+- Click the **Local admin password** tab in the navigation pane.
+- Click the **Show local administrator password** link.
 
-1. In Intune, select **Devices** in the navigation pane.
-2. Choose **All devices** and then select the appropriate device.
-3. Click the **Local admin password** tab in the navigation pane.
-4. Click the **Show local administrator password** link.
 
 You can retrieve the password using the following Powershell Script.
 
