@@ -114,9 +114,11 @@ User A can sign in to **App1** and perform administrative tasks.
 
 **Admin Role Revoked from User A**: As a result of UserA's deactivation or membership expiration, the admin role is revoked from UserA in **App1**, removing any associated privileges.
 
-These instructions outline the actions and processes for implementing Privileged Identity Management (PIM) for an application.
+
 
 ![Group Membership Removal in App1](/assets/img/PIMForApp21.jpg)
+
+These instructions outline the actions and processes for implementing Privileged Identity Management (PIM) for an application.
 
 ## Conclusion
 
