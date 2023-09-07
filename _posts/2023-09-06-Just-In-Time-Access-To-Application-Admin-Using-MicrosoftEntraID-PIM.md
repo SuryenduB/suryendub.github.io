@@ -120,13 +120,13 @@ These instructions outline the actions and processes for implementing Privileged
 
 ## Conclusion
 
-Just In Time Application Administration (JITAA) using PIM is a powerful tool that can help organizations improve their security posture and reduce the risk of unauthorized access to sensitive systems and data. By granting privileged access only when needed and requiring MFA at the time of activation, JITAA can help minimize the window of vulnerability and make it more difficult for attackers to compromise systems.
+Just In Time Application Administration for Line of Business Apps or **Managed Cloud Systems** like **GCP**, **AWS**, using PIM is a powerful tool that can help organizations improve their security posture and reduce the risk of unauthorized access to sensitive systems and data. Granting privileged access only when needed and requiring MFA at the time of activation, can help minimize the window of vulnerability and make it more difficult for attackers to compromise systems.
 
 The implementation of JITAA using PIM is simple, but the benefits are significant. By following the steps outlined in this article, organizations can get started with JITAA and begin to reap the rewards of improved security.
 
 **Key takeaways:**
 
-* JITAA is a key component of Zero Trust security.
-* JITAA can help to reduce the risk of unauthorized access to sensitive systems and data.
-* JITAA can be implemented using PIM.
-* The implementation of JITAA can be complex, but the benefits are significant.
+* JIT Access is a key component of Zero Trust security.
+* JIT Application Admin Access can help to reduce the risk of unauthorized access to sensitive systems and data.
+* JIT Application  can be implemented using PIM.
+
