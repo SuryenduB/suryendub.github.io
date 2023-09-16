@@ -21,7 +21,7 @@ tags: [ Azure Active Directory, EntraID, MicrosoftEntra, Security, ZeroTrust, Te
 
 ## **Introduction**
 
-Several years ago, I found myself facing a captivating challenge: deploying Privilege Identity Management (PIM) roles using Terraform and orchestrating the deployment process through GitHub Workflows. The organization I worked with was no stranger to the cloud, hosting its entire infrastructure there and wholeheartedly embracing automated continuous deployment as the standard practice for all deployment operations. Their unwavering commitment to this approach extended even to Identity and Access Management (IAM) deployment, a decision that, as you'll discover, was entirely justified.
+Almost a Year ago, I found myself facing a captivating challenge: deploying Privilege Identity Management (PIM) roles using Terraform and orchestrating the deployment process through GitHub Workflows. The organization I worked with was no stranger to the cloud, hosting its entire infrastructure there and wholeheartedly embracing automated continuous deployment as the standard practice for all deployment operations. Their unwavering commitment to this approach extended even to Identity and Access Management (IAM) deployment, a decision that, as you'll discover, was entirely justified.
 
 My background primarily revolved around IAM intricacies, and this project propelled me into the realm of DevOps – a world characterized by automation and unceasing workflows. I was, to be honest, a relative newcomer to this landscape. Yet, this project was not just another technical endeavor; it was an opportunity to bridge the gap between IAM and DevOps, leveraging GitHub authentication, Azure Active Directory (Azure AD), and Terraform.
 
