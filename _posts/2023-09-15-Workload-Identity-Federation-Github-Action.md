@@ -46,6 +46,8 @@ The process begins by establishing a trust relationship between an external iden
 
 ## Steps
 
+![FID App](/assets/img/FID1.jpg)
+
 ### **Create an Application Object in Entra ID Tenant**
 
 Our initial step is to create an Application Object or **User Assigned Managed Identity** in Entra ID.
