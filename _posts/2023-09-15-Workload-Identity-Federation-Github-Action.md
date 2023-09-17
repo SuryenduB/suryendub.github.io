@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Simplifying GitHub Authentication with Entra ID Federated Credentials- Terraforming Conditional Access Policies via GitHub Workflows - Part 1
+title: Simplifying GitHub Authentication with Entra ID Federated Credentials- Terraforming Conditional Access Policies via GitHub Workflows
 subtitle :   Unlocking Secure and Automated Deployment of Conditional Access Policy
 cover-img: /assets/img/FID1.jpg
 thumbnail-img: /assets/img/FID1.jpg
@@ -12,11 +12,20 @@ tags: [ Azure Active Directory, EntraID, MicrosoftEntra, Security, ZeroTrust, Te
 
 - [Simplifying GitHub Authentication with Entra ID Federated Credentials: Terraforming Conditional Access Policies via GitHub Workflows - Part 1](#simplifying-github-authentication-with-entra-id-federated-credentials-terraforming-conditional-access-policies-via-github-workflows---part-1)
   - [Introduction](#introduction)
+    - [Authentication Challenge](#authentication-challenge)
+    - [Advantages of Workload Identity Federation (WIF)](#advantages-of-workload-identity-federation-wif)
   - [Steps](#steps)
+    - [Create an Application Object in Entra ID Tenant](#create-an-application-object-in-entra-id-tenant)
+    - [Add Federated Credential for GitHub Repo](#add-federated-credential-for-github-repo)
     - [Authentication Challenge](#authentication-challenge)
     - [Advantages of Workload Identity Federation (WIF)](#advantages-of-workload-identity-federation-wif)
     - [Create an Application Object in Entra ID Tenant](#create-an-application-object-in-entra-id-tenant)
     - [Add Federated Credential for GitHub Repo](#add-federated-credential-for-github-repo)
+    - [Introduction to Entra ID Module For Terraform](#introduction-to-entra-id-module-for-terraform)
+    - [Authenticating with Federated Credentials](#authenticating-with-federated-credentials)
+    - [Azure AD Conditional Access Policy Configuration](Azure-AD-Conditional-Access-Policy-Configuration)
+    - [Setting up GitHub Action Workflow for Conditional Access Policy Deployment](#setting-up-github-action-workflow-for-conditional-access-policy-deployment)
+
   - [Conclusion](#conclusion)
 
 ## **Introduction**
@@ -287,7 +296,6 @@ resource "azuread_conditional_access_policy" "CA01-BlockHighRiskUsers" {
 
 ```
 
-## Write our First Github Actions Workflow
 
 ## Setting up GitHub Action Workflow for Conditional Access Policy Deployment
 
