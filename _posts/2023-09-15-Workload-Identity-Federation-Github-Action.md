@@ -8,7 +8,7 @@ share-img: /assets/img/FID1.jpg
 tags: [ Azure Active Directory, EntraID, MicrosoftEntra, Security, ZeroTrust, Terraform, Devops]
 
 ---
-# Simplifying GitHub Authentication with Entra ID Federated Credentials: Terraforming Conditional Access Policies via GitHub Workflows - Part 1
+# Simplifying GitHub Authentication with Entra ID Federated Credentials: Terraforming Conditional Access Policies via GitHub Workflows
 
 - [Simplifying GitHub Authentication with Entra ID Federated Credentials: Terraforming Conditional Access Policies via GitHub Workflows - Part 1](#simplifying-github-authentication-with-entra-id-federated-credentials-terraforming-conditional-access-policies-via-github-workflows---part-1)
   - [Introduction](#introduction)
