@@ -897,7 +897,7 @@ users {
      
 ```
 
-
+![CA-Policy](/assets/img/CABlog17.png)
 
 ## Final Thoughts
 
