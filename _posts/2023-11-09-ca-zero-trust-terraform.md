@@ -910,6 +910,5 @@ users {
 
 - [Conditional Access for Zero Trust Architecture](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources/blob/main/ConditionalAccessGovernanceAndPrinciplesforZeroTrust%20October%202023.pdf)
 - [Hashicorp Azure AD Module](https:/registry.terraform.io/providers/hashicorp/azuread/latest/docs)
-
 - [Workload Identity Federation](https:/learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation)
 - [AADOps: Operationalization of Azure AD Conditional Access](https://www.cloud-architekt.net/aadops-conditional-access/#definition-of-requirement-and-plan-deployment)
