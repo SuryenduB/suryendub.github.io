@@ -792,7 +792,7 @@ terraform-apply:
     needs: [terraform-plan]
 ```
 
-1. Check out the repository to the GitHub Actions runner.
+- Check out the repository to the GitHub Actions Runner.
 
 ```yaml
 
@@ -802,7 +802,7 @@ terraform-apply:
 
 ```
 
-2. Installs the latest version of the Terraform CLI and configures the Terraform CLI configuration file with a Terraform Cloud user API token.
+- Installs the latest version of the Terraform CLI and configures the Terraform CLI configuration file with a Terraform Cloud user API token.
 
 ```yaml
 # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
@@ -810,11 +810,11 @@ terraform-apply:
       uses: hashicorp/setup-terraform@v2
 ```
 
-3. Log in to Azure CLI with federated credentials.
+- Log in to Azure CLI with federated credentials.
 
-4. Initializes the Terraform working directory by creating initial files, loading any remote state, and downloading modules.
+- Initializes the Terraform working directory by creating initial files, loading any remote state, and downloading modules.
 
-5. Download the saved Terraform plan from the tfplan artifact from the previous Job.
+- Download the saved Terraform plan from the tfplan artifact from the previous Job.
 
 ```yaml
 
@@ -828,7 +828,7 @@ terraform-apply:
         name: tfplan
 ```
 
-6. Applies the Terraform plan to the Azure environment.
+- Applies the Terraform plan to the Azure environment.
 
 ```yaml
 # Terraform Apply
@@ -836,6 +836,7 @@ terraform-apply:
       run:  terraform apply -auto-approve ./tfplan
 
 ```
+
 ![Workflow Triggered](/assets/img/FID9.3.jpg)
 
 We can see the Workflow Steps for Terraform Plan and Terraform Apply have been completed.
@@ -867,10 +868,11 @@ and gradually to all the Rings and finally to complete Persona.
 included_groups = [azuread_group.CA-Persona-Rings["Internals.Ring0"].id, azuread_group.CA-Persona-Rings["Internals.Ring1"].id, azuread_group.CA-Persona-Rings["Internals.Ring2"].id, azuread_group.CA-Persona-Rings["Internals.Ring3"].id,azuread_group.CA-Persona-Groups["Internals"].id]
 ```
 
-* Let the policy run for a day or two, - based on potential failures in CA workbooks and sign-in logs assuring they are understood before proceeding and verify if end-users have complained about new login prompts i.e. especially on mobile devices as report-only can result in unexpected prompts in a few use-cases.
+- Let the policy run for a day or two, - based on potential failures in CA workbooks and sign-in logs assuring they are understood before proceeding and verify if end-users have complained about new login prompts i.e. especially on mobile devices as report-only can result in unexpected prompts in a few use-cases.
 
-* Potentially adjust the policy and continue running it in the report-only mode for a few extra days and verify that issues have been solved or fully understood before enabling the policy for the first ring.
-* Assign the policy to CA-Persona-Internals-Ring0 and enable it.
+- Potentially adjust the policy and continue running it in the report-only mode for a few extra days and verify that issues have been solved or fully understood before enabling the policy for the first ring.
+
+- Assign the policy to CA-Persona-Internals-Ring0 and enable it.
 
 ```hcl
  state = enabled
@@ -904,9 +906,7 @@ users {
 
  **Conditional Access For Zero Trust** framework  is a powerful framework that aligns with **Modern Security Best Practices** to secure the entire enterprise. This blog shows how any Organization can securely manage and deploy Conditional Access Policies **Policies-As-A-Code** using Terraform and **GitHub Actions. In this PoC Example, GitHub Repo is the **Source of Truth** that is maintained using the **branch protection rule**, and **code review** for merging the feature branch to the master Branch. Refer to the reference section for [Conditional Access for Zero Trust Architecture](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources/blob/main/ConditionalAccessGovernanceAndPrinciplesforZeroTrust%20October%202023.pdf) as the starting point.
 
-
-
-## References 
+## References
 
 - [Conditional Access for Zero Trust Architecture](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources/blob/main/ConditionalAccessGovernanceAndPrinciplesforZeroTrust%20October%202023.pdf)
 - [Hashicorp Azure AD Module](https:/registry.terraform.io/providers/hashicorp/azuread/latest/docs)
