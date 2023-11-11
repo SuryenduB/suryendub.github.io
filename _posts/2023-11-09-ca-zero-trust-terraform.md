@@ -259,7 +259,8 @@ resource "azuread_group" "CA-Persona-Rings" {
 ```
 
 This will generate the Ring-based group for each Persona Type.
-![Ring Based Groups](.\Assets\CABlog9.png)
+
+![Ring Based Groups](/assets/img/CABlog9.png)
 
 
 We will be using the following code to generate the persona groups. Now each of these persona groups are dynamic groups. For Example, I have considered for the  Internal Employees to have 5 digits Employee ID and External Users to have `ext` in their UPN. You can modify it to your specific organizational needs.
@@ -281,7 +282,7 @@ resource "azuread_group" "CA-Persona-Groups" {
 }
 ```
 
-![Persona Based Groups: Internal](.\Assets\CABlog10.png)
+![Persona Based Groups: Internal](/assets/img/CABlog10.png)
 
 Similar to Ring-based groups we will be using the following code to generate the persona groups for exclusions. For each policy type, we will add specific exclusion groups
 
@@ -296,7 +297,7 @@ resource "azuread_group" "CA-Persona-Groups-Exclusions" {
 }
 ```
 
-![Persona Based Groups : Exclusions](.\Assets\CABlog11.png)
+![Persona Based Groups : Exclusions](/assets/img/CABlog11.png)
 
 ### Conditional Access Policy Resource
 
@@ -403,13 +404,13 @@ resource "azuread_named_location" "TrustedLocation" {
 }
 ```
 
-![Named Location Resource: IP Ranges](.\Assets\CABlog12.png)
+![Named Location Resource: IP Ranges](/assets/img/CABlog12.png)
 
-![Named Location Countries](.\Assets\CABlog13.png)
+![Named Location Countries](/assets/img/CABlog13.png)
 
  Once everything is in place and after a greenfield deployment this is how Conditional Access Policies will look like.
 
-![Conditional Access Policies](.\Assets\CABlog15.png)
+![Conditional Access Policies](/assets/img/CABlog15.png)
 
 ## **Ring Base Deployment**
 
@@ -431,7 +432,7 @@ Let me try to summarize the concept of ring-based deployment. The idea is to dep
 - 12. Test and verify that everything is working as expected over a few days.
 - 13. Assign the policy to CA-Persona-Internals. The new policy is now running in full production.
 
-![Ring Based Deployment](.\Assets\CABlog16.png)
+![Ring Based Deployment](/assets/img/CABlog16.png)
 
 ## **Use GitHub Actions for Automated Ring Base Deployment of new CA Policy**
 
@@ -832,7 +833,7 @@ terraform-apply:
 ```yaml
 # Terraform Apply
     - name: Terraform Apply
-      run:  terraform apply -auto-approve ../tfplan
+      run:  terraform apply -auto-approve ./tfplan
 
 ```
 ![Workflow Triggered](/assets/img/FID9.3.jpg)
