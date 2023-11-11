@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Deploy Conditional Access Policies for a Zero Trust Architecture Framework using Terraform and GitHub Actions
+title: CI / CD Deployment of  Conditional Access Policies for a Zero Trust Architecture Framework using Terraform and GitHub Actions
 subtitle :   Deploy , Manage and Monitor Conditional Access using Terraform and GitHub Actions
 cover-img: /assets/img/CABlog16.png
 thumbnail-img: /assets/img/CABlog16.png
@@ -13,12 +13,9 @@ tags: [ Azure Active Directory, EntraID, MicrosoftEntra, Security, ZeroTrust, AP
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-  
-- [The Framework](#the-framework)
-  
-- [Conditional Access Architecture](#conditional-access-architecture)
-  
+- [Introduction](#introduction)  
+- [The Framework](#the-framework)  
+- [Conditional Access Architecture](#conditional-access-architecture)  
 - [Import Existing Conditional Access Policies to Terraform](#import-existing-conditional-access-policies-to-terraform)
   - [Config Driven Import](#config-driven-import)
     - [List Conditional Access Policies](#list-conditional-access-policies)
@@ -29,7 +26,6 @@ tags: [ Azure Active Directory, EntraID, MicrosoftEntra, Security, ZeroTrust, AP
 - [Conditional Access Policy Resource](#conditional-access-policy-resource)
 - [Named Location Resource](#named-location-resource)
 - [Ring Base Deployment](#ring-base-deployment)
-
   - [Steps to deploy a new CA Policy](#steps-to-deploy-a-new-ca-policy)
 - [Use GitHub Actions for Automated Ring Base Deployment of new CA Policy](#use-github-actions-for-automated-ring-base-deployment-of-new-ca-policy)
 - [Final Thoughts](#final-thoughts)
@@ -37,9 +33,11 @@ tags: [ Azure Active Directory, EntraID, MicrosoftEntra, Security, ZeroTrust, AP
 
 ## Introduction
 
-Winter is finally setting in this strange land, the first winter is always the scariest for the new migrant to a cold country from the warmer country. As the Winter is setting in, I am finding myself in a strange kind of lethargy and lack of enthusiasm to do anything. I have not managed to write something new and my mind has progressively started to become more and more arid. World news has been as depressing as ever and the only escape one can find in this time is in the pursuit of knowledge.
-
-Lately, I have been thinking a lot about [Conditional Access Policy](https:/learn.microsoft.com/en-us/entra/identity/conditional-access/overview) and what is the best way to deploy and manage them. I have been working on a project where we are trying to automate the deployment of Conditional Access Policies and the monitoring of the policies. I have been working on this project for a while now and I have been thinking about writing about it for a while now. I have been trying to find the best way to write about it and I have decided to write about it in a series of articles. This is the first article in the series and I will be writing about the monitoring of the Conditional Access Policies. After a lot of contemplation, I have decided that any greenfield organization planning to use this feature from Microsoft is to follow an aspirational framework that ties together most of the use cases. Inimitable [Claus Jespersen](https:/www.linkedin.com/in/claus-jespersen-25b0422/) has created an extraordinary framework [Conditional Access for Zero Trust Resources](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources) that ties together all the loose ends for **Conditional Access**.
+I have not managed to write something new and my mind has progressively started to become more and more arid. Lately, I had to think about the [Conditional Access Policy](https:/learn.microsoft.com/en-us/entra/identity/conditional-access/overview) and what is the best way to deploy and manage them. I have been working on a project where we are trying to automate the deployment of Conditional Access Policies and the monitoring of the policies. Inimitable [Claus Jespersen](https:/www.linkedin.com/in/claus-jespersen-25b0422/) has created an extraordinary framework [Conditional Access for Zero Trust Resources](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources) that ties together all the loose ends for **Conditional Access for Zero Trust**. We want to have continuous integration and continuous deployment enabled, meaning that 
+each time a change to the CA policies has been committed/approved, we want to 
+automatically deploy the new CA policies. Also even if there are no changes, we want to 
+ensure that the running set of policies have been changed manually using GUI 
+and if so, align with the approved policies in the repository.
 
 ## The Framework
 
@@ -57,11 +55,11 @@ For each of the Identity Personas, we can create policies targeted to the specif
 
 | Policy Type | Description |
 | ----------- | ----------- |
-| Base Protection | The base protection is the default policy for all app for users of the given persona. |
+| Base Protection | The base protection is the default policy for all apps for users of the given persona. |
 | Identity Protection | This policy deals with Azure AD Identity Protection for the Personna |
 | Data Protection| Policies that protect data as an extra layer on top of the base protection |
 | Attack Surface Reduction  | Policy to mitigate against various attacks. |
-| ompliance | Policies to ensure compliance with various regulations. |
+| Compliance | Policies to ensure compliance with various regulations. |
 
 Not only Personas and Policy Type this framework also guides various other aspects like best practices, exclusions, and deployments (more of this later).
 
@@ -77,11 +75,11 @@ Zero Trust CA architecture is the recommended architecture. It is better aligned
 
 ## Import Existing Conditional Access Policies to Terraform
 
-Managing Conditional Access policies in Entra ID at scale can be a real hassle. The GUI-based management tools were not designed to perform any kind of configuration in bulk. For Unified Management of Conditional Access Management, it is imperative that we not only create new Conditional Access Policies but at the same time manage the existing Conditional Access Policies.
+Managing Conditional Access policies in Entra ID at scale can be a real hassle. The GUI-based management tools were not designed to perform any kind of configuration in bulk. For Unified Management of Conditional Access Management, it is important to use a tool that allows us to not only create new Conditional Access Policies but at the same time manage the existing Conditional Access Policies.
 
 ## Config Driven Import
 
-In my Test Tenant, we have a few Conditional Access Policies that we will be importing into Terraform. The following is the list of Conditional Access Policies that we will be importing into Terraform. If you are not living under a rock you are already aware Microsoft is going to create the following [default Conditional Access Policies](https:/www.microsoft.com/en-us/security/blog/2023/11/06/automatic-conditional-access-policies-in-microsoft-entra-streamline-identity-protection/#:~:text=Microsoft%2Dmanaged%20Conditional%20Access%20policies%20provide%20clear%2C%20self%2Ddeploying,but%20we're%20starting%20simple.) in your tenant. Now let's say our Organization SuryenduB wants to calibrate the above policies and you should exclude the breakglass accounts from the above policies.
+In my Test Tenant, we have a few Conditional Access Policies that we will be importing into Terraform. The following is the list of Conditional Access Policies that we will be importing into Terraform. On a Side note,  recently  Microsoft has announced that they are going to create the following [default Conditional Access Policies](https:/www.microsoft.com/en-us/security/blog/2023/11/06/automatic-conditional-access-policies-in-microsoft-entra-streamline-identity-protection/#:~:text=Microsoft%2Dmanaged%20Conditional%20Access%20policies%20provide%20clear%2C%20self%2Ddeploying,but%20we're%20starting%20simple.) in all tenant.  It is important for the organizations to calibrate the above policies and you should exclude the breakglass accounts from the above policies and enable it. I have selected the **Microsoft-Managed Policies** in my test tenant to showcase, how we can import existing CA Policy using Terraform Import. Later we will use the imported policies to modify as per our needs and add new policies based on the **Conditional Access for Zero Trust** framework.
 
 First Start with Blank Configuration in VSCode and just add the provider block for Azure AD Provider. The ultimate goal of our execution is to be able to deploy and Manage the Conditional Access Policy from the CI/CD pipeline. We will need to configure the [remote backend](https:/learn.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage?tabs=terraform) for state file management.
 
@@ -144,7 +142,7 @@ In this case, we see that we need to fix the following error.
 
 ![Error](/assets/img/CABlog2.png)
 
-We can fix this by first removing ```included_user_actions``` block from the policy.
+We can fix this by first removing the ```included_user_actions``` block from the policy.
 
 ![Error](/assets/img/CABlog3.png)
 
@@ -186,7 +184,7 @@ You can verify Conditional Access Policy is updated in the EntraID portal.
 
 ## The Source Repo
 
-Now that we have managed to import the Existing Conditional Access Policies in our state file we will have the option to deploy new Conditional Access Policies based on our Zero Trust Framework. We will be using [this repository](https:/github.com/SuryenduB/ConditionalAccessforZeroTrustResourcesTerraform) as the source repo for our Terraform Code and CI/CD Pipeline. The repository has the following structure.
+Now that we have managed to import the Existing Conditional Access Policies in our state file we will deploy new Conditional Access Policies based on our **Zero Trust Framework**. We will be using [this repository](https:/github.com/SuryenduB/ConditionalAccessforZeroTrustResourcesTerraform) as the source repo for our Terraform Code and CI/CD Pipeline. The repository has the following structure.
 
 ### **Azure AD Group Resource**
 
@@ -194,12 +192,13 @@ In the  [Introduction](#introduction) section, I have extensively written about 
 
 > **azuread_group.tf**
 
-A small recap of the persona groups for Zero Trust Framework.
+A small recap of the persona groups for the Zero Trust Framework.
 
 - Ring-Based Groups for Deployment
 - Persona-Based Groups for Exclusions
+- Persona-Based Dynamic Group for Policy Assignment
 
-We decided to store this in the `locals` block in Terraform. 
+One of the core goals here is to separate the configuration from business logic. In this case, all the different persona groups are configured in the local block, and the logic to create Persona Groups follows the **D-R-Y** principal. 
 
 ```hcl
 
@@ -247,7 +246,7 @@ locals {
   ]))
 ```
 
-We will be using the following code to generate the persona groups.
+We will be using the following code to generate the ring groups for each Persona Type.
 
 ```hcl
 resource "azuread_group" "CA-Persona-Rings" {
@@ -263,7 +262,7 @@ This will generate the Ring-based group for each Persona Type.
 ![Ring Based Groups](.\Assets\CABlog9.png)
 
 
-We will be using the following code to generate the persona groups. Now each of these persona groups are dynamic groups. For Example, I have considered for the  Internal Employees to have 5 digits Employee ID and External Users (non Guest Type ) has ext in their UPN. You can modify it to your specific organizational needs.
+We will be using the following code to generate the persona groups. Now each of these persona groups are dynamic groups. For Example, I have considered for the  Internal Employees to have 5 digits Employee ID and External Users to have `ext` in their UPN. You can modify it to your specific organizational needs.
 
 ```hcl
 resource "azuread_group" "CA-Persona-Groups" {
@@ -284,7 +283,7 @@ resource "azuread_group" "CA-Persona-Groups" {
 
 ![Persona Based Groups: Internal](.\Assets\CABlog10.png)
 
-Similar to Ring-based groups we will be using the following code to generate the persona groups for exclusions. For each policy type we will add specific exclusion groups
+Similar to Ring-based groups we will be using the following code to generate the persona groups for exclusions. For each policy type, we will add specific exclusion groups
 
 ```hcl
 resource "azuread_group" "CA-Persona-Groups-Exclusions" {
@@ -303,7 +302,7 @@ resource "azuread_group" "CA-Persona-Groups-Exclusions" {
 
 > **azuread_conditional_access_policy.tf** 
 
-We will update the previously generated **azuread_conditional_access_policy.tf** file with the Zero Trust based conditional Access Policies from our Zero Trust Framework. Zero Trust framework suggests to structure conditional Access Policies according to the following areas :
+We will update the previously generated **azuread_conditional_access_policy.tf** file with the Zero Trust-based conditional Access Policies from our Zero Trust Framework. Zero Trust framework suggests to structure conditional Access Policies according to the following areas :
 
 - Global protection (CA001-CA099)
 - Admins protection (CA100-CA199)
@@ -316,7 +315,7 @@ We will update the previously generated **azuread_conditional_access_policy.tf**
 - CorpServiceAccounts (CA800-CA899)
 - WorkloadIdentities (CA900-CA999)
 - Developer (CA1000-CA1099)
-A few of the sample policies are as follows :
+I have included few of the sample policies in this blog and you will get the remaining policies in the source **[repo](#the-source-repo)**.
 
 **Internals Base Protection**: Require known user and Compliant or Azure AD Hybrid Joined device from any device.
 
@@ -373,7 +372,7 @@ Notice how we have used the group resources generated to apply and exclude the p
 
 ### **Named Location Resource** 
 
-> **azuread_named_location.tf** : In few of the Conditional Access Policies we have used Named Location. Named Location is a resource that can be used to define a set of IP addresses or countries that can be used in Conditional Access Policies. We will be using the following code to generate the Named Location Resource.
+> **azuread_named_location.tf**: In a few of the Conditional Access Policies we have used Named Location. Named Location is a resource that can be used to define a set of IP addresses or countries that can be used in Conditional Access Policies. We will be using the following code to generate the Named Location Resource.
 
 - CA800-CorpServiceAccounts-BaseProtection-AllApps-AnyPlatform-BlockUntrustedLocations
 - CA900-WorkloadIdentities-BaseProtection-AllApps-AnyPlatform-BlockUntrustedLocations
@@ -436,7 +435,7 @@ Let me try to summarize the concept of ring-based deployment. The idea is to dep
 
 ## **Use GitHub Actions for Automated Ring Base Deployment of new CA Policy**
 
-### **Authentication Challenge of Terraform and Github Actions**
+### **Authentication Challenge of Terraform and GitHub Actions**
 
 Our journey begins by addressing the crucial issue of authentication. For our purposes, we opt for the Client Credentials flow using Client ID and Client Secrets. However, securely managing these secrets for Terraform and subsequent **GitHub Workflow** integration poses a significant challenge for developers, DevOps teams, and IT administrators. While incorporating secrets into application configurations or exposing them as environment variables may appear intuitive, storing them directly in code and committing them to GitHub repositories can lead to potential security disasters. To counter this vulnerability, developers often seek secure storage solutions such as a vault. Nevertheless, this approach necessitates periodic expiration and rotation of secrets in Key Vaults, a task that, if not executed correctly, can introduce service availability challenges. Additionally, manual management of secrets carries the risk of individuals departing from the organization with access to critical secrets, potentially resulting in unauthorized resource access. Striking the right balance between security and service continuity becomes a complex endeavor in the realm of secrets management.
 
@@ -462,7 +461,7 @@ Our initial step is to create an Application Object or **User Assigned Managed I
 
 As a best practice, I recommend configuring this using the Graph API, facilitating easier migration between staging and production tenants.
 
-```powershell
+```PowerShell
 Import-Module Microsoft.Graph.Beta.Applications
 Connect-MgGraph -TenantID '****************-2f34-4dc4-9500-****************' -Scope 'Application.ReadWrite.All'
 $params = @{
@@ -476,14 +475,14 @@ $Application = New-MgBetaApplication -BodyParameter $params
 ### **Add Federated Credential for GitHub Repo**
 
 
-Follow the instructions mentioned in the steps below to add Federated Credentials for your Github Repository. As I am doing this using my Personal Github Repo , I went with the branch strategy.
+Follow the instructions mentioned in the steps below to add Federated Credentials for your Github Repository. As I am doing this using my Personal Github Repo, I went with the branch strategy.
 ![FID App](/assets/img/FID3.jpg)
 
 ![FID App](/assets/img/FID4.jpg)
 
 ![FID App](/assets/img/FID5.jpg)
 
-```powershell
+```PowerShell
 Import-Module Microsoft.Graph.Beta.Applications
 $applicationId = $Application.Id
 
@@ -506,7 +505,7 @@ Given that our application's primary objective is to grant necessary permissions
 
 ![FID App](/assets/img/FID7.jpg)
 
-As we need to Obtain a token using Federated Credentials, we need to make the actions variable availble as an Environment Variable.
+As we need to Obtain a token using Federated Credentials, we need to make the actions variable available as an Environment Variable.
 
 ```terraform
 export ARM_CLIENT_ID="00000000-0000-0000-0000-000000000000"
@@ -521,7 +520,7 @@ To configure secrets or variables on GitHub, your level of access depends on the
 
 2. **Organization Repository**: Admin access is required to create secrets or variables for organization repositories.
 
-3. **REST API Access**: To create secrets or variables for either personal account or organization repositories via the REST API, you need collaborator access.
+3. **REST API Access**: To create secrets or variables for either personal accounts or organization repositories via the REST API, you need collaborator access.
 
 Here's a step-by-step guide:
 
@@ -591,7 +590,7 @@ on:
 
 #### 1. `terraform-plan`
 
-This job focuses on the planning phase of the deployment process. It performs the following tasks:Check out the repository to access the latest code.
+This job focuses on the planning phase of the deployment process. It performs the following tasks: Check out the repository to access the latest code.
 - Sets up the Terraform CLI.
 - Changes the working directory to `EntraID/` where the Terraform configurations are stored.
 - Initializes the Terraform working directory.
@@ -616,7 +615,7 @@ The tasks within this job include:
 - Downloading the saved Terraform plan (`tfplan` artifact) generated in the `terraform-plan` job.
 - Applying the Terraform plan to the Azure environment.
 
-This structured workflow ensures that the CA policy deployment process is orchestrated efficiently, with clear separation between planning and application stages. Any changes detected in the master branch related to IAM configurations trigger the workflow, allowing for controlled and automated deployment.
+This structured workflow ensures that the CA policy deployment process is orchestrated efficiently, with a clear separation between planning and application stages. Any changes detected in the master branch related to IAM configurations trigger the workflow, allowing for controlled and automated deployment.
 
 
 ```yaml
@@ -626,9 +625,7 @@ on:
   push:
     branches:
     - master
-    paths:
-    - '.github/workflows/terraform.yaml'
-    - 'EntraID/**'
+    
     
   pull_request:
     branches:
@@ -637,7 +634,7 @@ on:
 
 ```
 
-The job or workflow run requires a permissions setting with id-token: write. We won't be able to request the OIDC JWT ID token if the permissions setting for id-token is set to read or none.
+The job or workflow run requires a permissions setting with id-token: write. We won't be able to request the OIDC JWT ID token if the permissions setting for the id-token is set to read or none.
 
 ```yaml
 #Special permissions required for OIDC authentication
@@ -662,7 +659,7 @@ terraform-plan:
 
 ```
 
-1. Checks out the repository to the GitHub Actions runner.
+1. Check out the repository to the GitHub Actions runner.
 
 ```yaml
 steps:
@@ -735,7 +732,7 @@ steps:
 
 ```
 
-7 .Creates a string output of the Terraform plan and publishes it as a task summary.
+7. Creates a string output of the Terraform plan and publishes it as a task summary.
 
 ```yaml
 # Create string output of Terraform Plan
@@ -757,7 +754,7 @@ steps:
         
 ```
 
-8. Posts the Terraform plan as a comment on the pull request (if applicable).
+8. Post the Terraform plan as a comment on the pull request (if applicable).
 
 
 ```yaml
@@ -780,7 +777,7 @@ steps:
 ```
 
 
-Next it is the turn of The ```terraform-apply``` job to run (similarly in  an Ubuntu virtual machine for Github Runner)  and performs the following steps:
+Next, it is the turn of The ```terraform-apply``` job to run (similarly in  an Ubuntu virtual machine for Github Runner)  and perform the following steps:
 
 ```yaml
 terraform-apply:
@@ -794,7 +791,7 @@ terraform-apply:
     needs: [terraform-plan]
 ```
 
-1. Checks out the repository to the GitHub Actions runner.
+1. Check out the repository to the GitHub Actions runner.
 
 ```yaml
 
@@ -812,11 +809,11 @@ terraform-apply:
       uses: hashicorp/setup-terraform@v2
 ```
 
-3. Logs in to Azure CLI with federated credentials.
+3. Log in to Azure CLI with federated credentials.
 
 4. Initializes the Terraform working directory by creating initial files, loading any remote state, and downloading modules.
 
-5. Downloads the saved Terraform plan from the tfplan artifact from the previous Job.
+5. Download the saved Terraform plan from the tfplan artifact from the previous Job.
 
 ```yaml
 
@@ -840,15 +837,15 @@ terraform-apply:
 ```
 ![Workflow Triggered](/assets/img/FID9.3.jpg)
 
-We can see the Workflow Steps for Terraform Plan and Terraform Apply has been completed.
+We can see the Workflow Steps for Terraform Plan and Terraform Apply have been completed.
 
 ![Workflow Triggered](/assets/img/FID9.4.jpg)
 
-If we look at the each steps of ```terraform-plan``` job we can see all the steps are completed.
+If we look at each step of ```terraform-plan``` job we can see all the steps are completed.
 
 ![Workflow Triggered](/assets/img/FID9.5.jpg)
 
-Similarly for ```terraform-apply``` job we can verify all the necessary steps are completed.
+Similarly, for the ```terraform-apply``` job, we can verify all the necessary steps are completed.
 
 ![Workflow Triggered](/assets/img/FID9.6.jpg)
 
@@ -871,7 +868,7 @@ included_groups = [azuread_group.CA-Persona-Rings["Internals.Ring0"].id, azuread
 
 * Let the policy run for a day or two, - based on potential failures in CA workbooks and sign-in logs assuring they are understood before proceeding and verify if end-users have complained about new login prompts i.e. especially on mobile devices as report-only can result in unexpected prompts in a few use-cases.
 
-* Potentially adjust policy and continue running it in report-only mode for a few extra days and verify that issues have been solved or fully understood before enabling the policy for the first ring.
+* Potentially adjust the policy and continue running it in the report-only mode for a few extra days and verify that issues have been solved or fully understood before enabling the policy for the first ring.
 * Assign the policy to CA-Persona-Internals-Ring0 and enable it.
 
 ```hcl
@@ -892,7 +889,7 @@ included_groups = [azuread_group.CA-Persona-Rings["Internals.Ring0"].id, azuread
 - Test and verify that everything is working as expected over a few days
 - Additionally assign the policy to CA-Persona-Internals-Ring3 (so that both Ring0, Ring1, Ring2, and Ring3 are assigned.
 
-- Finally assigned the policy to CA-Persona-Internals. The new policy is now running in full production
+- Finally assigned the policy to CA-Persona-Internals. The new policy is now running in full production.
 
 ```hcl
 users {
@@ -900,15 +897,13 @@ users {
      
 ```
 
-Ring2 groups are assigned)
-▪ Test and verify that everything is working as expected over a few days
-▪ Assign the policy to CA-Persona-Internals. The new policy is now running in full production.
+
 
 ## Final Thoughts
 
-I have explored the CAP architecture, with the Zero Trust approaches. offering comprehensive protection for all endpoints and applications. I have delved into the practical aspects of managing CAPs at scale, leveraging Terraform for automation and configuration-driven imports.
+ **Conditional Access For Zero Trust** framework  is a powerful framework that aligns with **Modern Security Best Practices** to secure the entire enterprise. This blog shows how any Organization can securely manage and deploy Conditional Access Policies **Policies-As-A-Code** using Terraform and **GitHub Actions. In this PoC Example, GitHub Repo is the **Source of Truth** that is maintained using the **branch protection rule**, and **code review** for merging the feature branch to the master Branch. Refer to the reference section for [Conditional Access for Zero Trust Architecture](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources/blob/main/ConditionalAccessGovernanceAndPrinciplesforZeroTrust%20October%202023.pdf) as the starting point.
 
-I have outlined the process of importing existing policies into Terraform, showcasing the steps involved in configuring the remote backend for state file management.
+
 
 ## References 
 
@@ -916,3 +911,4 @@ I have outlined the process of importing existing policies into Terraform, showc
 - [Hashicorp Azure AD Module](https:/registry.terraform.io/providers/hashicorp/azuread/latest/docs)
 
 - [Workload Identity Federation](https:/learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation)
+- [AADOps: Operationalization of Azure AD Conditional Access](https://www.cloud-architekt.net/aadops-conditional-access/#definition-of-requirement-and-plan-deployment)
