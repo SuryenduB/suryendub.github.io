@@ -420,17 +420,17 @@ Let me try to summarize the concept of ring-based deployment. The idea is to dep
 
 ### **Steps to deploy a new CA Policy**
 
-- 1. Create a new CA Policy within the persona group that it is meant for.
-- 2. Put it into a reporting-only mode to not affect production before testing.
-- 3. Let the policy run for a day or two and verify if end-users have complained about new login prompts. Potentially adjust the policy and continue running it in the report-only mode for a few extra days.
-- 5. Assign the policy to CA-Persona-Internals-Ring0 and enable it.
-- 6. Test and verify that everything is working as expected over a few days. Additionally, assign the policy to CA-Persona-Internals-Ring1 (so that both Ring0 and Ring1 groups are assigned).
-- 8. Test and verify that everything is working as expected over a few days.
-- 9. Additionally assign the policy to CA-Persona-Internals-Ring2 (so that both Ring0, Ring1, and Ring2 groups are assigned).
-- 10. Test and verify that everything is working as expected over a few days.
-- 11. Additionally assign the policy to CA-Persona-Internals-Ring3 (so that both Ring0, Ring1, and Ring2 groups are assigned).
-- 12. Test and verify that everything is working as expected over a few days.
-- 13. Assign the policy to CA-Persona-Internals. The new policy is now running in full production.
+- Create a new CA Policy within the persona group that it is meant for.
+- Put it into a reporting-only mode to not affect production before testing.
+- Let the policy run for a day or two and verify if end-users have complained about new login prompts. Potentially adjust the policy and continue running it in the report-only mode for a few extra days.
+- Assign the policy to CA-Persona-Internals-Ring0 and enable it.
+- Test and verify that everything is working as expected over a few days. Additionally, assign the policy to CA-Persona-Internals-Ring1 (so that both Ring0 and Ring1 groups are assigned).
+- Test and verify that everything is working as expected over a few days.
+- Additionally assign the policy to CA-Persona-Internals-Ring2 (so that both Ring0, Ring1, and Ring2 groups are assigned).
+- Test and verify that everything is working as expected over a few days.
+- Additionally assign the policy to CA-Persona-Internals-Ring3 (so that both Ring0, Ring1, and Ring2 groups are assigned).
+- Test and verify that everything is working as expected over a few days.
+- Assign the policy to CA-Persona-Internals. The new policy is now running in full production.
 
 ![Ring Based Deployment](/assets/img/CABlog16.png)
 
@@ -904,7 +904,7 @@ users {
 
 ## Final Thoughts
 
- **Conditional Access For Zero Trust** framework  is a powerful framework that aligns with **Modern Security Best Practices** to secure the entire enterprise. This blog shows how any Organization can securely manage and deploy Conditional Access Policies **Policies-As-A-Code** using Terraform and **GitHub Actions. In this PoC Example, GitHub Repo is the **Source of Truth** that is maintained using the **branch protection rule**, and **code review** for merging the feature branch to the master Branch. Refer to the reference section for [Conditional Access for Zero Trust Architecture](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources/blob/main/ConditionalAccessGovernanceAndPrinciplesforZeroTrust%20October%202023.pdf) as the starting point.
+ **The Conditional Access For Zero Trust** framework is a powerful framework that aligns with **Modern Security Best Practices** to secure the entire enterprise. This blog shows how any Organization can securely manage and deploy Conditional Access Policies **Policies-As-A-Code** using Terraform and **GitHub Actions**. In this PoC Example, GitHub Repo is the **Source of Truth** that is maintained using the **branch protection rule**, and **code review** for merging the feature branch to the master Branch. CI/CD Pipeline is triggered whenever there is a new update to the Master Branch. Refer to the reference section for [Conditional Access for Zero Trust Architecture](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources/blob/main/ConditionalAccessGovernanceAndPrinciplesforZeroTrust%20October%202023.pdf) as the starting point.
 
 ## References
 
