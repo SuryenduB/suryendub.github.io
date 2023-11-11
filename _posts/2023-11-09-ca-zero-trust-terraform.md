@@ -33,11 +33,7 @@ tags: [ Azure Active Directory, EntraID, MicrosoftEntra, Security, ZeroTrust, AP
 
 ## Introduction
 
-I have not managed to write something new and my mind has progressively started to become more and more arid. Lately, I had to think about the [Conditional Access Policy](https:/learn.microsoft.com/en-us/entra/identity/conditional-access/overview) and what is the best way to deploy and manage them. I have been working on a project where we are trying to automate the deployment of Conditional Access Policies and the monitoring of the policies. Inimitable [Claus Jespersen](https:/www.linkedin.com/in/claus-jespersen-25b0422/) has created an extraordinary framework [Conditional Access for Zero Trust Resources](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources) that ties together all the loose ends for **Conditional Access for Zero Trust**. We want to have continuous integration and continuous deployment enabled, meaning that 
-each time a change to the CA policies has been committed/approved, we want to 
-automatically deploy the new CA policies. Also even if there are no changes, we want to 
-ensure that the running set of policies have been changed manually using GUI 
-and if so, align with the approved policies in the repository.
+I have not managed to write something new and my mind has progressively started to become more and more arid. Lately, I had to think about the [Conditional Access Policy](https:/learn.microsoft.com/en-us/entra/identity/conditional-access/overview) and what is the best way to deploy and manage them. I have been working on a project where we are trying to automate the deployment of Conditional Access Policies and the monitoring of the policies. Inimitable [Claus Jespersen](https:/www.linkedin.com/in/claus-jespersen-25b0422/) has created an extraordinary framework [Conditional Access for Zero Trust Resources](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources) that ties together all the loose ends of **Zero Trust Enterprise Security**. I have used this framework for continuous integration and continuous deployment. Each time a change to the CA policies has been committed/approved, we want to automatically deploy the new CA policies. Also even if there are no changes, we want to ensure that the running set of policies has been changed manually using GUI and if so we override the policy to ensure only the approved policies in the repository.
 
 ## The Framework
 
