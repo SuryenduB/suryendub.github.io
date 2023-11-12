@@ -33,7 +33,7 @@ tags: [ Azure Active Directory, EntraID, MicrosoftEntra, Security, ZeroTrust, AP
 
 ## Introduction
 
-I have not managed to write something new and my mind has progressively started to become more and more arid. Lately, I had to think about the [Conditional Access Policy](https:/learn.microsoft.com/en-us/entra/identity/conditional-access/overview) and what is the best way to deploy and manage them. I have been working on a project where we are trying to automate the deployment of Conditional Access Policies and the monitoring of the policies. Inimitable [Claus Jespersen](https:/www.linkedin.com/in/claus-jespersen-25b0422/) has created an extraordinary framework [Conditional Access for Zero Trust Resources](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources) that ties together all the loose ends for **Conditional Access for Zero Trust**. We want to have continuous integration and continuous deployment enabled, meaning that 
+I have not managed to write something new and my mind has progressively started to become more and more arid. Lately, I had to think about the [Conditional Access Policy](https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview) and what is the best way to deploy and manage them. I have been working on a project where we are trying to automate the deployment of Conditional Access Policies and the monitoring of the policies. Inimitable [Claus Jespersen](https://www.linkedin.com/in/claus-jespersen-25b0422/) has created an extraordinary framework [Conditional Access for Zero Trust Resources](https://github.com/microsoft/ConditionalAccessforZeroTrustResources) that ties together all the loose ends for **Conditional Access for Zero Trust**. We want to have continuous integration and continuous deployment enabled, meaning that 
 each time a change to the CA policies has been committed/approved, we want to 
 automatically deploy the new CA policies. Also even if there are no changes, we want to 
 ensure that the running set of policies have been changed manually using GUI 
@@ -41,7 +41,7 @@ and if so, align with the approved policies in the repository.
 
 ## The Framework
 
-Anyone working in this domain can benefit a lot from the [Microsoft Azure AD Conditional Access principles and guidance](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources/blob/main/ConditionalAccessGovernanceAndPrinciplesforZeroTrust%20October%202023.pdf).
+Anyone working in this domain can benefit a lot from the [Microsoft Azure AD Conditional Access principles and guidance](https://github.com/microsoft/ConditionalAccessforZeroTrustResources/blob/main/ConditionalAccessGovernanceAndPrinciplesforZeroTrust%20October%202023.pdf).
 
 For the benefit of the reader let me try to summarize a few of the core concepts of this framework. 
 > "A better approach is to structure policies related to common access needs and contain a set of 
@@ -79,9 +79,9 @@ Managing Conditional Access policies in Entra ID at scale can be a real hassle. 
 
 ## Config Driven Import
 
-In my Test Tenant, we have a few Conditional Access Policies that we will be importing into Terraform. The following is the list of Conditional Access Policies that we will be importing into Terraform. On a Side note,  recently  Microsoft has announced that they are going to create the following [default Conditional Access Policies](https:/www.microsoft.com/en-us/security/blog/2023/11/06/automatic-conditional-access-policies-in-microsoft-entra-streamline-identity-protection/#:~:text=Microsoft%2Dmanaged%20Conditional%20Access%20policies%20provide%20clear%2C%20self%2Ddeploying,but%20we're%20starting%20simple.) in all tenant.  It is important for the organizations to calibrate the above policies and you should exclude the breakglass accounts from the above policies and enable it. I have selected the **Microsoft-Managed Policies** in my test tenant to showcase, how we can import existing CA Policy using Terraform Import. Later we will use the imported policies to modify as per our needs and add new policies based on the **Conditional Access for Zero Trust** framework.
+In my Test Tenant, we have a few Conditional Access Policies that we will be importing into Terraform. The following is the list of Conditional Access Policies that we will be importing into Terraform. On a Side note,  recently  Microsoft has announced that they are going to create the following [default Conditional Access Policies](https://www.microsoft.com/en-us/security/blog/2023/11/06/automatic-conditional-access-policies-in-microsoft-entra-streamline-identity-protection/#:~:text=Microsoft%2Dmanaged%20Conditional%20Access%20policies%20provide%20clear%2C%20self%2Ddeploying,but%20we're%20starting%20simple.) in all tenant.  It is important for the organizations to calibrate the above policies and you should exclude the breakglass accounts from the above policies and enable it. I have selected the **Microsoft-Managed Policies** in my test tenant to showcase, how we can import existing CA Policy using Terraform Import. Later we will use the imported policies to modify as per our needs and add new policies based on the **Conditional Access for Zero Trust** framework.
 
-First Start with Blank Configuration in VSCode and just add the provider block for Azure AD Provider. The ultimate goal of our execution is to be able to deploy and Manage the Conditional Access Policy from the CI/CD pipeline. We will need to configure the [remote backend](https:/learn.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage?tabs=terraform) for state file management.
+First Start with Blank Configuration in VSCode and just add the provider block for Azure AD Provider. The ultimate goal of our execution is to be able to deploy and Manage the Conditional Access Policy from the CI/CD pipeline. We will need to configure the [remote backend](https://learn.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage?tabs=terraform) for state file management.
 
 ```hcl
 terraform {
@@ -113,7 +113,7 @@ Now we will define the import block for the Conditional Access Policy. The impor
 You can get the resource ID of your conditional Access Policies in several ways. I normally use Powershell for Microsoft Graph Operations.
 
 ```powershell
-Invoke-MgGraphRequest -Uri "https:/graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$select=id,displayName" | Select-Object -ExpandProperty Value | Select Id , displayName
+Invoke-MgGraphRequest -Uri "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$select=id,displayName" | Select-Object -ExpandProperty Value | Select Id , displayName
 ```
 
 ### **List Conditional Access Policies**
@@ -184,7 +184,7 @@ You can verify Conditional Access Policy is updated in the EntraID portal.
 
 ## The Source Repo
 
-Now that we have managed to import the Existing Conditional Access Policies in our state file we will deploy new Conditional Access Policies based on our **Zero Trust Framework**. We will be using [this repository](https:/github.com/SuryenduB/ConditionalAccessforZeroTrustResourcesTerraform) as the source repo for our Terraform Code and CI/CD Pipeline. The repository has the following structure.
+Now that we have managed to import the Existing Conditional Access Policies in our state file we will deploy new Conditional Access Policies based on our **Zero Trust Framework**. We will be using [this repository](https://github.com/SuryenduB/ConditionalAccessforZeroTrustResourcesTerraform) as the source repo for our Terraform Code and CI/CD Pipeline. The repository has the following structure.
 
 ### **Azure AD Group Resource**
 
@@ -490,7 +490,7 @@ $applicationId = $Application.Id
 
 $params = @{
  name = "GithubFederatedWIFCredential"
- issuer = "https:/token.actions.githubusercontent.com"
+ issuer = "https://token.actions.githubusercontent.com"
  subject = "repo:SuryenduB/Terraform:ref:refs/heads/Master"
  audiences = @(
 "api:/AzureADTokenExchange"
@@ -901,11 +901,11 @@ users {
 
 ## Final Thoughts
 
- **The Conditional Access For Zero Trust** framework is a powerful framework that aligns with **Modern Security Best Practices** to secure the entire enterprise. This blog shows how any Organization can securely manage and deploy Conditional Access Policies **Policies-As-A-Code** using Terraform and **GitHub Actions**. In this PoC Example, GitHub Repo is the **Source of Truth** that is maintained using the **branch protection rule**, and **code review** for merging the feature branch to the master Branch. CI/CD Pipeline is triggered whenever there is a new update to the Master Branch. Refer to the reference section for [Conditional Access for Zero Trust Architecture](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources/blob/main/ConditionalAccessGovernanceAndPrinciplesforZeroTrust%20October%202023.pdf) as the starting point.
+ **The Conditional Access For Zero Trust** framework is a powerful framework that aligns with **Modern Security Best Practices** to secure the entire enterprise. This blog shows how any Organization can securely manage and deploy Conditional Access Policies **Policies-As-A-Code** using Terraform and **GitHub Actions**. In this PoC Example, GitHub Repo is the **Source of Truth** that is maintained using the **branch protection rule**, and **code review** for merging the feature branch to the master Branch. CI/CD Pipeline is triggered whenever there is a new update to the Protected **Main** Branch. Refer to the reference section for [Conditional Access for Zero Trust Architecture](https://github.com/microsoft/ConditionalAccessforZeroTrustResources/blob/main/ConditionalAccessGovernanceAndPrinciplesforZeroTrust%20October%202023.pdf) as the starting point.
 
 ## References
 
-- [Conditional Access for Zero Trust Architecture](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources/blob/main/ConditionalAccessGovernanceAndPrinciplesforZeroTrust%20October%202023.pdf)
-- [Hashicorp Azure AD Module](https:/registry.terraform.io/providers/hashicorp/azuread/latest/docs)
-- [Workload Identity Federation](https:/learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation)
-- [AADOps: Operationalization of Azure AD Conditional Access](https://www.cloud-architekt.net/aadops-conditional-access/#definition-of-requirement-and-plan-deployment)
+- [Conditional Access for Zero Trust Architecture](https://github.com/microsoft/ConditionalAccessforZeroTrustResources/blob/main/ConditionalAccessGovernanceAndPrinciplesforZeroTrust%20October%202023.pdf)
+- [Hashicorp Azure AD Module](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs)
+- [Workload Identity Federation](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation)
+- [AADOps: Operationalization of Azure AD Conditional Access](https:///www.cloud-architekt.net/aadops-conditional-access/#definition-of-requirement-and-plan-deployment)
