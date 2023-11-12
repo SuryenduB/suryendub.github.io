@@ -33,18 +33,18 @@ tags: [ Azure Active Directory, EntraID, MicrosoftEntra, Security, ZeroTrust, AP
 
 ## Introduction
 
-I have not managed to write something new and my mind has progressively started to become more and more arid. Lately, I had to think about the [Conditional Access Policy](https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview) and what is the best way to deploy and manage them. I have been working on a project where we are trying to automate the deployment of Conditional Access Policies and the monitoring of the policies. Inimitable [Claus Jespersen](https://www.linkedin.com/in/claus-jespersen-25b0422/) has created an extraordinary framework [Conditional Access for Zero Trust Resources](https://github.com/microsoft/ConditionalAccessforZeroTrustResources) that ties together all the loose ends for **Conditional Access for Zero Trust**. We want to have continuous integration and continuous deployment enabled, meaning that 
-each time a change to the CA policies has been committed/approved, we want to 
-automatically deploy the new CA policies. Also even if there are no changes, we want to 
-ensure that the running set of policies have been changed manually using GUI 
+I have not managed to write something new and my mind has progressively started to become more and more arid. Lately, I had to think about the [Conditional Access Policy](https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview) and what is the best way to deploy and manage them. I have been working on a project where we are trying to automate the deployment of Conditional Access Policies and the monitoring of the policies. Inimitable [Claus Jespersen](https://www.linkedin.com/in/claus-jespersen-25b0422/) has created an extraordinary framework [Conditional Access for Zero Trust Resources](https://github.com/microsoft/ConditionalAccessforZeroTrustResources) that ties together all the loose ends for **Conditional Access for Zero Trust**. We want to have continuous integration and continuous deployment enabled, meaning that
+each time a change to the CA policies has been committed/approved, we want to
+automatically deploy the new CA policies. Also even if there are no changes, we want to
+ensure that the running set of policies have been changed manually using GUI
 and if so, align with the approved policies in the repository.
 
 ## The Framework
 
 Anyone working in this domain can benefit a lot from the [Microsoft Azure AD Conditional Access principles and guidance](https://github.com/microsoft/ConditionalAccessforZeroTrustResources/blob/main/ConditionalAccessGovernanceAndPrinciplesforZeroTrust%20October%202023.pdf).
 
-For the benefit of the reader let me try to summarize a few of the core concepts of this framework. 
-> "A better approach is to structure policies related to common access needs and contain a set of 
+For the benefit of the reader let me try to summarize a few of the core concepts of this framework.
+> "A better approach is to structure policies related to common access needs and contain a set of
 access needs in a persona, representing these needs for various users who have the same needs."
 
 Different Identities present in the organization can be broadly classified into categories. As your organization grows the complexity of the identities also grows and you end up with different categories of personas. However, all the organizations can be broadly classified into the following categories.
@@ -136,7 +136,7 @@ import {
 
 Now that we are set up and ready to import, we can run the following command to generate the TF file for us to inspect.
 
-> ```terraform plan -generate-config-out azuread_conditional_access_policy.tf``` 
+> ```terraform plan -generate-config-out azuread_conditional_access_policy.tf```
 
 In this case, we see that we need to fix the following error.
 
@@ -146,8 +146,6 @@ We can fix this by first removing the ```included_user_actions``` block from the
 
 ![Error](/assets/img/CABlog3.png)
 
-
-
 ![Error](/assets/img/CABlog4.png)
 
 Once we are happy with the TF file we can simply run apply and these resources will be imported into our state file.
@@ -155,8 +153,6 @@ Once we are happy with the TF file we can simply run apply and these resources w
 > ```terraform apply -auto-approve```
 
 We can now check this file and validate that the resources are imported into the state file.
-
-
 
 >[Note] We have imported existing resources created outside the scope of Terraform and we can now manage these resources using Terraform.
 
@@ -176,7 +172,7 @@ As per the Zero Trust Access Framework for Conditional Access we are trying to d
     }
 ```
 
-We need to run the `terraform plan ` and `terraform apply` respectively to generate the configuration.
+We need to run the `terraform plan` and `terraform apply` respectively to generate the configuration.
 
 ![Terraform Plan Output](/assets/img/CABlog7.png).
 
@@ -198,7 +194,7 @@ A small recap of the persona groups for the Zero Trust Framework.
 - Persona-Based Groups for Exclusions
 - Persona-Based Dynamic Group for Policy Assignment
 
-One of the core goals here is to separate the configuration from business logic. In this case, all the different persona groups are configured in the local block, and the logic to create Persona Groups follows the **D-R-Y** principal. 
+One of the core goals here is to separate the configuration from business logic. In this case, all the different persona groups are configured in the local block, and the logic to create Persona Groups follows the **D-R-Y** principal.
 
 ```hcl
 
@@ -262,7 +258,6 @@ This will generate the Ring-based group for each Persona Type.
 
 ![Ring Based Groups](/assets/img/CABlog9.png)
 
-
 We will be using the following code to generate the persona groups. Now each of these persona groups are dynamic groups. For Example, I have considered for the  Internal Employees to have 5 digits Employee ID and External Users to have `ext` in their UPN. You can modify it to your specific organizational needs.
 
 ```hcl
@@ -301,7 +296,7 @@ resource "azuread_group" "CA-Persona-Groups-Exclusions" {
 
 ### Conditional Access Policy Resource
 
-> **azuread_conditional_access_policy.tf** 
+> **azuread_conditional_access_policy.tf**
 
 We will update the previously generated **azuread_conditional_access_policy.tf** file with the Zero Trust-based conditional Access Policies from our Zero Trust Framework. Zero Trust framework suggests to structure conditional Access Policies according to the following areas :
 
@@ -371,7 +366,7 @@ resource "azuread_conditional_access_policy" "CA202-Internals-IdentityProtection
 
 Notice how we have used the group resources generated to apply and exclude the policies in different personas. You can find the complete code in the repo mentioned above.
 
-### **Named Location Resource** 
+### **Named Location Resource**
 
 > **azuread_named_location.tf**: In a few of the Conditional Access Policies we have used Named Location. Named Location is a resource that can be used to define a set of IP addresses or countries that can be used in Conditional Access Policies. We will be using the following code to generate the Named Location Resource.
 
@@ -452,8 +447,6 @@ So, how do federated identity credentials interact with GitHub and Entra ID?
 
 The process begins by establishing a trust relationship between an external identity provider (IdP), in this case, **GitHub**, and an app in [Entra ID (by configuring)](#create-an-application-object-in-entra-id-tenant) with a federated identity credential. This federated identity credential specifies which tokens from GitHub should be trusted by your application. Once this trust relationship is established, GitHub can exchange trusted tokens from the external identity provider for access tokens from the Microsoft identity platform. GitHub then utilizes this access token to access Azure AD-protected resources granted access by the workload. This eliminates the manual credential management burden and minimizes the risk of secret leakage or certificate expiration. For additional information and supported scenarios, please refer to workload identity federation.
 
-
-
 ### **Create an Application Object in Entra ID Tenant**
 
 Our initial step is to create an Application Object or **User Assigned Managed Identity** in Entra ID.
@@ -474,7 +467,6 @@ $Application = New-MgBetaApplication -BodyParameter $params
 ```
 
 ### **Add Federated Credential for GitHub Repo**
-
 
 Follow the instructions mentioned in the steps below to add Federated Credentials for your Github Repository. As I am doing this using my Personal Github Repo, I went with the branch strategy.
 ![FID App](/assets/img/FID3.jpg)
@@ -529,7 +521,6 @@ Here's a step-by-step guide:
 
 2. Under the repository name, click on "Settings." If you don't see the "Settings" tab, click on the dropdown menu, then select "Settings."
 
-
 3. In the sidebar, under the "Security" section, select "Secrets and variables," then click "Actions."
 
 4. Click on the "Secrets" tab.
@@ -546,7 +537,7 @@ Here's a step-by-step guide:
 
 ### Extend Terraform Folder for Conditional Access Policy Deployment
 
-* Let us start by Creating a **new feature branch** to extend the existing ```azuread_conditional_access_policy.tf``` file to include the following code. We will be using the following code to generate the Conditional Access Policy for the Internal Persona and Deploy it for the Ring 0 group of the Internal Persona.
+- Let us start by Creating a **new feature branch** to extend the existing ```azuread_conditional_access_policy.tf``` file to include the following code. We will be using the following code to generate the Conditional Access Policy for the Internal Persona and Deploy it for the Ring 0 group of the Internal Persona.
 
 ```hcl
 resource "azuread_conditional_access_policy" "CA200-Internals-BaseProtection-AllApps-AnyPlatform-CompliantorAADHJ" {
@@ -668,6 +659,7 @@ steps:
       uses: actions/checkout@v3
 
 ```
+
 2. Install the latest version of the Terraform CLI.
 
 ```yaml
@@ -679,9 +671,8 @@ steps:
 
 ```
 
-
-
 3. Initializes the Terraform working directory by creating initial files, loading any remote state, and downloading modules.
+
 ```yaml
 # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc
     
@@ -756,7 +747,6 @@ steps:
 
 8. Post the Terraform plan as a comment on the pull request (if applicable).
 
-
 ```yaml
 # If this is a PR post the changes
     - name: Push Terraform Output to PR
@@ -775,7 +765,6 @@ steps:
                 body: body
             })
 ```
-
 
 Next, it is the turn of The ```terraform-apply``` job to run (similarly in  an Ubuntu virtual machine for Github Runner)  and perform the following steps:
 
