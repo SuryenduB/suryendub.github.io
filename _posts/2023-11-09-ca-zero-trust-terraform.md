@@ -414,7 +414,7 @@ resource "azuread_named_location" "TrustedLocation" {
 
 ## **Ring Base Deployment**
 
-One of the biggest takeaways from **Conditional** Access for Zero Trust Architecture** is ring-based deployment.
+One of the biggest takeaways from **Conditional Access for Zero Trust Architecture** is ring-based deployment.
 
 Let me try to summarize the concept of ring-based deployment. The idea is to deploy the Conditional Access Policies in a ring-based approach. The ring-based approach is based on the following principles.
 
