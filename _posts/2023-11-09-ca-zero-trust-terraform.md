@@ -33,7 +33,11 @@ tags: [ Azure Active Directory, EntraID, MicrosoftEntra, Security, ZeroTrust, AP
 
 ## Introduction
 
-I have not managed to write something new and my mind has progressively started to become more and more arid. Lately, I had to think about the [Conditional Access Policy](https:/learn.microsoft.com/en-us/entra/identity/conditional-access/overview) and what is the best way to deploy and manage them. I have been working on a project where we are trying to automate the deployment of Conditional Access Policies and the monitoring of the policies. Inimitable [Claus Jespersen](https:/www.linkedin.com/in/claus-jespersen-25b0422/) has created an extraordinary framework [Conditional Access for Zero Trust Resources](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources) that ties together all the loose ends of **Zero Trust Enterprise Security**. I have used this framework for continuous integration and continuous deployment. Each time a change to the CA policies has been committed/approved, we want to automatically deploy the new CA policies. Also even if there are no changes, we want to ensure that the running set of policies has been changed manually using GUI and if so we override the policy to ensure only the approved policies in the repository.
+I have not managed to write something new and my mind has progressively started to become more and more arid. Lately, I had to think about the [Conditional Access Policy](https:/learn.microsoft.com/en-us/entra/identity/conditional-access/overview) and what is the best way to deploy and manage them. I have been working on a project where we are trying to automate the deployment of Conditional Access Policies and the monitoring of the policies. Inimitable [Claus Jespersen](https:/www.linkedin.com/in/claus-jespersen-25b0422/) has created an extraordinary framework [Conditional Access for Zero Trust Resources](https:/github.com/microsoft/ConditionalAccessforZeroTrustResources) that ties together all the loose ends for **Conditional Access for Zero Trust**. We want to have continuous integration and continuous deployment enabled, meaning that 
+each time a change to the CA policies has been committed/approved, we want to 
+automatically deploy the new CA policies. Also even if there are no changes, we want to 
+ensure that the running set of policies have been changed manually using GUI 
+and if so, align with the approved policies in the repository.
 
 ## The Framework
 
@@ -542,7 +546,7 @@ Here's a step-by-step guide:
 
 ### Extend Terraform Folder for Conditional Access Policy Deployment
 
-* Let us start by Creating a new branch to extend the existing ```azuread_conditional_access_policy.tf``` file to include the following code. We will be using the following code to generate the Conditional Access Policy for the Internal Persona and Deploy it for the Ring 0 group of the Internal Persona.
+* Let us start by Creating a **new feature branch** to extend the existing ```azuread_conditional_access_policy.tf``` file to include the following code. We will be using the following code to generate the Conditional Access Policy for the Internal Persona and Deploy it for the Ring 0 group of the Internal Persona.
 
 ```hcl
 resource "azuread_conditional_access_policy" "CA200-Internals-BaseProtection-AllApps-AnyPlatform-CompliantorAADHJ" {
@@ -588,8 +592,8 @@ on:
 #### 1. `terraform-plan`
 
 This job focuses on the planning phase of the deployment process. It performs the following tasks: Check out the repository to access the latest code.
+
 - Sets up the Terraform CLI.
-- Changes the working directory to `EntraID/` where the Terraform configurations are stored.
 - Initializes the Terraform working directory.
 - Ensures that all Terraform configuration files adhere to the canonical format.
 - Logs in to Azure CLI with Federated Credentials.
@@ -614,19 +618,18 @@ The tasks within this job include:
 
 This structured workflow ensures that the CA policy deployment process is orchestrated efficiently, with a clear separation between planning and application stages. Any changes detected in the master branch related to IAM configurations trigger the workflow, allowing for controlled and automated deployment.
 
-
 ```yaml
 name: 'Terraform Plan/Apply'
 
 on:
   push:
     branches:
-    - master
+    - main
     
     
   pull_request:
     branches:
-    - master
+    - main
     paths:
 
 ```
@@ -680,7 +683,7 @@ steps:
 
 3. Initializes the Terraform working directory by creating initial files, loading any remote state, and downloading modules.
 ```yaml
-# Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc from the EntraID Directory
+# Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc
     
     - name: Terraform Init
       run: terraform init
@@ -725,7 +728,7 @@ steps:
       uses: actions/upload-artifact@v3
       with:
         name: tfplan
-        path: EntraID/tfplan
+        path: ./tfplan
 
 ```
 
@@ -849,7 +852,7 @@ Similarly, for the ```terraform-apply``` job, we can verify all the necessary st
 
 We can also verify the Conditional Access Policy is deployed in the Entra ID Portal.
 
-Once the first deployment is successful we can repeat the steps to run the workflow for the next Ring. In our case, we will be updating the policy for Ring 1.
+Once the first deployment is successful we can repeat the steps to run the workflow for the next Ring. In our case, we will be updating the policy for Ring 1 and gradually to all the Rings and finally to the complete Persona.
 
 ```hcl
  users {
@@ -857,8 +860,6 @@ Once the first deployment is successful we can repeat the steps to run the workf
  }
       
 ```
-
-and gradually to all the Rings and finally to complete Persona.
 
 ```hcl
 included_groups = [azuread_group.CA-Persona-Rings["Internals.Ring0"].id, azuread_group.CA-Persona-Rings["Internals.Ring1"].id, azuread_group.CA-Persona-Rings["Internals.Ring2"].id, azuread_group.CA-Persona-Rings["Internals.Ring3"].id,azuread_group.CA-Persona-Groups["Internals"].id]
