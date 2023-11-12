@@ -570,7 +570,7 @@ Once we have the code ready we can commit the code to the Ring0 Branch and creat
 
 This workflow is triggered in response to two events:
 
-1. Pushes to the master branch.
+1. Pushes to the main branch.
 
 ```yaml
 name: 'Terraform Plan/Apply'
@@ -650,7 +650,7 @@ terraform-plan:
 
 ```
 
-1. Check out the repository to the GitHub Actions runner.
+- Check out the repository to the GitHub Actions runner.
 
 ```yaml
 steps:
@@ -660,7 +660,7 @@ steps:
 
 ```
 
-2. Install the latest version of the Terraform CLI.
+- Install the latest version of the Terraform CLI.
 
 ```yaml
 # Install the latest version of the Terraform CLI
@@ -671,7 +671,7 @@ steps:
 
 ```
 
-3. Initializes the Terraform working directory by creating initial files, loading any remote state, and downloading modules.
+- Initializes the Terraform working directory by creating initial files, loading any remote state, and downloading modules.
 
 ```yaml
 # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc
@@ -680,7 +680,7 @@ steps:
       run: terraform init
 ```
 
-4. Format all Terraform configuration files to adhere to a canonical format.
+- Format all Terraform configuration files to adhere to a canonical format.
 
 ```yaml
 # Checks that all Terraform configuration files adhere to a canonical format
@@ -689,7 +689,7 @@ steps:
       run: terraform fmt -check
 ```
 
-5. Logs in to Azure CLI with federated credentials.7. Generates an execution plan for Terraform and saves it to the tfplan file.
+- Logs in to Azure CLI with federated credentials.7. Generates an execution plan for Terraform and saves it to the tfplan file.
 
 ```yaml
 
@@ -711,7 +711,7 @@ steps:
         fi
 ```
 
-6. Publishes the Terraform plan as an artifact.
+- Publishes the Terraform plan as an artifact.
 
 ```yaml
 # Save plan to artifacts  
@@ -723,7 +723,7 @@ steps:
 
 ```
 
-7. Creates a string output of the Terraform plan and publishes it as a task summary.
+- Creates a string output of the Terraform plan and publishes it as a task summary.
 
 ```yaml
 # Create string output of Terraform Plan
@@ -745,7 +745,7 @@ steps:
         
 ```
 
-8. Post the Terraform plan as a comment on the pull request (if applicable).
+- Post the Terraform plan as a comment on the pull request (if applicable).
 
 ```yaml
 # If this is a PR post the changes
