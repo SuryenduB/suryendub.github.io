@@ -317,7 +317,7 @@ The workflow is triggered by two events: "workflow_dispatch" allows manual trigg
 The workflow has one job named "API_Provisioning" that runs on the latest version of Windows.
 
 The job consists of a single step that uses the "SuryenduB/EntraID-BulkAPI-Provisioning" action which is the repository location of our Composite Action.
-We have used the `with statement` to pass the parameters to the Composite Action. We have used the `secrets` statement to pass the sensitive parameters to the Composite Action.For the workflow to run, we need to create the following secrets in the repository.
+We have used the `with statement` to pass the parameters to the Composite Action. We have used the `secrets` statement to pass the sensitive parameters to the Composite Action. For the workflow to run, we need to create the following secrets in the repository.
 
 ## **Creating secrets for a repository**
 
@@ -346,6 +346,7 @@ We have used the `with statement` to pass the parameters to the Composite Action
     ![Screenshot of the " secret" page.](/assets/img/APIBlog41.png).
 
 
+Please remember Client ID is the Client ID of the API Client , we have previously added permission to. ServicePrincipalID is the Object ID of the **Inbound API Provisioning** app we have created. 
 Now that we have created the secrets, created the composite action, and created the workflow, we can trigger the workflow manually.
 We will navigate to the main page of the repository.
 Under our repository, We will click the Actions tab.
@@ -369,25 +370,39 @@ We can verify that the workflow run is completed in the Entra ID Portal.
 
 ![Entra ID Configuration](/assets/img/APIBlog47.png).
 
-I will again refer back to Pim's Blog to dig deeper in the synchronization job Run and the Provisioning Logs.
+I will again refer back to Pim's Blog to dig deeper into the synchronization job Run and the Provisioning Logs.
 
 We will click on the **'Provisioning Logs'** tab in the left pan.
 
-We will try to briefly explain each steps in the provisioning process. First We can verify users are imported from the API as per the attributeMapping.psd file.
+We will try to briefly explain each step in the provisioning process. First We can verify users are imported from the API as per the attributeMapping.psd file.
 
 ![Entra ID Configuration](/assets/img/APIBlog48.png).\
 
 Then Provisioning Job determines if the user is in scope for provisioning.
 ![Entra ID Configuration](/assets/img/APIBlog49.png).
 
-Then Provisioning Job tries to match the user with existing user in the Entra ID based on the matching attribute in attribute mapping for Inbound Provisioning App we have configured.
+Then Provisioning Job tries to match the user with the existing user in the Entra ID based on the matching attribute in attribute mapping for the Inbound Provisioning App we have configured.
 
 ![Entra ID Configuration](/assets/img/APIBlog50.png).
 
 We can verify new user is created in the Entra ID Portal.
-Subsequently any changes to the user information in the Bamboo HR will be reflected in the Entra ID Portal.
+Subsequently, any changes to the user information in the Bamboo HR will be reflected in the Entra ID Portal.
 
 ![Entra ID Configuration](/assets/img/APIBlog51.png).
 
 
 ## **Conclusion**
+
+
+In this blog post, I explain how to create custom actions for the new Entra Inbound Provisioning API for automatic user provisioning. 
+
+A small recap of the scenario,  we have  used Bamboo HR as the source of truth for user information  for creating cloud-only user objects.
+I showed how to create an application in Entra ID with the API-driven provisioning mode,
+
+**API Client Configuration:** : I showed how to use the Bamboo HR API to get the user information and how to use PowerShell to process the data and create a SCIM payload for the Entra Bulk Upload endpoint. We briefly touched on how to add custom attributes to the provisioning app schema using PowerShell and how to map them to the Entra ID attributes using the Entra ID portal.
+
+
+A major focus of my blog was to show how to **Create Custom GitHub Actions:** for API-driven provisioning and how to use this in the GitHub Actions Workflow.
+I know we have barely scratched the surface of the immense possibility of CI/CD workflow and Provisioning API Driven lifecycle process. For Example , it would not be a bad idea to add a trigger for push action, so that whenever changes are made to our provisioning setup , provisioning Job gets triggered.
+
+We can add custom actions for other tasks , like onboarding user with **Temporary Access Pass**. Please share your feedback and shoutout to Pim for all his content.
