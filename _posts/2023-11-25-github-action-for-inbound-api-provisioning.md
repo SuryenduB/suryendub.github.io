@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Creating Custom Actions for the new Entra Inbound Provisioning API for automatic user provisioning
-subtitle :   Creating Custom Actions for the new Entra Inbound Provisioning API for automatic user provisioning
+title: Creating Custom Github Actions for the new Entra Inbound Provisioning API for automatic user provisioning
+subtitle :   Creating Custom Github Actions for the new Entra Inbound Provisioning API for automatic user provisioning
 cover-img: /assets/img/APIBlog7.png
 thumbnail-img: /assets/img/APIBlog7.png
 share-img: /assets/img/APIBlog7.png
-tags: [ Azure Active Directory, EntraID, MicrosoftEntra, Security, ZeroTrust, API, OAuth, ConditionalAccess]
+tags: [ Microsoft Entra ,  Entra ID GOVERNANCE, GOVERNANCE, HR, IDENTITY, IDENTITY GOVERNANCE, IDENTITY LIFECYCLE, , INBOUND PROVISIONING, INBOUND PROVISIONING API]
 
 ---
 # Creating Custom Actions for the new Entra Inbound Provisioning API for automatic user provisioning
@@ -403,6 +403,6 @@ I showed how to create an application in Entra ID with the API-driven provisioni
 
 
 A major focus of my blog was to show how to **Create Custom GitHub Actions:** for API-driven provisioning and how to use this in the GitHub Actions Workflow.
-I know we have barely scratched the surface of the immense possibility of CI/CD workflow and Provisioning API Driven lifecycle process. For Example , it would not be a bad idea to add a trigger for push action, so that whenever changes are made to our provisioning setup , provisioning Job gets triggered.
+I know we have barely scratched the surface of the immense possibility of CI/CD workflow and Provisioning API Driven lifecycle process. For Example, it would not be a bad idea to add a trigger for push action, so that whenever changes are made to our provisioning setup, the provisioning Job gets triggered.
 
-We can add custom actions for other tasks , like onboarding user with **Temporary Access Pass**. Please share your feedback and shoutout to Pim for all his content.
+We can add custom actions for other tasks, like onboarding users with **Temporary Access Pass**. Please share your feedback and shout out to Pim for all his content.
