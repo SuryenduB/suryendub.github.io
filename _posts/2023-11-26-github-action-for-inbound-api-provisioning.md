@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Creating Custom Actions for the new Entra Inbound Provisioning API for automatic user provisioning
-subtitle :   Deploy , Manage and Monitor Conditional Access using Terraform and GitHub Actions
+subtitle :   Creating Custom Actions for the new Entra Inbound Provisioning API for automatic user provisioning
 cover-img: /assets/img/APIBlog7.png
 thumbnail-img: /assets/img/APIBlog7.png
 share-img: /assets/img/APIBlog7.png
