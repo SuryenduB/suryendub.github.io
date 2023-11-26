@@ -5,7 +5,7 @@ subtitle :   Creating Custom Github Actions for the new Entra Inbound Provisioni
 cover-img: /assets/img/APIBlog7.png
 thumbnail-img: /assets/img/APIBlog7.png
 share-img: /assets/img/APIBlog7.png
-tags: [ Microsoft Entra ,  Entra ID GOVERNANCE, GOVERNANCE, HR, IDENTITY, IDENTITY GOVERNANCE, IDENTITY LIFECYCLE , INBOUND PROVISIONING, INBOUND PROVISIONING API]
+tags: [ Microsoft Entra,  Entra ID GOVERNANCE, GOVERNANCE, HR, IDENTITY, IDENTITY GOVERNANCE, IDENTITY LIFECYCLE, INBOUND PROVISIONING, INBOUND PROVISIONING API]
 
 ---
 # Creating Custom Actions for the new Entra Inbound Provisioning API for automatic user provisioning
