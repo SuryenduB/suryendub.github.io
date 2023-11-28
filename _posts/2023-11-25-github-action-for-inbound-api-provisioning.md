@@ -297,7 +297,7 @@ steps:
 
 ```
 
-We start by naming the step. "Provisioning Entra ID" and has an identifier of "provisioning-entra-id".  The ID is used to reference this step in subsequent steps or actions. We will not require it as we do not expect our script to return any output but for debugging purposes, it will be a good idea to have it. We are going to run the PowerShell script, enclosed within a multi-line string using the | symbol.
+We start by naming the step. "Provisioning Entra ID" and has an identifier of "provisioning-entra-id".  The ID is used to reference this step in subsequent steps or actions. We will not require it as we do not expect our script to return any output but for debugging purposes, it will be a good idea to have it. We are going to run the PowerShell script, enclosed within a multi-line string using the `|` symbol.
 
 The first line within the script sets the current location to the path of the GitHub Actions workflow file. 
 
