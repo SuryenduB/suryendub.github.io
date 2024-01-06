@@ -2,15 +2,15 @@
 layout: post
 title: How to add claims from external systems in Entra ID token using the custom claims provider
 subtitle:  Creating a Custom Claims Provider with LDAP Integration
-cover-img: /assets/img/CCPBlogTitle.png
-thumbnail-img: /assets/img/CCPBlogTitle.png
-share-img: /assets/img/CCPBlogTitle.png
+cover-img: /assets/img/CCPBlogTitle1.png
+thumbnail-img: /assets/img/CCPBlogTitle1.png
+share-img: /assets/img/CCPBlogTitle1.png
 tags: [ Custom Claims Provider,  Entra ID Governance,  IDENTITY LIFECYCLE, Microsoft Entra, API  ]
 
 ---
 # How to add claims from external systems in Entra ID token using the custom claims provider
 
-How often while integrating an application to Entra ID, do we realize all the attributes that we require are not available to the Entra ID or maybe these are confidential attributes that we do not want to store in Entra ID that need to be stored in different systems? You may have some user data stored in other systems, such as legacy identity systems, data stores, or third-party systems such as files, LDAP Directory or database. These systems may have some restrictions or requirements that prevent you from migrating or syncing the data to Microsoft Entra ID.
+How often while integrating an application to Entra ID, do we realize all the attributes that we require are not available to the Entra ID or maybe these are confidential attributes that we do not want to store in Entra ID that need to be stored in different systems? You may have some user data stored in other systems, such as legacy identity systems, data stores, or third-party systems such as files, LDAP Directory, or databases. These systems may have some restrictions or requirements that prevent you from migrating or syncing the data to Microsoft Entra ID.
 
 In such cases, we can use a custom claims provider to add claims from external systems into the token. A custom claims provider is a feature of the custom authentication extension framework that allows you to customize the token issuance process for your application.
 
@@ -61,6 +61,8 @@ A custom claims provider consists of the following 5components:
 - A custom claims provider configuration for attribute mapping defines the mapping between the claims from the custom claim provider and the required claims in the token.
 
 You can assign a custom claims provider to one or more applications in your directory. When a user authenticates to an application that has a custom claims provider assigned, the custom authentication extension is invoked to fetch claims from external systems and add them to the token based on the application and custom claim provider configuration.
+
+![Custom Claim Provider](/assets/img/CCPBlogTitle1.png)
 
 
 ## When do you need a custom claims provider?
@@ -130,6 +132,7 @@ Let's deploy the API by clicking on the deploy button at the top right corner of
 
 
 ## Step 2: Create and register a custom authentication extension
+### 2.1 Create a custom authentication extension
 
 In this step, you register a custom authentication extension that is used by Microsoft Entra ID to call your Azure function. The custom authentication extension contains information about your REST API endpoint, the attribute collection start and submit actions that it parses from your REST API, and how to authenticate to your REST API.
 
