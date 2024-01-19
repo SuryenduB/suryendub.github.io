@@ -42,11 +42,11 @@ If you're thinking of using a dynamic query like as ```(user.accountEnabled -eq 
 
 The solution is simple. We will use Microsoft Graph Change Notifications to monitor the creation or updates of the dynamic groups in our tenant. Whenever a dynamic group is created or updated without the required query, we will update the query to include the ```(user.accountEnabled -eq True)``` condition. This will ensure that the offboarding user is removed from the dynamic group.
 
-We will use Azure Event Grid to monitor the Microsoft Graph Change Notifications and Azure Automation or Azure Functions to update the dynamic group membership rule. I am not going to discuss the low level implementation details of the solution. Instead, I will focus on the high-level architecture and the implementation steps.
+We will use Azure Event Grid to monitor the Microsoft Graph Change Notifications and Azure Automation or Azure Functions to update the dynamic group membership rule. I am not going to discuss the low-level implementation details of the solution. Instead, I will focus on the high-level architecture and the implementation steps.
 
 ## Architecture
 
-![Architecture](./Assets/GCN1.png)
+![Architecture](/assets/img/GCN1.png)
 
 The solution consists of the following components:
 
@@ -99,7 +99,7 @@ $Subscription = New-MgSubscription -BodyParameter $params -Debug
 
 Here is a sample change notification received by our Event Handler in my test tenant.
 
-![Change Notification](./Assets/GCN2.png)
+![Change Notification](/assets/img/GCN2.png)
 
 ### Update the dynamic group membership rule
 
