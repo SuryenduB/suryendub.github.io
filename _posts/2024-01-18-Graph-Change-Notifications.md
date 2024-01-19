@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Keep Your Groups Compliant  Automate Offboarding with Microsoft Graph and Azure Event Grid
+title: Keep Your Dynamic Groups Compliant by Microsoft Graph Change Notifications and Azure Event Grid
 subtitle:  Automatically Update Dynamic Group Membership Rules to Ensure Offboarding Users Are Removed
 cover-img: /assets/img/GCN3.png
 thumbnail-img: /assets/img/GCN1.png
