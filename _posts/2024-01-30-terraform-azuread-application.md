@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Prevent Overpriviliged Application Creation and tie it to Identity Governance in Entra ID
-subtitle:  Streamline Azure AD App Onboarding with Terraform  A Step-by-Step Guide
+title: Automate Entra ID Application Creation and Access Management with Terraform and GitHub Actions
+subtitle:  Enforce Best Practices for Azure AD Applications using Terraform and Entra ID
 cover-img: /assets/img/terramod1.png
 thumbnail-img: /assets/img/terramod2.png
 share-img: /assets/img/terramod1.png
@@ -11,7 +11,15 @@ Application Management ]
 ---
 
 # Prevent Overpriviliged Application Creation and tie it to Identity Governance in Entra ID
+## Table of Contents
 
+
+- [Prevent Overpriviliged Application Creation and tie it to Identity Governance in Entra ID](#prevent-overpriviliged-application-creation-and-tie-it-to-identity-governance-in-entra-id)
+  - [Why](#why)
+  - [How](#how)
+  - [What](#what)
+  - [Usage](#usage)
+  - [What’s Next](#whats-next)
 ## Why
 
 As an IAM engineer, a few things give me sleepless nights quite like the idea of a developer creating an application in Azure AD and granting it permissions to read and write all users and groups in the directory. Or worse, not having a semblance of an RBAC process and assigning all users to the application with the Admin Role. If you've ever spent hours trying to restrict a developer from adding overprivileged permissions to an application, raise a glass for me. Developers, bless their talented and focused souls, can sometimes be a bit stubborn when it comes to security. Let's just say they have other priorities, like crafting amazing code. Cheers to the developers, the true heroes of the digital realm!
