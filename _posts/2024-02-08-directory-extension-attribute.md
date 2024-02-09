@@ -6,6 +6,7 @@ cover-img: /assets/img/ExtensionAttributeBlog33.png
 thumbnail-img: /assets/img/ExtensionAttributeBlog33.png
 share-img: /assets/img/ExtensionAttributeBlog32.png
 tags: [ Entra ID, Directory Extension Attributes, Custom Claims, SCIM Provisioning, Dynamic Groups, Identity Management, SAML, OIDC]
+readtime: true
 
 ---
 # Customize your Entra ID Tenant with Directory Extension Attributes and use in Custom SSO Claims, SCIM Provisioning and Dynamic Groups
