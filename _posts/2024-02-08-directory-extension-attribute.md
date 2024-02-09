@@ -2,8 +2,8 @@
 layout: post
 title: How to Use Directory Extension Attributes in Entra ID for Custom Claims, SCIM Provisioning and Dynamic Groups
 subtitle:  Learn how to create and use directory extension attributes in Entra ID to extend the schema and add custom attributes to the directory objects for various scenarios.
-cover-img: /assets/img/ExtensionAttributeBlog32.png
-thumbnail-img: /assets/img/ExtensionAttributeBlog32.png
+cover-img: /assets/img/ExtensionAttributeBlog33.png
+thumbnail-img: /assets/img/ExtensionAttributeBlog33.png
 share-img: /assets/img/ExtensionAttributeBlog32.png
 tags: [ Entra ID, Directory Extension Attributes, Custom Claims, SCIM Provisioning, Dynamic Groups, Identity Management, SAML, OIDC]
 
