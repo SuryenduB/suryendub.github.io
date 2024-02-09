@@ -128,7 +128,7 @@ keywords: "mim,fim,azuread,entra, MicrosoftEntra, AzureSecurity, Azure, Cybersec
 navbar-col: "#1E1E1E"
 navbar-text-col: "#FFFFFF"
 navbar-border-col: "#333333"
-page-col: "#121212"
+page-col: "#282828"
 text-col: "#FFFFFF"
 link-col: "#00BFFF"
 hover-col: "#00A0C6"
