@@ -1,12 +1,11 @@
 ---
 layout: post
-title: Customize your Entra ID Tenant with Directory Extension Attributes and use in Custom SSO Claims, SCIM Provisioning and Dynamic Groups
-subtitle:  Enforce Best Practices for Azure AD Applications using Terraform and Entra ID
+title: How to Use Directory Extension Attributes in Entra ID for Custom Claims, SCIM Provisioning and Dynamic Groups
+subtitle:  Learn how to create and use directory extension attributes in Entra ID to extend the schema and add custom attributes to the directory objects for various scenarios.
 cover-img: /assets/img/ExtensionAttributeBlog32.png
 thumbnail-img: /assets/img/ExtensionAttributeBlog32.png
 share-img: /assets/img/ExtensionAttributeBlog32.png
-tags: [ Terraform,Entra ID,Application Registration,Access management,Access packages,Identity Governance,RBAC,Catalog
-Application Management ]
+tags: [ Entra ID, Directory Extension Attributes, Custom Claims, SCIM Provisioning, Dynamic Groups, Identity Management, SAML, OIDC]
 
 ---
 # Customize your Entra ID Tenant with Directory Extension Attributes and use in Custom SSO Claims, SCIM Provisioning and Dynamic Groups
@@ -493,7 +492,7 @@ Directory extension attributes offer a powerful way to enhance the functionality
 
 I have shown how to add extension attributes to claims mapping policies, configure SAML claims, create dynamic groups based on extension attributes, and customize attribute mappings for SCIM provisioning. It also highlights the importance of using the Token Configuration page and the Azure Portal's special URL for modifying the Entra ID Directory.
 
-Overall, directory extension attributes provide flexibility and extensibility to Entra ID applications, allowing organizations to tailor their identity and access management solutions to meet specific business requirements.
+Overall, directory extension attributes provide flexibility and extensibility to Entra ID applications, allowing organizations to tailor their identity and access management solutions to meet specific business requirements. By using directory extension attributes, you can leverage the power and flexibility of Entra ID to meet your specific business requirements
 
 
 [def]: #add-directory-extension-attributes-for-scim-provisioning-using-graph-api
