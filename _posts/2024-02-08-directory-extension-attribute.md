@@ -32,6 +32,7 @@ In the realm of identity management, seasoned professionals may find themselves 
 2. Directory  Extensions
 3. Schema Extensions
 4. Open Extensions
+5. 
 
 These extension attributes can be used to store additional information that is not available in the default set of attributes. In many cases, we often need these attributes in downstream applications for various purposes such as user provisioning, identity synchronization, or attribute mapping. You can see this nice overview of the different ways to extend the schema [here](https://learn.microsoft.com/graph/extensibility-overview?tabs=http&WT.mc_id=M365-MVP-9501#comparison-of-extension-types).
 Among these, the most commonly used method for extending the schema is the use of directory extension attributes as it can be used with the following features, not available with the other methods:
@@ -41,6 +42,7 @@ Among these, the most commonly used method for extending the schema is the use o
 3. Use the attributes in SAML and OIDC claims.
 
 In this article, we will explore how to leverage directory extension attributes in Entra ID for previously mentioned use cases.
+![Directory Extension Attributes](/assets/img/ExtensionAttributeBlog32.png)
 
 ## Create a Directory Extension Attribute
 
