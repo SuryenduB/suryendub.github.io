@@ -4,7 +4,9 @@ title: About me
 subtitle: Technical Consultant | AZ-500 | AZ-700 | AZ-900 | SC-300 | SC-200 | SC-900 | SC-100 | Terraform Associate (002)
 ---
 
-My name is Suryendu Bhattacharyya, Microsoft Security Consultant with expertise in Identity and Access Management. Skilled in designing solutions using Microsoft Identity Manager, and Azure AD. Proficient in RBAC and Access Governance/Certification. Committed to delivering secure solutions that meet business needs. 
+I provide technical support and guidance for identity and access management (IAM) solutions, using Microsoft Identity Manager and Entra ID.  
+
+Previously, I was a Cybersecurity Consultant at Microsoft, where I designed and implemented security solutions for various clients, using Azure, Terraform, and other tools. I obtained multiple Microsoft certifications in security, compliance, and identity domains, demonstrating my proficiency and expertise in these areas. I have a Bachelor in Technology in Computer Science And Engineering from the Government College Of Engineering and Textile Technology, Berhampore. I am passionate about learning new technologies and skills and staying updated with the latest trends and best practices in the cybersecurity field. I am also committed to delivering secure, efficient, and reliable solutions that meet the expectations and requirements of the customers and the organization.
 
 
 ### **Technical Certifications**  
