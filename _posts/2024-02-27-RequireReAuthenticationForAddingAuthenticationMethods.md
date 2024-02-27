@@ -53,7 +53,7 @@ When a user tries to register new security information, they will be prompted to
 
 <div style="display: flex; justify-content: center;">
   <video controls>
-    <source src="/assets/img/RoleActivation9.mp4" type="video/mp4">
+    <source src="/assets/img/RoleActivation9_muted.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
