@@ -87,4 +87,14 @@ When an admin activates the role membership for the role with the authentication
 </video>
 </center>
 
+## Summary
+
+There is always some trade-offs between security and user experience. I feel re-authentication for activating high-privilege admin roles is a must-have. 
+
+If the phishing phishing-resistant method can not be enforced due to the unavailability of physical security keys (passkey, 🗝️ 🔐 alternative is still not available), then the token can be replayed to activate PIM roles. 
+
+As long as MFA claims are present in the token, Ca policy will not prompt for MFA, for eligible role activation in PIM, and even if we use a " require stronger authentication method ( of a non-phishing-resistant kind like Microsoft authenticator or another software-based authenticator app)", in Ca policy experience remains the same. 
+
+By enforcing re-authentication and MFA ( or if possible, non-SMS-based MFA), We can reduce the vulnerability gap significantly, especially when rolling out the phishing-resistant MFA is not viable.
+
 
