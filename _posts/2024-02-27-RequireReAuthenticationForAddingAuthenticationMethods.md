@@ -2,9 +2,9 @@
 layout: post
 title: Require Re-authentication for Registering Security Info (Adding Authentication Method) in Entra ID
 cover-img: /assets/img/RoleActivationLogo.png.jpg
-thumbnail-img: /assets/img/RoleActivationLogo.png.jpg
-share-img: /assets/img/RoleActivationLogo.png.jpg
-tags: [ IAM, IGA , PIM, ENTRA, ENTRAID]
+thumbnail-img: /assets/img/RoleActivationThumbnail.png
+share-img: /assets/img/RoleActivationThumbnail.png
+tags: [ IAM, IGA , ENTRA, ENTRAID , ConditionAccess , CA Policy]
 readtime: true
 
 ---
