@@ -80,7 +80,10 @@ Click “Create” to save your policy.
 ## End User Experience
 
 When an admin activates the role membership for the role with the authentication context `Tier 0 Role Activation (Sign-in Everytime)` they are prompted to sign in again to complete the activation.
+<center>
 <video width="320" height="240" controls>
-  <source src="/assets/img/RoleActivation8.mp4" type="video/mp4">
+  <source src="/assets/img/RoleActivation8 (1).mp4" type="video/mp4">
 </video>
+</center>
+
 
