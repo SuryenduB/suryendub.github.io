@@ -1,10 +1,21 @@
+---
+layout: post
+title: Require Sign-in Every time a user activates role membership in Entra ID
+subtitle:  Authentication Context Sign-in EveryTime
+cover-img: /assets/img/RoleActivation.png
+thumbnail-img: /assets/img/RoleActivation.png
+share-img: /assets/img/RoleActivation.png
+tags: [ IAM, IGA , PIM, ENTRA, ENTRAID]
+readtime: true
+
+---
 # Require Sign in every time a user activates role membership in Entra ID
 
 One of the most common Privileged Identity Management (PIM) requirements is the ability to require sign-in every time a user activates a role membership and depending on the role permissions have a different level of secure authentication methods, like phishing-resistant security keys, passkeys or biometrics. In this article, we will show how you can configure Entra ID PIM to require sign-in every time a user activates a role membership.
 
 ## Concepts
 
-![PIM Role Activation](./Assets/RoleActivation.png)
+![PIM Role Activation](/assets/img/RoleActivation.png)
 
 
 ## Add a new Authentication Context
@@ -19,7 +30,7 @@ First, we need to add a new authentication context that denotes the action of ac
     * Description: Privilege Role Activation Requires Sign-In Every Time
     * Publish to apps: Checked - [x]
 
-![Add Authentication Context](./Assets/RoleActivation2.png)
+![Add Authentication Context](/assets/img/RoleActivation2.png)
 
 ## Configure the Privileged Identity Management settings for Entra ID Roles
 
@@ -32,7 +43,7 @@ First, we need to add a new authentication context that denotes the action of ac
 1. On the Edit role setting – Application Administrator page, enable the On activation, require **Microsoft Entra ID Conditional Access authentication context** setting, and choose the **Tier 0 Role Activation (Sign-in Everytime)** authentication context created in the previous step.
 1. Click Update.
 
-![Role Settings](./Assets/RoleActivation3.png)
+![Role Settings](/assets/img/RoleActivation3.png)
 
 ## Create the Conditional Access Policy for Role Activation
 
@@ -44,7 +55,7 @@ First, we need to add a new authentication context that denotes the action of ac
 1. Select **Users**
 
     a. You can select all users, specific users, or groups or exclude specific users or groups. For this example, we will select the member of our application administrator role.
-    ![Select Users](./Assets/RoleActivation4.png)
+    ![Select Users](/assets/img/RoleActivation4.png)
 
 
 1. Select **Target resources**
@@ -52,14 +63,14 @@ First, we need to add a new authentication context that denotes the action of ac
     a. Set the `Select what this policy applies to` Authentication context.
 
     b. Select **Tier 0 Role Activation (Sign-in Everytime)** authentication context.
-    ![Select Target Resources](./Assets/RoleActivation5.png)
+    ![Select Target Resources](/assets/img/RoleActivation5.png)
 
 1. Select Session.
 
     a. Select Sign-in frequency.
 
     b. Select **Every time**.
-    ![Select Session](./Assets/RoleActivation6.png)
+    ![Select Session](/assets/img/RoleActivation6.png)
 
 1. Set the policy status to On
 Click “Create” to save your policy.
@@ -69,8 +80,7 @@ Click “Create” to save your policy.
 ## End User Experience
 
 When an admin activates the role membership for the role with the authentication context `Tier 0 Role Activation (Sign-in Everytime)` they are prompted to sign in again to complete the activation.
-
 <video width="320" height="240" controls>
-  <source src="./Assets/RoleActivation8.mp4" type="video/mp4">
+  <source src="/assets/img/RoleActivation8.mp4" type="video/mp4">
 </video>
 
