@@ -2,9 +2,9 @@
 layout: post
 title: Require Sign-in Every time a user activates role membership in Entra ID
 subtitle:  Authentication Context Sign-in EveryTime
-cover-img: /assets/img/RoleActivation2.png
-thumbnail-img: /assets/img/RoleActivation2.png
-share-img: /assets/img/RoleActivation2.png
+cover-img: /assets/img/RoleActivationLogo.png.jpg
+thumbnail-img: /assets/img/RoleActivationLogo.png.jpg
+share-img: /assets/img/RoleActivationLogo.png.jpg
 tags: [ IAM, IGA , PIM, ENTRA, ENTRAID]
 readtime: true
 
