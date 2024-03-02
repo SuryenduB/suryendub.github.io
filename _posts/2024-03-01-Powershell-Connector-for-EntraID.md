@@ -66,7 +66,7 @@ The first thing we need is to establish a connection between our on-premises env
 
 <div style="display: flex; justify-content: center;">
   <video controls>
-    <source src=".\Assets\PowershellConnectorOnPremisesAgentSetup.mp4"" type="video/mp4">
+    <source src="/assets/img/PowershellConnectorOnPremisesAgentSetup.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
@@ -195,7 +195,7 @@ Select Save.
 
 <div style="display: flex; justify-content: center;">
   <video controls>
-    <source src=".\Assets\PowershellConnectorPropertiesPage.mp4"" type="video/mp4">
+    <source src="/assets/img/PowershellConnectorPropertiesPage.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
@@ -206,24 +206,24 @@ On the connectivity Page, I have used the following attributes:
 
 |Parameter|Value|Purpose|
 |----|-----|-----|
-|  Server  | \<Blank\> | Server name that the connector should connect to. For our configuration this can remain blank.  |
-|  Domain  | \<Blank\> |Domain of the credential to store for use when the connector is run. For our configuration this can remain blank.|
-|User| APIKey |  Username of the credential to store for use when the connector is run. I have used to denote that Credentials we are going to store is an **APIKey** we will use to connect.  |
+|  Server  | \<Blank\> | Server name that the connector should connect to. For our configuration, this can remain blank.  |
+|  Domain  | \<Blank\> |Domain of the credential to store for use when the connector is run. For our configuration, this can remain blank.|
+|User| APIKey |  Username of the credential to store for use when the connector is run. I have used it to denote that the Credentials I am going to use is an **APIKey** we will use to connect.  |
 | Password | Value of the API Key |  Password of the credential to store for use when the connector is run. I have used this to store the **APIKey** for connecting with the REST API. In that way we can ensure that credentials and API keys are not stored in plain text. I have used a function `GetTokenFromCredentials` to read the APIKey, in scripts.  |
 | Impersonate Connector Account  |Unchecked| When true, the synchronization service runs the Windows PowerShell scripts in the context of the credentials supplied. When possible, it is recommended that the **$Credentials** parameter is passed to each script is used instead of impersonation.|
 | Load User Profile When Impersonating |Unchecked|Instructs Windows to load the user profile of the connector’s credentials during impersonation. If the impersonated user has a roaming profile, the connector does not load the roaming profile.|
 | Logon Type When Impersonating  |None|Logon type during impersonation. For more information, see the [dwLogonType](/windows/win32/api/winbase/nf-winbase-logonusera#parameters) documentation. |
 |Signed Scripts Only |Unchecked|  If true, the Windows PowerShell connector validates that each script has a valid digital signature. If false, ensure that the Synchronization Service server’s Windows PowerShell execution policy is RemoteSigned or Unrestricted.|
 |Common Module Script Name (with extension)|Common Module.psm1|The connector allows you to store a shared Windows PowerShell module in the configuration. When the connector runs a script, the Windows PowerShell module is extracted to the file system so that it can be imported by each script.|
-|Common Module Script|[AD Sync PowerShell Connector Module code](https://github.com/microsoft/MIMPowerShellConnectors/blob/master/src/ECMA2HostCSV/Scripts/CommonModule.psm1) as value.  This module will be automatically created by the ECMA2Host when the connector is running. | I have extended this module by adding one function `Get-CSEntryChangeValue` for reteieving connector space object value.  |
+|Common Module Script|[AD Sync PowerShell Connector Module code](https://github.com/microsoft/MIMPowerShellConnectors/blob/master/src/ECMA2HostCSV/Scripts/CommonModule.psm1) as value.  This module will be automatically created by the ECMA2Host when the connector is running. | I have extended this module by adding one function `Get-CSEntryChangeValue` for retrieving connector space object value.  |
 |Validation Script|\<Blank\>|The Validation Script is an optional Windows PowerShell script that can be used to ensure that connector configuration parameters supplied by the administrator are valid.|
-|Schema Script|[GetSchema code](https://github.com/microsoft/MIMPowerShellConnectors/blob/master/src/ECMA2HostCSV/Scripts/Schema%20Script.ps1) as value.| I have extended the out-of the box script to generate log file, by adding one function `Write-DebugLog`. To make sure all the new attributes I have added in `Schema.xml` file is imported for Person object type.|
+|Schema Script|[GetSchema code](https://github.com/microsoft/MIMPowerShellConnectors/blob/master/src/ECMA2HostCSV/Scripts/Schema%20Script.ps1) as value.| I have extended the out-of-the-box script to generate a log file, by adding one function `Write-DebugLog`. To make sure all the new attributes I have added in the `Schema.xml` file are imported for Person object type.|
 |Additional Config Parameter Names|\<Blank\>|In addition to the standard configuration settings, you can define additional custom configuration settings that are specific to the instance of the Connector. These parameters can be specified at the connector, partition, or run step levels and accessed from the relevant Windows PowerShell script. We have not used it in this example.  |
 |Additional Encrypted Config Parameter Names|\<Blank\> ||
 
 <div style="display: flex; justify-content: center;">
   <video controls>
-    <source src=".\Assets\PowershellConnectorConnectivityPage.mp4" type="video/mp4">
+    <source src="/assets/img/PowershellConnectorConnectivityPage.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
@@ -255,7 +255,7 @@ On the Capabilities Page, I have used the following attributes:
 
 <div style="display: flex; justify-content: center;">
   <video controls>
-    <source src=".\Assets\PowershellConnectorCapabilitiesPage.mp4"" type="video/mp4">
+    <source src="/assets/img/PowershellConnectorCapabilitiesPage.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
@@ -291,7 +291,7 @@ Similarly, the goal of the export script is to export data from the ECMA2Host Ca
 
 <div style="display: flex; justify-content: center;">
   <video controls>
-    <source src=".\Assets\PowershellConnectorGlobalPage.mp4"" type="video/mp4">
+    <source src="/assets/img/PowershellConnectorGlobalPage.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
@@ -349,7 +349,7 @@ If the status of a user is changed to Inactive, they will be set as `DEPROVISION
 
 <div style="display: flex; justify-content: center;">
   <video controls>
-    <source src=".\Assets\PowershellConnectorAttributePage.mp4"" type="video/mp4">
+    <source src="/assets/img/PowershellConnectorAttributePage.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
