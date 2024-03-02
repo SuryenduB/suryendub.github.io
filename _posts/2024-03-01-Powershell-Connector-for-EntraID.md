@@ -64,7 +64,7 @@ The first thing we need is to establish a connection between our on-premises env
  9. On the **Select Extension** screen, select **On-premises application provisioning (Microsoft Entra ID to application).** and click **Next**.
  10. Sign in with your Microsoft Entra Global Administrator or Hybrid Identity Administrator account.  If you have Internet Explorer enhanced security enabled, it will block the sign-in.  If so, close the installation, [disable Internet Explorer enhanced security](/troubleshoot/developer/browsers/security-privacy/enhanced-security-configuration-faq), and restart the **Microsoft Entra Connect Provisioning Agent Package** installation.
 
-<div style="display: flex; justify-content: center; width: 200px;">
+<div style="display: flex; justify-content: center; max-width: 30%;">
   <video controls>
     <source src="/assets/img/PowershellConnectorOnPremisesAgentSetup.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -193,7 +193,7 @@ Select Save.
    |Extension DLL|For the PowerShell connector, select **Microsoft.IAM.Connector.PowerShell.dll**.|
 
 
-<div style="display: flex; justify-content: center; width: 200px;">
+<div style="display: flex; justify-content: center; max-width: 30%;">
   <video controls>
     <source src="/assets/img/PowershellConnectorPropertiesPage.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -221,7 +221,7 @@ On the connectivity Page, I have used the following attributes:
 |Additional Config Parameter Names|\<Blank\>|In addition to the standard configuration settings, you can define additional custom configuration settings that are specific to the instance of the Connector. These parameters can be specified at the connector, partition, or run step levels and accessed from the relevant Windows PowerShell script. We have not used it in this example.  |
 |Additional Encrypted Config Parameter Names|\<Blank\> ||
 
-<div style="display: flex; justify-content: center; width: 200px;">
+<div style="display: flex; justify-content: center; max-width: 30%;">
   <video controls>
     <source src="/assets/img/PowershellConnectorConnectivityPage.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -253,7 +253,7 @@ On the Capabilities Page, I have used the following attributes:
 |Delete-Add As Replace|Unchecked|Not supported. This will be ignored.|
 |Enable Export Password in First Pass|Unchecked|Not supported. This will be ignored.|
 
-<div style="display: flex; justify-content: center; width: 200px;">
+<div style="display: flex; justify-content: center; max-width: 30%;">
   <video controls>
     <source src="/assets/img/PowershellConnectorCapabilitiesPage.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -289,7 +289,7 @@ The Goal of the import script is to get the data from the target application and
 Similarly, the goal of the export script is to export data from the ECMA2Host Cache to the target application. The exported users are then processed and added to the export results.
 
 
-<div style="display: flex; justify-content: center; width: 200px;">
+<div style="display: flex; justify-content: center; max-width: 30%;">
   <video controls>
     <source src="/assets/img/PowershellConnectorGlobalPage.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -347,7 +347,7 @@ On the Deprovisioning page, you can specify if you want Microsoft Entra ID to re
 
 If the status of a user is changed to Inactive, they will be set as `DEPROVISIONED` in the Target Application.
 
-<div style="display: flex; justify-content: center; width: 200px;">
+<div style="display: flex; justify-content: center; max-width: 30%;">
   <video controls>
     <source src="/assets/img/PowershellConnectorAttributePage.mp4" type="video/mp4">
     Your browser does not support the video tag.
