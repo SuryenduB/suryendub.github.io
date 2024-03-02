@@ -177,7 +177,7 @@ Select Save.
 
  This is for securing communication between Entra ID and the agent.
 
- After Generating the certificate, you will see an empty list. This is where you can either start by clicking on **+New Connector** or **Import** the connector from my GitHub repository.
+ After Generating the certificate, you will see an empty list. This is where you can either start by clicking on **+New Connector** or **Import** the connector from my [GitHub repository](https://github.com/SuryenduB/MIMPowerShellConnectors/tree/master/src/OKTACore).
 
  For this blog post as a step-by-step guide, I will select the first option.
 
