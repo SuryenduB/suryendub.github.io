@@ -761,23 +761,6 @@ param(
 
 Set-PSDebug -Strict
 
-# Rest of the code...
-param(
-  [System.Collections.ObjectModel.KeyedCollection[string, Microsoft.MetadirectoryServices.ConfigParameter]]
-  $ConfigParameters,
-  [Microsoft.MetadirectoryServices.Schema]
-  $Schema,
-  [Microsoft.MetadirectoryServices.OpenExportConnectionRunStep]
-  $OpenExportConnectionRunStep,
-  [System.Collections.Generic.IList[Microsoft.MetaDirectoryServices.CSEntryChange]]
-  $CSEntries,
-  [pscredential]
-  $PSCredential
-)
-
-Set-PSDebug -Strict
-
-
 $commonModule = (Join-Path -Path ([Microsoft.MetadirectoryServices.MAUtils]::MAFolder) -ChildPath $ConfigParameters['Common Module Script Name (with extension)'].Value)
 Import-Module -Name $commonModule -Verbose:$false -ErrorAction Stop
 
