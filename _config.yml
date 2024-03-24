@@ -25,7 +25,7 @@ navbar-links:
     - Tech Community Blogs: "https://techcommunity.microsoft.com/t5/security-compliance-and-identity/ct-p/MicrosoftSecurityandCompliance"
     - Azure Portal: "https://portal.azure.com/"
     - MIM Official Documentation: "https://learn.microsoft.com/en-us/microsoft-identity-manager/microsoft-identity-manager-2016"
-  Author's home: "aboutme"
+  Author's home: "https://www.linkedin.com/in/suryendub/"
 
 ################
 # --- Logo --- #
@@ -58,7 +58,7 @@ social-network-links:
   
 #  medium: yourname
 #  reddit: yourname
-  linkedin: "suryendu-bhattacharyya-032738138"
+  linkedin: "in/suryendub"
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
@@ -79,7 +79,7 @@ social-network-links:
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: Azure Engineering Experiences
+rss-description: Microsoft Entra Identity
 
 ###########################
 # --- General options --- #
@@ -117,7 +117,7 @@ post_search: true
 navbar-var-length: false
 
 # The keywords to associate with your website, for SEO purposes
-keywords: "mim,fim,azuread,entra, MicrosoftEntra, AzureSecurity, Azure, Cybersecurity, Terraform, Github, IaC, DevOps"
+keywords: "mim,fim,azuread,entraId, MicrosoftEntra, AzureSecurity, Azure, Cybersecurity, Terraform, Github, IaC, DevOps"
 
 ######################################
 # --- Colours / background image --- #
