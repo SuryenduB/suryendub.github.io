@@ -6,6 +6,7 @@ cover-img: /assets/img/Architecture.png
 thumbnail-img: /assets/img/Architecture.png
 share-img: /assets/img/Architecture.png
 show-avatar: false
+full-width: true
 tags: [ IAM, IGA , ENTRA, ENTRAID , SSO , SAML, OIDC, Graph, Terraform, Provisioning , Automation , Powershell]
 readtime: true
 
