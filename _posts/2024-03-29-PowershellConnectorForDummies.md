@@ -21,7 +21,7 @@ tags: [ Powershell MA,  EntraID , Powershell , Powershell Connector, IGA, ECMA  
 4. [Conclusion and Self-Note](#conclusion-and-self-note)
 5. [Reference](#reference)
 
-![Powershell Connector](assets/img/download.png)
+![Powershell Connector](/assets/img/download.png)
 
 In my recent article on [Powershell Connector for Entra ID](link), I aimed to explain the PowerShell MA straightforwardly. However, I understand that colleagues and IAM Professionals with limited MIM development experience may still find it challenging to grasp. With that in mind, I attempt to simplify the understanding of the PowerShell MA for such individuals.
 
