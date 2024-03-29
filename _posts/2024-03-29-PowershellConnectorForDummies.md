@@ -23,7 +23,7 @@ tags: [ Powershell MA,  EntraID , Powershell , Powershell Connector, IGA, ECMA  
 
 ![Powershell Connector](/assets/img/download.png)
 
-In my recent article on [Powershell Connector for Entra ID](link), I aimed to explain the PowerShell MA straightforwardly. However, I understand that colleagues and IAM Professionals with limited MIM development experience may still find it challenging to grasp. With that in mind, I attempt to simplify the understanding of the PowerShell MA for such individuals.
+In my recent article on [Powershell Connector for Entra ID](https://suryendub.github.io/2024-03-01-Powershell-Connector-for-EntraID/), I aimed to explain the PowerShell MA straightforwardly. However, I understand that colleagues and IAM Professionals with limited MIM development experience may still find it challenging to grasp. With that in mind, I attempt to simplify the understanding of the PowerShell MA for such individuals.
 
 To simplify the understanding of the PowerShell MA, I suggest taking a simpler approach. By exploring the functions provided in the [common module script](https://github.com/microsoft/MIMPowerShellConnectors/blob/master/src/ECMA2HostCSV/Scripts/CommonModule.psm1) that accompanies the PowerShell MA, we can gain a better understanding of its functionalities. This will help us grasp the basic structure of a simple PowerShell MA and ECMAs in general.
 
