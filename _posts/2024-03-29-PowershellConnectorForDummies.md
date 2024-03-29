@@ -31,6 +31,9 @@ To simplify the understanding of the PowerShell MA, I suggest taking a simpler a
 ## **Common Module Script Functions**
 
 The functions present in the Common Module file can broadly be divided into three simple categories.
+ 1. Functions Related to Schema Modifications.
+ 2. Functions Related to Connector Space Modifications.
+ 3. General Functions.
 
 ### **Functions related to schema object**
 
@@ -62,7 +65,7 @@ Which consists of the following properties:
 4. Name
 5. PossibleDNComponentsForProvisioning.
 
-We can use the Create method of the SchemaType class to directly obtain an instance of the schema type object.
+We can use the Create method of the SchemaType class to obtain an instance of the schema type object directly.
 
 ```powershell
 
