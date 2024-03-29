@@ -28,16 +28,16 @@ In my recent article on [Powershell Connector for Entra ID](link), I aimed to ex
 
 To simplify the understanding of the PowerShell MA, I suggest taking a simpler approach. By exploring the functions provided in the [common module script](https://github.com/microsoft/MIMPowerShellConnectors/blob/master/src/ECMA2HostCSV/Scripts/CommonModule.psm1) that accompanies the PowerShell MA, we can gain a better understanding of its functionalities. This will help us grasp the basic structure of a simple PowerShell MA and ECMAs in general.
 
-## Common Module Script Functions
+## **Common Module Script Functions**
 
 The functions present in the Common Module file can broadly be divided into three simple categories.
 
-### Functions related to schema object
+### **Functions related to schema object**
 
  1. `ConvertFrom-SchemaXml` This function converts a connector schema defined in an XML file to a corresponding **Microsoft.MetadirectoryServices.Schema** object. Which forms the connector space for the underlying sync engine of the **EntraID Powershell Connector.**
  1. `Get-xADSyncPSConnectorSetting` This function is used to retrieve the settings that we have defined for our connector. When we add the settings using Connector UI, values are added to the Configuration Object `Microsoft.MetadirectoryServices.ConfigParameter`collection.
 
-### Structure of the Schema Script
+### **Structure of the Schema Script**
 
 The Schema Script is utilized to construct the Object Type schema for the ECMA2 Host. For Consistency, use the same set of attributes that we add in the EntraID for the On-Prem provisioning app's Provisioning section of the user object.
 
@@ -62,7 +62,7 @@ Which consists of the following properties:
 4. Name
 5. PossibleDNComponentsForProvisioning.
 
-We can use the Create method of the SchemaType class to obtain an instance of the schema type object directly.
+We can use the Create method of the SchemaType class to directly obtain an instance of the schema type object.
 
 ```powershell
 
@@ -70,7 +70,7 @@ $schemaType = [Microsoft.MetadirectoryServices.SchemaType]::Create($t.Name,$lock
 
 ```
 
-The third step is to populate the schema type with Attributes based on the attributes in the `Schema.xml` file.
+The third step is to populate the schema type with Attributes based on the attributes present in the `Schema.xml` file.
 Allowed Attribute Operation in Schema.XML can have the following values: 'ImportOnly', 'ExportOnly', 'ImportExport'.
 
 ```powershell
@@ -102,11 +102,33 @@ After adding all the attributes to the schemaType object we can add the schemaTy
        
 ```
 
-## Import Script of Powershell Connector
+### **Sample Schema**
+
+```xml
+<Schema>
+  <Types>
+    <SchemaType>
+      <Name>Person</Name>
+      <LockAnchorDefinition>1</LockAnchorDefinition>
+      <Attributes>
+        <SchemaAttribute>
+          <Name>login</Name>
+          <DataType>String</DataType>
+          <IsAnchor>1</IsAnchor>
+          <IsMultiValued>0</IsMultiValued>
+          <AllowedAttributeOperation>ImportExport</AllowedAttributeOperation>
+        </SchemaAttribute>
+      </Attributes>
+   </SchemaType>
+</Types>
+</Schema>
+     
+```
+
+## **Import Script of Powershell Connector**
 
 The Import Script acts as a bridge, fetching data from connected systems and storing it within the ECMA Connector Host's in-memory cache. Behind the scenes, this script retrieves information from various external sources like CSV files, SQL databases, or applications with REST API endpoints. Ultimately, it populates the **CSEntries** property of `Microsoft.MetadirectoryServices.
 GetImportEntriesResults` object with this retrieved data.
-
 
 In our previous article to build a connector for the Okta Application, I wrote a small function to import users from the Okta Instance: `Import-OktaProvisionedUsers`.
 
@@ -118,7 +140,7 @@ $importResults = New-Object -TypeName 'Microsoft.MetadirectoryServices.GetImport
 $csEntries = New-Object -TypeName 'System.Collections.Generic.List[Microsoft.MetadirectoryServices.CSEntryChange]'
 ```
 
-We must iterate over the imported users to Populate the `CSEntries` List.
+We will need to iterate over the imported users to Populate the `CSEntries` List.
 
 ```powershell
 $recordsToImport = Import-OktaProvisionedUsers
@@ -146,17 +168,23 @@ $importResults.MoreToImport = $false
 Write-Output $importResults
 ```
 
-## Export script of Powershell Connector
+Values stored in the in-memory cache are used by the Entra ID Provisioning Engine to determine provisioning action on the object.
 
-When the Entra ID Provisioning service initiates a provisioning cycle, the **ECMA2 Connector Host** takes over and processes the user objects. During this process, the Connector Host creates a collection of objects called CSEntries. Each CSEntry object, of type Microsoft.MetaDirectoryServices.CSEntryChange carries information about a specific user modification –  either adding, replacing, or deleting the user.
+## **Export script of Powershell Connector**
+
+When the Entra ID Provisioning service initiates a provisioning operation, the **ECMA2 Connector Host** takes over and processes the user objects. During this process, the Connector Host creates a collection of objects called CSEntries. Each CSEntry object, of type `Microsoft.MetaDirectoryServices.CSEntryChange` carries information about a specific modification type –  either adding, replacing, or deleting the user object.
 
 The appropriate action on the target system (like Okta) depends on the modification type within the CSEntry object.
 
 In our example of the Okta Connector, we've created three dedicated functions to handle these user modifications in Okta:
 
-1. Add-OktaProvisionedUser: Creates a new user in Okta.
-2. Update-OktaUser: Updates existing user details in Okta.
-3. Delete-OktaUser: Removes a user from Okta.
+1. `Add-OktaProvisionedUser`: Creates a new user in Okta.
+2. `Update-OktaUser`: Updates existing user details in Okta.
+3. `Delete-OktaUser`: Removes a user from Okta.
+
+Build Powershell Functions suitable for your use cases to meet your **Joiner-Mover-Leaver** scenarios.
+
+Based on the objectModification Type, we can call the appropriate function to propagate changes in the External System.
 
 ```powershell
 
@@ -188,9 +216,9 @@ return [Activator]::CreateInstance($closedType, $csentryChangeResults)
 
 ```
 
-## Conclusion and Self-Note
+## **Conclusion and Self-Note**
 
-In this article, I aimed to break down the Entra PowerShell Connector for those, like myself, who might be new to MIM development.  By focusing on the common module script's functions, I wanted to shed light on the connector's inner workings and the general structure of PowerShell MAs and ECMAs.
+In this article, I aimed to break down the Entra PowerShell Connector for those, like myself, who might be new to MIM development.  By focusing on the common module script's functions, I wanted to shed light on the connector's inner workings, the general structure of the PowerShell connector, and the basic **ECMA Architecture**.
 
 Here's what I found most helpful:
 
