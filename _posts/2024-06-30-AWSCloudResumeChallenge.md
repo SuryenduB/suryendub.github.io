@@ -37,7 +37,7 @@ tags: [ AWS, Serverless , Cloud , Lambda , Python  ]
 
 ##  1. <a name='DeployingServerlessArchitectureinAWSCloud:AWSCloudResumeChallenge'></a>Deploying Serverless Architecture in AWS Cloud: AWS Cloud Resume Challenge
  
-![Architecture](assets/img/diagram-export-30-06-2024-12_37_32.png)
+
 
 
 
@@ -46,6 +46,9 @@ I'm excited to embark on a journey through the Cloud Resume Challenge, using AWS
 While my MultiCloud experience might be a work in progress, I see this as the perfect opportunity to bridge that gap. Additionally, the challenge provides a valuable platform to explore AWS security in a hands-on way before diving deeper into the specifics.
 
 Throughout this blog, I'll be documenting my experiences, from setting up the initial infrastructure to deploying a fully functional cloud resume website.  
+
+![image.png]("/assets/img/Screenshot 2024-06-30 at 13.28.18.png")
+
 
 
 ##  2. <a name='Step1-3:CreatingtheFrontendwithHTMLandCSS'></a>Step 1 -3: Creating the Frontend with HTML and CSS
