@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Deploying Serverless Architecture in AWS Cloud AWS Cloud Resume Challenge
-subtitle:  Deploying Serverless Architecture in AWS Cloud: AWS Cloud Resume Challenge
+subtitle:  Deploying Serverless Architecture in AWS Cloud AWS Cloud Resume Challenge
 cover-img: assets/img/diagram-export-30-06-2024-12_37_32.png
 thumbnail-img: assets/img/diagram-export-30-06-2024-12_37_32.png
 share-img: assets/img/diagram-export-30-06-2024-12_37_32.png
