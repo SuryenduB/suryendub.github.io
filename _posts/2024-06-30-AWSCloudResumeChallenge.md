@@ -47,7 +47,7 @@ While my MultiCloud experience might be a work in progress, I see this as the pe
 
 Throughout this blog, I'll be documenting my experiences, from setting up the initial infrastructure to deploying a fully functional cloud resume website.  
 
-![image.png]("/assets/img/Screenshot 2024-06-30 at 13.28.18.png")
+![image.png](https://raw.githubusercontent.com/SuryenduB/suryendub.github.io/master/assets/img/Screenshot%202024-06-30%20at%2013.28.18.png)
 
 
 
