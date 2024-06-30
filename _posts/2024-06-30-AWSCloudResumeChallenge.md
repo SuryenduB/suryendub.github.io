@@ -12,26 +12,26 @@ tags: [ AWS, Serverless , Cloud , Lambda , Python  ]
  1. [Deploying Serverless Architecture in AWS Cloud: AWS Cloud Resume Challenge](#DeployingServerlessArchitectureinAWSCloud:AWSCloudResumeChallenge)
  2. [Step 1 -3: Creating the Frontend with HTML and CSS](#Step1-3:CreatingtheFrontendwithHTMLandCSS)
  3. [Step 4: Static Website:  Create S3 Bucket to host the Static Website](#Step4:StaticWebsite:CreateS3BuckettohosttheStaticWebsite)
-	 3.1. [Create S3 Bucket:](#CreateS3Bucket:)
-	 3.2. [Public Access Block: Configures the public access block settings for the bucket.](#PublicAccessBlock:Configuresthepublicaccessblocksettingsforthebucket.)
-	 3.3. [IAM Policy Document:](#IAMPolicyDocument:)
-	 3.4. [Bucket Policy:](#BucketPolicy:)
-	 3.5. [Website Configuration:](#WebsiteConfiguration:)
-	 3.6. [Upload Index.html Object:](#UploadIndex.htmlObject:)
-	 3.7. [Upload Image Files:](#UploadImageFiles:)
-	 3.8. [CORS Configuration:](#CORSConfiguration:)
+	 - 3.1. [Create S3 Bucket:](#CreateS3Bucket:)
+	 - 3.2. [Public Access Block: Configures the public access block settings for the bucket.](#PublicAccessBlock:Configuresthepublicaccessblocksettingsforthebucket.)
+	 - 3.3. [IAM Policy Document:](#IAMPolicyDocument:)
+	 - 3.4. [Bucket Policy:](#BucketPolicy:)
+	 - 3.5. [Website Configuration:](#WebsiteConfiguration:)
+	 - 3.6. [Upload Index.html Object:](#UploadIndex.htmlObject:)
+	 - 3.7. [Upload Image Files:](#UploadImageFiles:)
+	 - 3.8. [CORS Configuration:](#CORSConfiguration:)
  4. [Step 5: Setting Up a CloudFront Distribution for Your S3 Bucket](#Step5:SettingUpaCloudFrontDistributionforYourS3Bucket)
-	 4.1. [Define Local Variables](#DefineLocalVariables)
-	 4.2. [Configure the CloudFront Distribution](#ConfiguretheCloudFrontDistribution)
-	 4.3. [Define the Origin](#DefinetheOrigin)
-	 4.4. [Configure the Default Cache Behavior to redirect HTTP to HTTPS.](#ConfiguretheDefaultCacheBehaviortoredirectHTTPtoHTTPS.)
-	 4.5. [Set Restrictions](#SetRestrictions)
-	 4.6. [Configure the Viewer Certificate](#ConfiguretheViewerCertificate)
-	 4.7. [Set the Price Class](#SetthePriceClass)
+	 - 4.1. [Define Local Variables](#DefineLocalVariables)
+	 - 4.2. [Configure the CloudFront Distribution](#ConfiguretheCloudFrontDistribution)
+	 - 4.3. [Define the Origin](#DefinetheOrigin)
+	 - 4.4. [Configure the Default Cache Behavior to redirect HTTP to HTTPS.](#ConfiguretheDefaultCacheBehaviortoredirectHTTPtoHTTPS.)
+	 - 4.5. [Set Restrictions](#SetRestrictions)
+	 - 4.6. [Configure the Viewer Certificate](#ConfiguretheViewerCertificate)
+	 - 4.7. [Set the Price Class](#SetthePriceClass)
  5. [Step 6: Add Javascript to fetch the visitor's count.](#Step6:AddJavascripttofetchthevisitorscount.)
  6. [Step 7: Create the DynamoDB Table Using Terraform](#Step7:CreatetheDynamoDBTableUsingTerraform)
  7. [Step 8: Build the API to return the visitors count with AWS Lambda.](#Step8:BuildtheAPItoreturnthevisitorscountwithAWSLambda.)
-	 7.1. [Python Script to read the data from the AWS  the dynamodb table](#PythonScripttoreadthedatafromtheAWSthedynamodbtable)
+	 - 7.1. [Python Script to read the data from the AWS  the dynamodb table](#PythonScripttoreadthedatafromtheAWSthedynamodbtable)
  8. [Step 9: Create the API Gateway to integrate with AWS Lambda.](#Step9:CreatetheAPIGatewaytointegratewithAWSLambda.)
  9. [Step 10: Create the GitHub Actions workflow.](#Step10:CreatetheGitHubActionsworkflow.)
 
@@ -41,8 +41,12 @@ tags: [ AWS, Serverless , Cloud , Lambda , Python  ]
 
 
 
-# Deploying Serverless Architecture in AWS Cloud
-Serverless architecture allows developers to build and run applications without managing servers. AWS provides several services that make it easy to deploy serverless applications. This blog post will guide you through deploying a serverless resume API using AWS services, including DynamoDB, Lambda, API Gateway, and Terraform for infrastructure as code.
+I'm excited to embark on a journey through the Cloud Resume Challenge, using AWS as my launchpad. This challenge is a fantastic way to gain practical AWS experience while building a unique and interactive resume that showcases my cloud skills to potential employers.
+
+While my MultiCloud experience might be a work in progress, I see this as the perfect opportunity to bridge that gap. Additionally, the challenge provides a valuable platform to explore AWS security in a hands-on way before diving deeper into the specifics.
+
+Throughout this blog, I'll be documenting my experiences, from setting up the initial infrastructure to deploying a fully functional cloud resume website.  
+
 
 ##  2. <a name='Step1-3:CreatingtheFrontendwithHTMLandCSS'></a>Step 1 -3: Creating the Frontend with HTML and CSS
 
