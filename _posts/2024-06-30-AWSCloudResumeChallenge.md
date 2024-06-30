@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Deploying Serverless Architecture in AWS Cloud AWS Cloud Resume Challenge
-subtitle:  Deploying Serverless Architecture in AWS Cloud AWS Cloud Resume Challenge
+title: AWS Cloud Resume Challenge
+subtitle:  Deploying Serverless Architecture  AWS Cloud Resume Challenge
 cover-img: assets/img/diagram-export-30-06-2024-12_37_32.png
 thumbnail-img: assets/img/diagram-export-30-06-2024-12_37_32.png
 share-img: assets/img/diagram-export-30-06-2024-12_37_32.png
@@ -9,31 +9,31 @@ tags: [ AWS, Serverless , Cloud , Lambda , Python  ]
 
 ---
 
-* 1. [Deploying Serverless Architecture in AWS Cloud: AWS Cloud Resume Challenge](#DeployingServerlessArchitectureinAWSCloud:AWSCloudResumeChallenge)
-* 2. [Step 1 -3: Creating the Frontend with HTML and CSS](#Step1-3:CreatingtheFrontendwithHTMLandCSS)
-* 3. [Step 4: Static Website:  Create S3 Bucket to host the Static Website](#Step4:StaticWebsite:CreateS3BuckettohosttheStaticWebsite)
-	* 3.1. [Create S3 Bucket:](#CreateS3Bucket:)
-	* 3.2. [Public Access Block: Configures the public access block settings for the bucket.](#PublicAccessBlock:Configuresthepublicaccessblocksettingsforthebucket.)
-	* 3.3. [IAM Policy Document:](#IAMPolicyDocument:)
-	* 3.4. [Bucket Policy:](#BucketPolicy:)
-	* 3.5. [Website Configuration:](#WebsiteConfiguration:)
-	* 3.6. [Upload Index.html Object:](#UploadIndex.htmlObject:)
-	* 3.7. [Upload Image Files:](#UploadImageFiles:)
-	* 3.8. [CORS Configuration:](#CORSConfiguration:)
-* 4. [Step 5: Setting Up a CloudFront Distribution for Your S3 Bucket](#Step5:SettingUpaCloudFrontDistributionforYourS3Bucket)
-	* 4.1. [Define Local Variables](#DefineLocalVariables)
-	* 4.2. [Configure the CloudFront Distribution](#ConfiguretheCloudFrontDistribution)
-	* 4.3. [Define the Origin](#DefinetheOrigin)
-	* 4.4. [Configure the Default Cache Behavior to redirect HTTP to HTTPS.](#ConfiguretheDefaultCacheBehaviortoredirectHTTPtoHTTPS.)
-	* 4.5. [Set Restrictions](#SetRestrictions)
-	* 4.6. [Configure the Viewer Certificate](#ConfiguretheViewerCertificate)
-	* 4.7. [Set the Price Class](#SetthePriceClass)
-* 5. [Step 6: Add Javascript to fetch the visitor's count.](#Step6:AddJavascripttofetchthevisitorscount.)
-* 6. [Step 7: Create the DynamoDB Table Using Terraform](#Step7:CreatetheDynamoDBTableUsingTerraform)
-* 7. [Step 8: Build the API to return the visitors count with AWS Lambda.](#Step8:BuildtheAPItoreturnthevisitorscountwithAWSLambda.)
-	* 7.1. [Python Script to read the data from the AWS  the dynamodb table](#PythonScripttoreadthedatafromtheAWSthedynamodbtable)
-* 8. [Step 9: Create the API Gateway to integrate with AWS Lambda.](#Step9:CreatetheAPIGatewaytointegratewithAWSLambda.)
-* 9. [Step 10: Create the GitHub Actions workflow.](#Step10:CreatetheGitHubActionsworkflow.)
+ 1. [Deploying Serverless Architecture in AWS Cloud: AWS Cloud Resume Challenge](#DeployingServerlessArchitectureinAWSCloud:AWSCloudResumeChallenge)
+ 2. [Step 1 -3: Creating the Frontend with HTML and CSS](#Step1-3:CreatingtheFrontendwithHTMLandCSS)
+ 3. [Step 4: Static Website:  Create S3 Bucket to host the Static Website](#Step4:StaticWebsite:CreateS3BuckettohosttheStaticWebsite)
+	 3.1. [Create S3 Bucket:](#CreateS3Bucket:)
+	 3.2. [Public Access Block: Configures the public access block settings for the bucket.](#PublicAccessBlock:Configuresthepublicaccessblocksettingsforthebucket.)
+	 3.3. [IAM Policy Document:](#IAMPolicyDocument:)
+	 3.4. [Bucket Policy:](#BucketPolicy:)
+	 3.5. [Website Configuration:](#WebsiteConfiguration:)
+	 3.6. [Upload Index.html Object:](#UploadIndex.htmlObject:)
+	 3.7. [Upload Image Files:](#UploadImageFiles:)
+	 3.8. [CORS Configuration:](#CORSConfiguration:)
+ 4. [Step 5: Setting Up a CloudFront Distribution for Your S3 Bucket](#Step5:SettingUpaCloudFrontDistributionforYourS3Bucket)
+	 4.1. [Define Local Variables](#DefineLocalVariables)
+	 4.2. [Configure the CloudFront Distribution](#ConfiguretheCloudFrontDistribution)
+	 4.3. [Define the Origin](#DefinetheOrigin)
+	 4.4. [Configure the Default Cache Behavior to redirect HTTP to HTTPS.](#ConfiguretheDefaultCacheBehaviortoredirectHTTPtoHTTPS.)
+	 4.5. [Set Restrictions](#SetRestrictions)
+	 4.6. [Configure the Viewer Certificate](#ConfiguretheViewerCertificate)
+	 4.7. [Set the Price Class](#SetthePriceClass)
+ 5. [Step 6: Add Javascript to fetch the visitor's count.](#Step6:AddJavascripttofetchthevisitorscount.)
+ 6. [Step 7: Create the DynamoDB Table Using Terraform](#Step7:CreatetheDynamoDBTableUsingTerraform)
+ 7. [Step 8: Build the API to return the visitors count with AWS Lambda.](#Step8:BuildtheAPItoreturnthevisitorscountwithAWSLambda.)
+	 7.1. [Python Script to read the data from the AWS  the dynamodb table](#PythonScripttoreadthedatafromtheAWSthedynamodbtable)
+ 8. [Step 9: Create the API Gateway to integrate with AWS Lambda.](#Step9:CreatetheAPIGatewaytointegratewithAWSLambda.)
+ 9. [Step 10: Create the GitHub Actions workflow.](#Step10:CreatetheGitHubActionsworkflow.)
 
 ##  1. <a name='DeployingServerlessArchitectureinAWSCloud:AWSCloudResumeChallenge'></a>Deploying Serverless Architecture in AWS Cloud: AWS Cloud Resume Challenge
  
@@ -95,8 +95,8 @@ data "aws_iam_policy_document" "allow_read_access_from_all_account" {
     sid    = "PublicReadGetObject"
     effect = "Allow"
     principals {
-      type        = "*"
-      identifiers = ["*"]
+      type        = ""
+      identifiers = [""]
     }
 
     actions = [
@@ -105,7 +105,7 @@ data "aws_iam_policy_document" "allow_read_access_from_all_account" {
 
     resources = [
       aws_s3_bucket.sury-resume-bucket.arn,
-      "${aws_s3_bucket.sury-resume-bucket.arn}/*",
+      "${aws_s3_bucket.sury-resume-bucket.arn}/",
     ]
   }
 }
@@ -161,7 +161,7 @@ resource "aws_s3_object" "object" {
 Uploads all files from the `../images`  directory to the `images/`  folder in the bucket.
 ```
 resource "aws_s3_object" "test" {
-  for_each = fileset("../images", "*.*")
+  for_each = fileset("../images", ".")
 
   bucket = aws_s3_bucket.sury-resume-bucket.id
   key    = "images/${each.value}"
@@ -175,9 +175,9 @@ resource "aws_s3_bucket_cors_configuration" "allow_core" {
   bucket = aws_s3_bucket.sury-resume-bucket.id
 
   cors_rule {
-    allowed_headers = ["*"]
+    allowed_headers = [""]
     allowed_methods = ["POST", "GET"]
-    allowed_origins = ["*"]
+    allowed_origins = [""]
   }
   depends_on = [aws_s3_bucket.sury-resume-bucket]
 }
@@ -421,7 +421,7 @@ def lambda_handler(event, context):
         'statusCode': 200,
         'headers': {
             
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': '',
             
         },
         'body': json.dumps(f"{number_to_update_s}")
@@ -453,7 +453,7 @@ resource "aws_iam_role" "iam_for_lambda" {
 ```
 
 
-Now it is time for creating the **Lambda Function**. This policy is then attached to an IAM role (`aws_iam_role.iam_for_lambda`) named "iam_for_lambda", specifying that Lambda functions can assume this role. The configuration also defines an AWS Lambda function (`aws_lambda_function.test_lambda`) named "test_lambda" with its deployment package specified as "index.zip". 
+Now it is time for creating the Lambda Function. This policy is then attached to an IAM role (`aws_iam_role.iam_for_lambda`) named "iam_for_lambda", specifying that Lambda functions can assume this role. The configuration also defines an AWS Lambda function (`aws_lambda_function.test_lambda`) named "test_lambda" with its deployment package specified as "index.zip". 
 
 AWS Lambda function (`aws_lambda_function.test_lambda`) named "test_lambda" with its deployment package specified as "index.zip".We use the source code described previously to create the zip.
 
@@ -595,7 +595,7 @@ resource "aws_api_gateway_integration_response" "proxy" {
   response_parameters = {
     "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
     "method.response.header.Access-Control-Allow-Methods" = "'GET,OPTIONS,POST,PUT'",
-    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+    "method.response.header.Access-Control-Allow-Origin"  = "''"
   }
 
   depends_on = [
@@ -651,7 +651,7 @@ resource "aws_api_gateway_integration_response" "options_integration_response" {
   response_parameters = {
     "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
     "method.response.header.Access-Control-Allow-Methods" = "'GET,OPTIONS,POST,PUT'",
-    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+    "method.response.header.Access-Control-Allow-Origin"  = "''"
   }
 
   depends_on = [
@@ -695,7 +695,7 @@ resource "aws_lambda_permission" "apigw_lambda" {
   function_name = aws_lambda_function.test_lambda.function_name
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = "${aws_api_gateway_rest_api.countVisitors.execution_arn}/*/*/*"
+  source_arn = "${aws_api_gateway_rest_api.countVisitors.execution_arn}///"
 }
 ```
 This is all the infrastructure element we need. Now we will need to build CI/CD blocks to deploy the website.
