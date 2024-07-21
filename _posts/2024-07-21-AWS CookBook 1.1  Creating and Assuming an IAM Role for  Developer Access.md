@@ -113,6 +113,7 @@ As an IAM Engineer, it is always our responsibility to ensure high privileged pe
 
 #### Assume the role using MFA
 To assume the role with MFA using the AWS CLI, you need the serial number of the MFA device and the current MFA token code.
+
 ```aws sts assume-role \
     --role-arn "arn:aws:iam::471112586770:role/AWSCookBookSuryenduRole101" \
     --role-session-name "SessionName" \
