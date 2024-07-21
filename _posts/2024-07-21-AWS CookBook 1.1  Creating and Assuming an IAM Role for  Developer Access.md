@@ -1,9 +1,10 @@
 # AWS CookBook 1.1 : Creating and Assuming an IAM Role for  Developer Access
  #aws/cookbook/security 
 1. [AWS CookBook 1.1 : Creating and Assuming an IAM Role for  Developer Access](bear://x-callback-url/open-note?id=41977B81-1CAE-4543-A68E-6B9AAB073738&header=AWS%20CookBook%201.1%20:%20Creating%20and%20Assuming%20an%20IAM%20Role%20for%20%20Developer%20Access)
-   1. [Problem](bear://x-callback-url/open-note?id=41977B81-1CAE-4543-A68E-6B9AAB073738&header=Problem)
-   2. [Solution](bear://x-callback-url/open-note?id=41977B81-1CAE-4543-A68E-6B9AAB073738&header=Solution)
-      1. [Assume the role using MFA](bear://x-callback-url/open-note?id=41977B81-1CAE-4543-A68E-6B9AAB073738&header=Assume%20the%20role%20using%20MFA)
+   1. [Problem](#problem)
+   2. [Solution](#solution)
+      
+      1. [Assume the role using MFA](#assume-the-role-using-mfa)
 ## Problem
 As an IAM Engineer, it is always our responsibility to ensure high privileged permissions are not always in use.
 
@@ -77,7 +78,7 @@ As an IAM Engineer, it is always our responsibility to ensure high privileged pe
    --role-session-name AWSSuryendu101
    ```
    7. We will get output similar to this.
-   ![](2024-07-21-AWS%20CookBook%201.1%20%20Creating%20and%20Assuming%20an%20IAM%20Role%20for%20%20Developer%20Access/image.png)
+   ![](image.png)
    8. If we would like to enforce MFA, at the time of Role assumption, we can adda condition in our assume policy.
    ```
    {
