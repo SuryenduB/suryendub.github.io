@@ -12,7 +12,9 @@ tags: [ AWS , IAM , Security , Password  ]
 #aws/cookbook/security
 
 ### Problem
+
 Your Security Policy requires that you must enforce password policy for all the users in your AWS Account.
+
 | Requirements      | Values        |
 |-------------------|---------------|
 | Password Validity | 90 Days       |
@@ -151,4 +153,4 @@ aws iam create-login-profile --user-name AWSCookBookSuryenduUser2 \
 
 You will receive an error similar to this.
 
-![](2024-07-24%20AWS%20CookBook%201.3%20Enforcing%20IAM%20User%20Password%20Policies%20in%20Your%20AWS%20Account/Screenshot%202024-07-25%20at%2000.26.28.png)
+![image](assets/img/Screenshot 2024-07-25 at 00.26.28.png)
