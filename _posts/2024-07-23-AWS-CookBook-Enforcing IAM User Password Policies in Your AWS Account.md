@@ -1,3 +1,13 @@
+---
+layout: post
+title: AWS CookBook 1.3: Enforcing IAM User Password Policies in Your AWS Account
+cover-img: assets/img/AWSIAMPolicy.png
+thumbnail-img: assets/img/AWSIAMPolicy.png
+share-img: assets/img/AWSIAMPolicy.png
+tags: [ AWS , IAM , Security , Password  ]
+
+---
+
 # AWS CookBook 1.3: Enforcing IAM User Password Policies in Your AWS Account
 #aws/cookbook/security
 
@@ -12,9 +22,11 @@ Your Security Policy requires that you must enforce password policy for all the 
 | Number            | Atleast 1     |
 | Symbols           | Atleast 1     |
 ## Solution
-- [ ] Set a Password policy for IAM users.
-- [ ] Attach the policy to a group.
-- [ ] Add the user to the IAM group to enforce policy.
+- [X] Set a Password policy for IAM users.
+- [X] Create user and add a login policy.
+
+![AWSIAMPolicy](assets/img/AWSIAMPolicy.png)
+
 ## Steps
 1. **Set an IAM password policy** : Create a password policy based on previous requirement. 
  
