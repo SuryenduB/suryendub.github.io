@@ -1,6 +1,6 @@
 ---
 layout: post
-title: AWS CookBook 1.3: Enforcing IAM User Password Policies in Your AWS Account
+title: AWS CookBook 1.3 Enforcing IAM User Password Policies in Your AWS Account
 cover-img: assets/img/AWSIAMPolicy.png
 thumbnail-img: assets/img/AWSIAMPolicy.png
 share-img: assets/img/AWSIAMPolicy.png
