@@ -27,11 +27,11 @@ Your Security Policy requires that you must enforce password policy for all the 
 ## Solution
 
 - [X] Set a Password policy for IAM users.
-- [X] Create user and add a login policy.
+- [X] Create a user and add a login policy.
 
 ## Design
 
-![AWSIAMPolicy](assets/img/AWSIAMPolicy.png)
+![AWSIAMPolicy](/assets/img/AWSIAMPolicy.png)
 
 ## Steps
 
@@ -155,4 +155,5 @@ aws iam create-login-profile --user-name AWSCookBookSuryenduUser2 \
 
 You will receive an error similar to this.
 
-![image](assets/img/Screenshot 2024-07-25 at 00.26.28.png)
+![ss]("/assets/img/Screenshot 2024-07-25 at 00.26.28.png")
+
