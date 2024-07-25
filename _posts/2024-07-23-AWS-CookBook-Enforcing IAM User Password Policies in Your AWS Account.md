@@ -155,5 +155,5 @@ aws iam create-login-profile --user-name AWSCookBookSuryenduUser2 \
 
 You will receive an error similar to this.
 
-![ss]("/assets/img/Screenshot 2024-07-25 at 00.26.28.png")
+![ss]("/assets/img/RoleError.png")
 
