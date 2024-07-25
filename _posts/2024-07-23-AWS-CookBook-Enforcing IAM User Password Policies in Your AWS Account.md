@@ -21,13 +21,16 @@ Your Security Policy requires that you must enforce password policy for all the 
 | Upper Case        | Atleast 1     |
 | Number            | Atleast 1     |
 | Symbols           | Atleast 1     |
+
 ## Solution
+
 - [X] Set a Password policy for IAM users.
 - [X] Create user and add a login policy.
 
 ![AWSIAMPolicy](assets/img/AWSIAMPolicy.png)
 
 ## Steps
+
 1. **Set an IAM password policy** : Create a password policy based on previous requirement. 
  
  
@@ -43,8 +46,12 @@ aws iam update-account-password-policy \
 --password-reuse-prevention 10 
 
 ```
+
 2. **Create an IAM group** : `aws iam create-group --group-name AWSCookBookSuryenduGroup`
-   **Output**: We  get the following output.
+   **Output**: 
+   
+   We  get the following output.
+
 ```
    {
     "Group": {
@@ -56,15 +63,19 @@ aws iam update-account-password-policy \
     }
 }
 ```
+
 3. **Attach the ReadOnlyAccess policy to the group**
+
 ```
 aws iam attach-group-policy \
 --group-name AWSCookBookSuryenduGroup \
 --policy-arn arn:aws:iam::aws:policy/AWSBillingReadOnlyAccess
 
 ```
+
 4. **Create an IAM User** : `aws iam create-user --user-name AWSCookBookSuryenduUser`
    **Output**: And the output we get is as follows
+
 ```
 {
     "User": {
@@ -76,13 +87,16 @@ aws iam attach-group-policy \
     }
 }
 ```
+
 5. **Add the user to the group with attached policy**
+
 ```
    aws iam add-user-to-group \
 --group-name AWSCookBookSuryenduGroup \
 --user-name AWSCookBookSuryenduUser
 
 ```
+
 6. **Use Secrets Manager**  to generate a password that confirms to your password policy and Create a login profile for the user with the generated password.
 
 ```
@@ -98,8 +112,8 @@ aws iam create-login-profile --user-name AWSCookBookSuryenduUser \
 
 
 ```
-       7. **Validation Checks** Verify that password policy is now set. `aws iam get-account-password-policy;  `
-	We will get an output similar to this.
+7. **Validation Checks** Verify that password policy is now set. `aws iam get-account-password-policy`. We will get an output similar to this.
+
 ```
 	{
     "PasswordPolicy": {
@@ -117,6 +131,7 @@ aws iam create-login-profile --user-name AWSCookBookSuryenduUser \
 
 ```
 8. **Negative Validation Checks** : Create an user  and add a login policy that does not adhere to the password policy.
+
 ```
 aws iam create-user --user-name AWSCookBookSuryenduUser2
 
