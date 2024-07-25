@@ -29,6 +29,8 @@ Your Security Policy requires that you must enforce password policy for all the 
 - [X] Set a Password policy for IAM users.
 - [X] Create user and add a login policy.
 
+## Design
+
 ![AWSIAMPolicy](assets/img/AWSIAMPolicy.png)
 
 ## Steps
