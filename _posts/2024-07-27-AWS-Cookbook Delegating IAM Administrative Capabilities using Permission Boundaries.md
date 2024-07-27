@@ -225,6 +225,7 @@ We got an output as follows.
 **ServerlessFullAccess** : Allow full access to server less.
 
 ```json
+        {
 
             "Sid": "ServerlessFullAccess",
             "Effect": "Allow",
