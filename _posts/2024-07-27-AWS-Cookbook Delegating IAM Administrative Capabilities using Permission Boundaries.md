@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 1.5 Delegating IAM Administrative Capabilities using Permission Boundaries
-cover-img: assets/img/AWSRole.png)
-thumbnail-img: assets/img/AWSRole.png)
-share-img: assets/img/AWSRole.png)
+cover-img: /assets/img/AWSRole.png)
+thumbnail-img: /assets/img/AWSRole.png)
+share-img: /assets/img/AWSRole.png)
 tags: [ AWS , IAM , Security , Permissions  ]
 
 ---
