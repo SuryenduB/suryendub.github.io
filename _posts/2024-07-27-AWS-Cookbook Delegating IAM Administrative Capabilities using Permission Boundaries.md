@@ -348,4 +348,4 @@ TEST_ROLE_1=$(aws iam create-role --role-name AWSCookbookSuryendu105test1 \
 
 We can verify that the role is created in the console.
 
-![](assets/img/AWSRole.png)
+![](/assets/img/AWSRole.png)
