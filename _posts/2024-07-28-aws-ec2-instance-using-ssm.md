@@ -130,4 +130,4 @@ aws ssm start-session --target $INSTANCE_ID
 
 1. We can see the bash prompt. To validate that we are connected to the EC2 Instance we can query the EC2 metadata token.
 
-![Metadata](/assts/img/EC2Metadata.png)
+![Metadata](/assets/img/EC2Metadata.png)
