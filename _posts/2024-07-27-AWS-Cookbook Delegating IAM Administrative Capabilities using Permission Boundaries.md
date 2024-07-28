@@ -24,12 +24,17 @@ We need to seggregate permision boundaries between teams. For Example , let us a
 
 ## **Discussions**
 
-Permission Boundaries act as a giardrail and limit provilege escalation. In order to limit the maximum permission of a delegated administrator.
+Permission Boundaries act as a guardrail and limit privilege escalation. In order to limit the maximum permission of a delegated administrator.
 
-1. Allow the creation of IAM customer managed policies.
-2. Allow IAM role creation with a condition that a permission boundary must be attached.
-3. Allow attachment of policy but only to roles that have a permission boundary.
-4. Allow `iam:Passrole` to defined list of  AWS services that
+1. Allow the creation of IAM customer-managed policies.
+2. Allow IAM role creation with the condition that a permission boundary must be attached.
+3. Allow policy attachment but only to roles with a permission boundary.
+4. Allow `iam:Passrole` to define the list of  AWS services.
+
+
+Here are few more details:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YQsK4MtsELU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## **Solution**
 
