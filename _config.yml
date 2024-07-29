@@ -254,7 +254,7 @@ permalink: /:year-:month-:day-:title/
 paginate: 5
 
 kramdown:
-  input: GFM
+  input: redcarpet
 
 remote_theme: daattali/beautiful-jekyll@6.0.1
 
