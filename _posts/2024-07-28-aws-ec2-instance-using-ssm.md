@@ -74,21 +74,21 @@ ROLE_ARN=$(aws iam create-role --role-name AWSCookbook106SSMRole \
 
 ```
 
-1. Attach the ==AmazonSSMManagedInstanceCore== managed policy to the role.
+2. Attach the ==AmazonSSMManagedInstanceCore== managed policy to the role.
 
 ```shell
 aws iam attach-role-policy --role-name AWSCookbook106SSMRole \
      --policy-arn arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore 
 ```
 
-2. Create an Instance Profile.
+3. Create an Instance Profile.
 
 ```shell
 aws iam create-instance-profile \
      --instance-profile-name AWSCookbook106InstanceProfile 
 ```
 
-3. Add the role you have created to the instance profile.
+4. Add the role you have created to the instance profile.
 
 ```shell
 aws iam add-role-to-instance-profile \
@@ -96,7 +96,7 @@ aws iam add-role-to-instance-profile \
      --instance-profile-name AWSCookbook106InstanceProfile 
 ```
 
-4. Query SSM for the latest Amazon Linux 2 AMI Id available
+5. Query SSM for the latest Amazon Linux 2 AMI Id available
 
 ```shell 
 AMI_ID=$(aws ssm get-parameters --names \
@@ -104,7 +104,7 @@ AMI_ID=$(aws ssm get-parameters --names \
      --query 'Parameters[0].[Value]' --output text )
 ```
 
-5. Launch an instance in an isolated subnet.
+6. Launch an instance in an isolated subnet.
 
 ```shell
 INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID \
@@ -123,12 +123,12 @@ INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID \
 
 ```
 
-6. We can n ow start an SSM session. (We need to ensure that we have ==Session Manager Plugin== installed).
+7. We can n ow start an SSM session. (We need to ensure that we have ==Session Manager Plugin== installed).
 
 ```shell
 aws ssm start-session --target $INSTANCE_ID
 ```
 
-7. We can see the bash prompt. To validate that we are connected to the EC2 Instance we can query the EC2 metadata token.
+8. We can see the bash prompt. To validate that we are connected to the EC2 Instance we can query the EC2 metadata token.
 
 ![Metadata](/assets/img/EC2Metadata.png)
