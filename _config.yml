@@ -42,7 +42,7 @@ round-avatar: true
 # then specify the following parameter
 #title-img: /path/to/image
 
-remote_theme: daattali/beautiful-jekyll@6.0.1
+
 #####################################
 # --- Footer social media links --- #
 #####################################
@@ -254,7 +254,9 @@ permalink: /:year-:month-:day-:title/
 paginate: 5
 
 kramdown:
-  input: GFM
+  input: markdown
+
+remote_theme: daattali/beautiful-jekyll@6.0.1
 
 # Default YAML values (more information on Jekyll's site)
 defaults:
