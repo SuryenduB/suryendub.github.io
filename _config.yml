@@ -42,7 +42,7 @@ round-avatar: true
 # then specify the following parameter
 #title-img: /path/to/image
 
-
+remote_theme: daattali/beautiful-jekyll@6.0.1
 #####################################
 # --- Footer social media links --- #
 #####################################
@@ -79,7 +79,7 @@ social-network-links:
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: Microsoft Entra Identity
+rss-description: Microsoft Entra Identity Blog
 
 ###########################
 # --- General options --- #
