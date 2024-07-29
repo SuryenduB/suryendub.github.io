@@ -4,7 +4,7 @@ title: AWS CookBook 1.6 Connecting to EC2 Instances using AWS SSM Session Manage
 cover-img: /assets/img/ConnectionEC2SSM.png
 thumbnail-img: /assets/img/ConnectionEC2SSM.png
 share-img: /assets/img/ConnectionEC2SSM.png
-tags: [ AWS , IAM , Security , Permissions  ]
+tags: [ AWS , IAM , Security , Permissions ]
 
 ---
 
