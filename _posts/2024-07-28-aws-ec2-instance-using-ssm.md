@@ -48,87 +48,83 @@ The EC2 instance profile contains a role that you create. The instance profile a
 
 ## Steps
 
-1. Create an ==Assume Role Policy== JSON and create a role with the same.
+1. Create an **Assume Role Policy** JSON and create a role with the same.
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-  {
-    "Effect": "Allow",
-    "Principal": {
-      "Service": "ec2.amazonaws.com"
-    },
-    "Action": "sts:AssumeRole"
-  }
-  ]
-}
+    ```json
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": {
+            "Service": "ec2.amazonaws.com"
+          },
+          "Action": "sts:AssumeRole"
+        }
+      ]
+    }
+    ```
 
-```
+    ```shell
+    ROLE_ARN=$(aws iam create-role --role-name AWSCookbook106SSMRole \
+         --assume-role-policy-document file://assume-role-policy.json \
+         --output text --query Role.Arn )
+    ```
 
-```shell
-ROLE_ARN=$(aws iam create-role --role-name AWSCookbook106SSMRole \
-     --assume-role-policy-document file://assume-role-policy.json \
-     --output text --query Role.Arn )
+2. Attach the **AmazonSSMManagedInstanceCore** managed policy to the role.
 
-
-```
-
-2. Attach the ==AmazonSSMManagedInstanceCore== managed policy to the role.
-
-```shell
-aws iam attach-role-policy --role-name AWSCookbook106SSMRole \
-     --policy-arn arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore 
-```
+    ```shell
+    aws iam attach-role-policy --role-name AWSCookbook106SSMRole \
+         --policy-arn arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore 
+    ```
 
 3. Create an Instance Profile.
 
-```shell
-aws iam create-instance-profile \
-     --instance-profile-name AWSCookbook106InstanceProfile 
-```
+    ```shell
+    aws iam create-instance-profile \
+         --instance-profile-name AWSCookbook106InstanceProfile 
+    ```
 
 4. Add the role you have created to the instance profile.
 
-```shell
-aws iam add-role-to-instance-profile \
-     --role-name AWSCookbook106SSMRole \
-     --instance-profile-name AWSCookbook106InstanceProfile 
-```
+    ```shell
+    aws iam add-role-to-instance-profile \
+         --role-name AWSCookbook106SSMRole \
+         --instance-profile-name AWSCookbook106InstanceProfile 
+    ```
 
 5. Query SSM for the latest Amazon Linux 2 AMI Id available
 
-```shell 
-AMI_ID=$(aws ssm get-parameters --names \
-     /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 \
-     --query 'Parameters[0].[Value]' --output text )
-```
+    ```shell 
+    AMI_ID=$(aws ssm get-parameters --names \
+         /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 \
+         --query 'Parameters[0].[Value]' --output text )
+    ```
 
 6. Launch an instance in an isolated subnet.
 
-```shell
-INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID \
-     --count 1 \
-     --instance-type t2.micro \
-     --iam-instance-profile Name=AWSCookbook106InstanceProfile \
-     --subnet-id $SUBNET_1 \
-     --security-group-ids $INSTANCE_SG \
-     --metadata-options "HttpTokens=required,HttpPutResponseHopLimit=64,HttpEndpoint=enabled" \
-     --tag-specifications \
-     'ResourceType=instance,Tags=[{Key=Name,Value=AWSCookbook106}]' \
-     'ResourceType=volume,Tags=[{Key=Name,Value=AWSCookbook106}]' \
-     --query 'Instances[0].InstanceId' \
-     --output text)
+    ```shell
+    INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID \
+         --count 1 \
+         --instance-type t2.micro \
+         --iam-instance-profile Name=AWSCookbook106InstanceProfile \
+         --subnet-id $SUBNET_1 \
+         --security-group-ids $INSTANCE_SG \
+         --metadata-options "HttpTokens=required,HttpPutResponseHopLimit=64,HttpEndpoint=enabled" \
+         --tag-specifications \
+         'ResourceType=instance,Tags=[{Key=Name,Value=AWSCookbook106}]' \
+         'ResourceType=volume,Tags=[{Key=Name,Value=AWSCookbook106}]' \
+         --query 'Instances[0].InstanceId' \
+         --output text)
+    ```
 
+7. We can now start an SSM session. (We need to ensure that we have the **Session Manager Plugin** installed).
 
-```
-
-7. We can n ow start an SSM session. (We need to ensure that we have ==Session Manager Plugin== installed).
-
-```shell
-aws ssm start-session --target $INSTANCE_ID
-```
+    ```shell
+    aws ssm start-session --target $INSTANCE_ID
+    ```
 
 8. We can see the bash prompt. To validate that we are connected to the EC2 Instance we can query the EC2 metadata token.
+
 
 ![Metadata](/assets/img/EC2Metadata.png)
