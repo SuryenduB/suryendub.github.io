@@ -52,7 +52,6 @@ round-avatar: true
 social-network-links:
   email: "suryendubbhattacharyya@gmail.com"
   rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  facebook: suryendu.bhattacharyya
   github: suryendub
   twitter: crookedbong
   
@@ -79,7 +78,7 @@ social-network-links:
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: Microsoft Entra Identity Blog
+rss-description: Microsoft Entra Identity Blog from a SysAdmin
 
 ###########################
 # --- General options --- #
@@ -101,6 +100,9 @@ excerpt_length: 50
 
 # Whether or not to show an excerpt for every blog post in the feed page
 feed_show_excerpt: true
+
+# Add the website title to the title of every page
+title-on-all-pages: true
 
 # Whether or not to show a list of tags below each post preview in the feed page
 feed_show_tags: true
@@ -252,7 +254,7 @@ timezone: "America/Toronto"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
-paginate: 5
+paginate: 10
 
 kramdown:
   input: GFM
