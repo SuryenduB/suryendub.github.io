@@ -103,12 +103,50 @@
 .btn-pinterest:active,.btn-pinterest.active,.open>.dropdown-toggle.btn-pinterest{background-image:none}
 .btn-pinterest.disabled,.btn-pinterest[disabled],fieldset[disabled] .btn-pinterest,.btn-pinterest.disabled:hover,.btn-pinterest[disabled]:hover,fieldset[disabled] .btn-pinterest:hover,.btn-pinterest.disabled:focus,.btn-pinterest[disabled]:focus,fieldset[disabled] .btn-pinterest:focus,.btn-pinterest.disabled.focus,.btn-pinterest[disabled].focus,fieldset[disabled] .btn-pinterest.focus,.btn-pinterest.disabled:active,.btn-pinterest[disabled]:active,fieldset[disabled] .btn-pinterest:active,.btn-pinterest.disabled.active,.btn-pinterest[disabled].active,fieldset[disabled] .btn-pinterest.active{background-color:#cb2027;border-color:rgba(0,0,0,0.2)}
 .btn-pinterest .badge{color:#cb2027;background-color:#fff}
-.btn-reddit{color:#000;background-color:#eff7ff;border-color:rgba(0,0,0,0.2)}.btn-reddit:focus,.btn-reddit.focus{color:#000;background-color:#bcddff;border-color:rgba(0,0,0,0.2)}
-.btn-reddit:hover{color:#000;background-color:#bcddff;border-color:rgba(0,0,0,0.2)}
-.btn-reddit:active,.btn-reddit.active,.open>.dropdown-toggle.btn-reddit{color:#000;background-color:#bcddff;border-color:rgba(0,0,0,0.2)}.btn-reddit:active:hover,.btn-reddit.active:hover,.open>.dropdown-toggle.btn-reddit:hover,.btn-reddit:active:focus,.btn-reddit.active:focus,.open>.dropdown-toggle.btn-reddit:focus,.btn-reddit:active.focus,.btn-reddit.active.focus,.open>.dropdown-toggle.btn-reddit.focus{color:#000;background-color:#98ccff;border-color:rgba(0,0,0,0.2)}
-.btn-reddit:active,.btn-reddit.active,.open>.dropdown-toggle.btn-reddit{background-image:none}
-.btn-reddit.disabled,.btn-reddit[disabled],fieldset[disabled] .btn-reddit,.btn-reddit.disabled:hover,.btn-reddit[disabled]:hover,fieldset[disabled] .btn-reddit:hover,.btn-reddit.disabled:focus,.btn-reddit[disabled]:focus,fieldset[disabled] .btn-reddit:focus,.btn-reddit.disabled.focus,.btn-reddit[disabled].focus,fieldset[disabled] .btn-reddit.focus,.btn-reddit.disabled:active,.btn-reddit[disabled]:active,fieldset[disabled] .btn-reddit:active,.btn-reddit.disabled.active,.btn-reddit[disabled].active,fieldset[disabled] .btn-reddit.active{background-color:#eff7ff;border-color:rgba(0,0,0,0.2)}
-.btn-reddit .badge{color:#eff7ff;background-color:#000}
+.btn-reddit {
+    color: #fff; /* White text */
+    background-color: #ff0000; /* Red background */
+    border-color: rgba(0, 0, 0, 0.2); /* Semi-transparent black border */
+}
+
+.btn-reddit:focus, .btn-reddit.focus {
+    color: #fff;
+    background-color: #cc0000; /* Darker red for focus state */
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.btn-reddit:hover {
+    color: #fff;
+    background-color: #cc0000; /* Darker red for hover state */
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.btn-reddit:active, .btn-reddit.active, .open > .dropdown-toggle.btn-reddit {
+    color: #fff;
+    background-color: #cc0000; /* Darker red for active state */
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.btn-reddit:active:hover, .btn-reddit.active:hover, .open > .dropdown-toggle.btn-reddit:hover, .btn-reddit:active:focus, .btn-reddit.active:focus, .open > .dropdown-toggle.btn-reddit:focus, .btn-reddit:active.focus, .btn-reddit.active.focus, .open > .dropdown-toggle.btn-reddit.focus {
+    color: #fff;
+    background-color: #990000; /* Even darker red for active+hover/focus state */
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.btn-reddit:active, .btn-reddit.active, .open > .dropdown-toggle.btn-reddit {
+    background-image: none;
+}
+
+.btn-reddit.disabled, .btn-reddit[disabled], fieldset[disabled] .btn-reddit, .btn-reddit.disabled:hover, .btn-reddit[disabled]:hover, fieldset[disabled] .btn-reddit:hover, .btn-reddit.disabled:focus, .btn-reddit[disabled]:focus, fieldset[disabled] .btn-reddit:focus, .btn-reddit.disabled.focus, .btn-reddit[disabled].focus, fieldset[disabled] .btn-reddit.focus, .btn-reddit.disabled:active, .btn-reddit[disabled]:active, fieldset[disabled] .btn-reddit:active, .btn-reddit.disabled.active, .btn-reddit[disabled].active, fieldset[disabled] .btn-reddit.active {
+    background-color: #ff0000; /* Red for disabled state */
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.btn-reddit .badge {
+    color: #ff0000; /* Red badge text */
+    background-color: #000; /* Black badge background */
+}
+
 .btn-soundcloud{color:#fff;background-color:#f50;border-color:rgba(0,0,0,0.2)}.btn-soundcloud:focus,.btn-soundcloud.focus{color:#fff;background-color:#c40;border-color:rgba(0,0,0,0.2)}
 .btn-soundcloud:hover{color:#fff;background-color:#c40;border-color:rgba(0,0,0,0.2)}
 .btn-soundcloud:active,.btn-soundcloud.active,.open>.dropdown-toggle.btn-soundcloud{color:#fff;background-color:#c40;border-color:rgba(0,0,0,0.2)}.btn-soundcloud:active:hover,.btn-soundcloud.active:hover,.open>.dropdown-toggle.btn-soundcloud:hover,.btn-soundcloud:active:focus,.btn-soundcloud.active:focus,.open>.dropdown-toggle.btn-soundcloud:focus,.btn-soundcloud:active.focus,.btn-soundcloud.active.focus,.open>.dropdown-toggle.btn-soundcloud.focus{color:#fff;background-color:#a83800;border-color:rgba(0,0,0,0.2)}
