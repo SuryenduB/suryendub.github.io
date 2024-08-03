@@ -312,4 +312,4 @@ fi
 
 echo "Cleanup complete."
 
-```shell
+```
