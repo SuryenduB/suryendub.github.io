@@ -143,7 +143,7 @@ We can describe each resource to validate deployments.
 
 ### Unset your manually created environment variables
 
-```
+```shell
 unset VPC_ID
 unset ROUTE_TABLE_ID
 unset SUBNET_ID_1
