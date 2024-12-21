@@ -1,10 +1,9 @@
-
 ---
 layout: post
 title: External Collaboration Settings with Application Permissions
 tags: [ EntraID , B2B , IAM ]
-
 ---
+
 **External Collaboration Settings with Application Permissions**
 
 Managing guest user invitations in Entra ID can be complex, especially when balancing collaboration needs with security policies. Here is an analysis of the **External Collaboration Settings** and their impact on invitations sent using application permissions.
