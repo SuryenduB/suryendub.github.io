@@ -24,6 +24,7 @@ tags: [EntraID, IAM, Pester, HR, PowerShell]
    - [3. Executing Tests Refactoring the Test Script](#3-executing-tests-refactoring-the-test-script)
    - [4. Presenting Results to Non-Technical Stakeholders](#4-presenting-results-to-non-technical-stakeholders)
 5. [Conclusion](#conclusion)
+6. [Appendix](#appendix)
 
 ## Introduction
 
@@ -192,6 +193,35 @@ Now it is time to Invoke the test.
 
 ![A screenshot of a computerDescription automatically generated](/assets/img/HRTest5.png)
 
+#### 4. Presenting Results to Non-Technical Stakeholders
+
+Maester provides detailed reports that highlight which tests failed and why, making it easier to pinpoint and address issues. To communicate the results of unit tests to non-technical stakeholders, we can share the generated html file and stakeholders can open the Test Result in the preferred browser.
+
+![A screenshot of a computerDescription automatically generated](/assets/img/HRTest6.png)
+
+![A screenshot of a computerDescription automatically generated](/assets/img/HRTest7.png)
+
+Maester provides detailed reports that highlight which tests failed and why, making it easier to pinpoint and address issues. The generated HTML file can be shared with non-technical stakeholders, who can then open the test results in their preferred browser.
+
+Once the file is opened, stakeholders can utilize the filtering options available, allowing them to view only the failed test results. This focused view helps in understanding specific issues without getting overwhelmed by the entire dataset.
+
+Additionally, by clicking on the Info Button associated with each test, stakeholders can access detailed explanations about the test case, including the objectives, the parameters tested, and the reasons for failure.
+
+Communicating these results in a simplified and business-focused manner ensures that non-technical stakeholders can appreciate the value of these tests and understand their impact on the organization. This approach bridges the gap between technical and non-technical audiences, fostering a shared understanding of the importance of unit testing in maintaining the integrity of HR-driven provisioning systems.
+
+![A screenshot of a computerDescription automatically generated](/assets/img/HRTest8.png)
+
+They can filter the test results to only show failed test results to dig deeper. Click on the Info Button to see the details about the test cases.
+
+![A screenshot of a computerDescription automatically generated](/assets/img/HRTest9.png)
+![A screenshot of a computerDescription automatically generated](/assets/img/HRTest10.png)
+
+## Conclusion
+
+Unit testing HR-driven provisioning using `Maester` and `HRProvisioningTests` ensures reliability and efficiency. By following the steps outlined above, IAM Engineers can create robust test cases that validate their provisioning logic. Moreover, presenting the results in a simplified and business-focused manner helps non-technical stakeholders appreciate the value of these tests and understand their impact on the organization.
+
+## Appendix
+
 Here is the complete **Invoke-HRTests.ps1** file.
 
 ```powershell
@@ -201,170 +231,169 @@ Here is the complete **Invoke-HRTests.ps1** file.
 .SYNOPSIS
   Converts Pester results to the Maester test results format which includes additional information.
 ##>
-
 function ConvertTo-MtMaesterResult {
-	[CmdletBinding()]
-	param(
-		## The Pester test results returned from Invoke-Pester -PassThru
-		[Parameter(Mandatory = $true)]
-		[psobject] $PesterResults
-	)
+[CmdletBinding()]
+param(
+## The Pester test results returned from Invoke-Pester -PassThru
+[Parameter(Mandatory = $true)]
+[psobject] $PesterResults
+)
 
-	function GetTenantName() {
-		if (Test-MtConnection Graph) {
-			$org = Invoke-MtGraphRequest -RelativeUri 'organization'
-			return $org.DisplayName
-		}
-		elseif (Test-MtConnection Teams) {
-			$tenant = Get-CsTenant
-			return $tenant.DisplayName
-		}
-		else {
-			return 'TenantName (not connected to Graph)'
-		}
-	}
+function GetTenantName() {
+if (Test-MtConnection Graph) {
+$org = Invoke-MtGraphRequest -RelativeUri 'organization'
+return $org.DisplayName
+}
+elseif (Test-MtConnection Teams) {
+$tenant = Get-CsTenant
+return $tenant.DisplayName
+}
+else {
+return 'TenantName (not connected to Graph)'
+}
+}
 
-	function GetTenantId() {
-		if (Test-MtConnection Graph) {
-			$mgContext = Get-MgContext
-			return $mgContext.TenantId
-		}
-		elseif (Test-MtConnection Teams) {
-			$tenant = Get-CsTenant
-			return $tenant.TenantId
-		}
-		else {
-			return 'TenantId (not connected to Graph)'
-		}
-	}
+function GetTenantId() {
+if (Test-MtConnection Graph) {
+$mgContext = Get-MgContext
+return $mgContext.TenantId
+}
+elseif (Test-MtConnection Teams) {
+$tenant = Get-CsTenant
+return $tenant.TenantId
+}
+else {
+return 'TenantId (not connected to Graph)'
+}
+}
 
-	function GetAccount() {
-		if (Test-MtConnection Graph) {
-			$mgContext = Get-MgContext
-			return $mgContext.Account
-			##} elseif (Test-MtConnection Teams) {
-			##    $tenant = Get-CsTenant ##ToValidate: N/A
-			##    return $tenant.DisplayName
-		}
-		else {
-			return 'Account (not connected to Graph)'
-		}
-	}
+function GetAccount() {
+if (Test-MtConnection Graph) {
+$mgContext = Get-MgContext
+return $mgContext.Account
+##} elseif (Test-MtConnection Teams) {
+##    $tenant = Get-CsTenant ##ToValidate: N/A
+##    return $tenant.DisplayName
+}
+else {
+return 'Account (not connected to Graph)'
+}
+}
 
-	function GetTestsSorted() {
-		## Show passed and failed tests first by name then show not run tests
-		$activeTests = $PesterResults.Tests | Where-Object { $_.Result -eq 'Passed' -or $_.Result -eq 'Failed' } | Sort-Object -Property Name
-		$inactiveTests = $PesterResults.Tests | Where-Object { $_.Result -ne 'Passed' -and $_.Result -ne 'Failed' } | Sort-Object -Property Name
+function GetTestsSorted() {
+## Show passed and failed tests first by name then show not run tests
+$activeTests = $PesterResults.Tests | Where-Object { $_.Result -eq 'Passed' -or $_.Result -eq 'Failed' } | Sort-Object -Property Name
+$inactiveTests = $PesterResults.Tests | Where-Object { $_.Result -ne 'Passed' -and $_.Result -ne 'Failed' } | Sort-Object -Property Name
 
-		## Convert to array and add, if not when only one object is returned it doesn't create an array with all items.
-		return @($activeTests) + @($inactiveTests)
-	}
+## Convert to array and add, if not when only one object is returned it doesn't create an array with all items.
+return @($activeTests) + @($inactiveTests)
+}
 
-	function GetFormattedDate($date) {
-		if (!$IsCoreCLR) {
-			## Prevent 5.1 date format to json issue
-			return $date.ToString('o')
-		}
-		else {
-			return $date
-		}
-	}
+function GetFormattedDate($date) {
+if (!$IsCoreCLR) {
+## Prevent 5.1 date format to json issue
+return $date.ToString('o')
+}
+else {
+return $date
+}
+}
 
-	function GetMaesterLatestVersion() {
-		if (Get-Command 'Find-Module' -ErrorAction SilentlyContinue) {
-			return (Find-Module -Name Maester).Version
-		}
+function GetMaesterLatestVersion() {
+if (Get-Command 'Find-Module' -ErrorAction SilentlyContinue) {
+return (Find-Module -Name Maester).Version
+}
 
-		return 'Unknown'
-	}
+return 'Unknown'
+}
 
-	##if(Test-MtConnection Graph) { ##ToValidate: Issue with -SkipGraphConnect
-	##    $mgContext = Get-MgContext
-	##}
+##if(Test-MtConnection Graph) { ##ToValidate: Issue with -SkipGraphConnect
+##    $mgContext = Get-MgContext
+##}
 
-	##$tenantId = $mgContext.TenantId ?? "Tenant ID (not connected to Graph)"
-	$tenantId = GetTenantId
-	$tenantName = GetTenantName
-	##$account = $mgContext.Account ?? "Account (not connected to Graph)"
-	$account = GetAccount
+##$tenantId = $mgContext.TenantId ?? "Tenant ID (not connected to Graph)"
+$tenantId = GetTenantId
+$tenantName = GetTenantName
+##$account = $mgContext.Account ?? "Account (not connected to Graph)"
+$account = GetAccount
 
-	$currentVersion = ((Get-Module -Name Maester).Version | Select-Object -Last 1).ToString()
-	$latestVersion = GetMaesterLatestVersion
+$currentVersion = ((Get-Module -Name Maester).Version | Select-Object -Last 1).ToString()
+$latestVersion = GetMaesterLatestVersion
 
-	$mtTests = @()
-	$sortedTests = GetTestsSorted
+$mtTests = @()
+$sortedTests = GetTestsSorted
 
-	foreach ($test in $sortedTests) {
+foreach ($test in $sortedTests) {
 
-		$name = $test.ExpandedName
-		$helpUrl = ''
+$name = $test.ExpandedName
+$helpUrl = ''
 
-		$start = $name.IndexOf('See https')
-		## Get the Help Url from the message and the ID
-		if ($start -gt 0) {
-			$helpUrl = $name.Substring($start + 4).Trim() ##Strip away the "See https://maester.dev" part
-			$name = $name.Substring(0, $start).Trim() ##Strip away the "See https://maester.dev" part
-		}
-		$mtTestInfo = [PSCustomObject]@{
-			Name            = $name
-			HelpUrl         = $helpUrl
-			Tag             = ($test.Block.Tag + $test.Tag | Select-Object -Unique)
-			Result          = $test.Result
-			ScriptBlock     = $test.ScriptBlock.ToString()
-			ScriptBlockFile = $test.ScriptBlock.File
-			ErrorRecord     = $test.ErrorRecord
-			Block           = $test.Block.ExpandedName
-			##ResultDetail    = $__MtSession.TestResultDetail[$test.ExpandedName] ## I need to Remove this internal variable
-			ResultDetail    = $null
-		}
-		$mtTests += $mtTestInfo
-	}
+$start = $name.IndexOf('See https')
+## Get the Help Url from the message and the ID
+if ($start -gt 0) {
+$helpUrl = $name.Substring($start + 4).Trim() ##Strip away the "See https://maester.dev" part
+$name = $name.Substring(0, $start).Trim() ##Strip away the "See https://maester.dev" part
+}
+$mtTestInfo = [PSCustomObject]@{
+Name            = $name
+HelpUrl         = $helpUrl
+Tag             = ($test.Block.Tag + $test.Tag | Select-Object -Unique)
+Result          = $test.Result
+ScriptBlock     = $test.ScriptBlock.ToString()
+ScriptBlockFile = $test.ScriptBlock.File
+ErrorRecord     = $test.ErrorRecord
+Block           = $test.Block.ExpandedName
+##ResultDetail    = $__MtSession.TestResultDetail[$test.ExpandedName] ## I need to Remove this internal variable
+ResultDetail    = $null
+}
+$mtTests += $mtTestInfo
+}
 
-	$mtBlocks = @()
-	foreach ($container in $PesterResults.Containers) {
+$mtBlocks = @()
+foreach ($container in $PesterResults.Containers) {
 
-		foreach ($block in $container.Blocks) {
-			$mtBlockInfo = $mtBlocks | Where-Object { $_.Name -eq $block.Name }
-			if ($null -eq $mtBlockInfo) {
-				$mtBlockInfo = [PSCustomObject]@{
-					Name         = $block.Name
-					Result       = $block.Result
-					FailedCount  = $block.FailedCount
-					PassedCount  = $block.PassedCount
-					SkippedCount = $block.SkippedCount
-					NotRunCount  = $block.NotRunCount
-					TotalCount   = $block.TotalCount
-					Tag          = $block.Tag
-				}
-				$mtBlocks += $mtBlockInfo
-			}
-			else {
-				$mtBlockInfo.FailedCount += $block.FailedCount
-				$mtBlockInfo.PassedCount += $block.PassedCount
-				$mtBlockInfo.SkippedCount += $block.SkippedCount
-				$mtBlockInfo.NotRunCount += $block.NotRunCount
-				$mtBlockInfo.TotalCount += $block.TotalCount
-			}
-		}
-	}
+foreach ($block in $container.Blocks) {
+$mtBlockInfo = $mtBlocks | Where-Object { $_.Name -eq $block.Name }
+if ($null -eq $mtBlockInfo) {
+$mtBlockInfo = [PSCustomObject]@{
+Name         = $block.Name
+Result       = $block.Result
+FailedCount  = $block.FailedCount
+PassedCount  = $block.PassedCount
+SkippedCount = $block.SkippedCount
+NotRunCount  = $block.NotRunCount
+TotalCount   = $block.TotalCount
+Tag          = $block.Tag
+}
+$mtBlocks += $mtBlockInfo
+}
+else {
+$mtBlockInfo.FailedCount += $block.FailedCount
+$mtBlockInfo.PassedCount += $block.PassedCount
+$mtBlockInfo.SkippedCount += $block.SkippedCount
+$mtBlockInfo.NotRunCount += $block.NotRunCount
+$mtBlockInfo.TotalCount += $block.TotalCount
+}
+}
+}
 
-	$mtTestResults = [PSCustomObject]@{
-		Result         = $PesterResults.Result
-		FailedCount    = $PesterResults.FailedCount
-		PassedCount    = $PesterResults.PassedCount
-		SkippedCount   = $PesterResults.SkippedCount
-		TotalCount     = $PesterResults.TotalCount
-		ExecutedAt     = GetFormattedDate($PesterResults.ExecutedAt)
-		TenantId       = $tenantId
-		TenantName     = $tenantName
-		Account        = $account
-		CurrentVersion = $currentVersion
-		LatestVersion  = $latestVersion
-		Tests          = $mtTests
-		Blocks         = $mtBlocks
-	}
+$mtTestResults = [PSCustomObject]@{
+Result         = $PesterResults.Result
+FailedCount    = $PesterResults.FailedCount
+PassedCount    = $PesterResults.PassedCount
+SkippedCount   = $PesterResults.SkippedCount
+TotalCount     = $PesterResults.TotalCount
+ExecutedAt     = GetFormattedDate($PesterResults.ExecutedAt)
+TenantId       = $tenantId
+TenantName     = $tenantName
+Account        = $account
+CurrentVersion = $currentVersion
+LatestVersion  = $latestVersion
+Tests          = $mtTests
+Blocks         = $mtBlocks
+}
 
-	return $mtTestResults
+return $mtTestResults
 }
 
 
@@ -373,72 +402,74 @@ function ConvertTo-MtMaesterResult {
 
 ##Main Region
 try {
-	$context = Get-MgContext
+$context = Get-MgContext
 
-	if (-not $context) {
-		Write-Warning "You are not connected to MGGraph. Please run: 'Connect-MGGraph -Scopes Synchronization.ReadWrite.All'"
-		return
-	}
-	else {
-		if (-not ('Synchronization.ReadWrite.All' -in $context.Scopes)) {
-			Write-Warning "Missing Synchronization.Read.All context. Please run: 'Connect-MGGraph -Scopes Synchronization.ReadWrite.All'"
-			return    
-		}
-	}
+if (-not $context) {
+Write-Warning "You are not connected to MGGraph. Please run: 'Connect-MGGraph -Scopes Synchronization.ReadWrite.All'"
+return
+}
+else {
+if (-not ('Synchronization.ReadWrite.All' -in $context.Scopes)) {
+Write-Warning "Missing Synchronization.Read.All context. Please run: 'Connect-MGGraph -Scopes Synchronization.ReadWrite.All'"
+return    
+}
+}
 
-	##Set Maester Activity and Progress
-	$maesterResults = $null    
+##Set Maester Activity and Progress
+$maesterResults = $null    
     
-	
-	$config = Get-Content -Raw "$PSScriptRoot\Config\Config.json" | ConvertFrom-Json
-	
-	
-	$outFile = "$PSScriptRoot\test-results\$((Get-Date).tostring('yyyy-MM-yy_hh-mm-ss'))-TestResults.xml"
-	##Set HTML Output Path
 
-	$outHTMLFile = "$PSScriptRoot\test-results\$((Get-Date).tostring('yyyy-MM-yy_hh-mm-ss'))-TestResults.html"
+$config = Get-Content -Raw "$PSScriptRoot\Config\Config.json" | ConvertFrom-Json
 
-	##Remove Old Test Results
-	Get-ChildItem -Path "$PSScriptRoot\test-results" | 
-		ForEach-Object { Remove-Item -Path $_.FullName -Force }
 
-	$pesterConfig = New-PesterConfiguration @{
-		Run        = @{
-			Container = New-PesterContainer -Path "$PSScriptRoot\Tests" 
-			PassThru  = $true ##Added PassThru to Convert the PesterResults to a variable
-		}
-		Output     = @{
-			Verbosity           = 'None'
-			StackTraceVerbosity = 'Filtered'
-			
-		}
-		TestResult = @{
-			OutputFormat  = 'JUnitXml' ##Changed to JunitXML
-			TestSuiteName = "$($config.HRApplicationDisplayName) Tests"
-			Enabled       = $true
-			OutputPath    = "$outFile" ##Set the Path to the test-results folder
-		}
-	}
+$outFile = "$PSScriptRoot\test-results\$((Get-Date).tostring('yyyy-MM-yy_hh-mm-ss'))-TestResults.xml"
+##Set HTML Output Path
 
-	$pesterResults = Invoke-Pester -Configuration $pesterConfig ## Store the Pester Results in a variable
-	Write-Host "🔥  Pester report saved to: $outFile"
+$outHTMLFile = "$PSScriptRoot\test-results\$((Get-Date).tostring('yyyy-MM-yy_hh-mm-ss'))-TestResults.html"
 
-	$maesterResults = ConvertTo-MtMaesterResult $PesterResults  ## Convert the Pester Results to Maester Results
-	
-	$output = Get-MtHtmlReport -MaesterResults $maesterResults 
-	$output | Out-File -FilePath $outHTMLFile -Encoding UTF8
-	Write-Host "🔥 Maester test report generated at $outHTMLFile" 
+##Remove Old Test Results
+Get-ChildItem -Path "$PSScriptRoot\test-results" | 
+ForEach-Object { Remove-Item -Path $_.FullName -Force }
 
-	Invoke-Item $outHTMLFile | Out-Null
+$pesterConfig = New-PesterConfiguration @{
+Run        = @{
+Container = New-PesterContainer -Path "$PSScriptRoot\Tests" 
+PassThru  = $true ##Added PassThru to Convert the PesterResults to a variable
+}
+Output     = @{
+Verbosity           = 'None'
+StackTraceVerbosity = 'Filtered'
 
-	Write-Host "`nTests Passed ✅: $($pesterResults.PassedCount), " -NoNewline -ForegroundColor Green
-	Write-Host "Failed ❌: $($pesterResults.FailedCount), " -NoNewline -ForegroundColor Red
-	Write-Host "Skipped ⚫: $($pesterResults.SkippedCount)`n" -ForegroundColor DarkGray
+}
+TestResult = @{
+OutputFormat  = 'JUnitXml' ##Changed to JunitXML
+TestSuiteName = "$($config.HRApplicationDisplayName) Tests"
+Enabled       = $true
+OutputPath    = "$outFile" ##Set the Path to the test-results folder
+}
+}
+
+$pesterResults = Invoke-Pester -Configuration $pesterConfig ## Store the Pester Results in a variable
+Write-Host "🔥  Pester report saved to: $outFile"
+
+$maesterResults = ConvertTo-MtMaesterResult $PesterResults  ## Convert the Pester Results to Maester Results
+
+$output = Get-MtHtmlReport -MaesterResults $maesterResults 
+$output | Out-File -FilePath $outHTMLFile -Encoding UTF8
+Write-Host "🔥 Maester test report generated at $outHTMLFile" 
+
+Invoke-Item $outHTMLFile | Out-Null
+
+Write-Host "`nTests Passed ✅: $($pesterResults.PassedCount), " -NoNewline -ForegroundColor Green
+Write-Host "Failed ❌: $($pesterResults.FailedCount), " -NoNewline -ForegroundColor Red
+Write-Host "Skipped ⚫: $($pesterResults.SkippedCount)`n" -ForegroundColor DarkGray
 
 }
 catch {
-	throw $_
+throw $_
 }
+
+
 ```
 
 And Pester unit test file for givenName **givenName.tests.ps1**.
@@ -479,30 +510,3 @@ $retval.EvaluationResult | Should -Be $ExpectedResult
 }
 }
 ```
-
-#### 4. Presenting Results to Non-Technical Stakeholders
-
-Maester provides detailed reports that highlight which tests failed and why, making it easier to pinpoint and address issues. To communicate the results of unit tests to non-technical stakeholders, we can share the generated html file and stakeholders can open the Test Result in the preferred browser.
-
-![A screenshot of a computerDescription automatically generated](/assets/img/HRTest6.png)
-
-![A screenshot of a computerDescription automatically generated](/assets/img/HRTest7.png)
-
-Maester provides detailed reports that highlight which tests failed and why, making it easier to pinpoint and address issues. The generated HTML file can be shared with non-technical stakeholders, who can then open the test results in their preferred browser.
-
-Once the file is opened, stakeholders can utilize the filtering options available, allowing them to view only the failed test results. This focused view helps in understanding specific issues without getting overwhelmed by the entire dataset.
-
-Additionally, by clicking on the Info Button associated with each test, stakeholders can access detailed explanations about the test case, including the objectives, the parameters tested, and the reasons for failure.
-
-Communicating these results in a simplified and business-focused manner ensures that non-technical stakeholders can appreciate the value of these tests and understand their impact on the organization. This approach bridges the gap between technical and non-technical audiences, fostering a shared understanding of the importance of unit testing in maintaining the integrity of HR-driven provisioning systems.
-
-![A screenshot of a computerDescription automatically generated](/assets/img/HRTest8.png)
-
-They can filter the test results to only show failed test results to dig deeper. Click on the Info Button to see the details about the test cases.
-
-![A screenshot of a computerDescription automatically generated](/assets/img/HRTest9.png)
-![A screenshot of a computerDescription automatically generated](/assets/img/HRTest10.png)
-
-## Conclusion
-
-Unit testing HR-driven provisioning using `Maester` and `HRProvisioningTests` ensures reliability and efficiency. By following the steps outlined above, IAM Engineers can create robust test cases that validate their provisioning logic. Moreover, presenting the results in a simplified and business-focused manner helps non-technical stakeholders appreciate the value of these tests and understand their impact on the organization.
