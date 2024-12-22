@@ -12,23 +12,18 @@ tags: [EntraID, IAM, Pester, HR, PowerShell]
 
 ## Table of Contents
 
-1. [Introduction](##introduction)
-2. [Understanding Unit Testing](##understanding-unit-testing)
-   - [Why Unit Test HR-Driven Provisioning?](##why-unit-test-hr-driven-provisioning)
-3. [Introducing Maester and HRProvisioningTests](##introducing-maester-and-hrprovisioningtests)
-   - [Maester](##maester)
-   - [HRProvisioningTests](##hrprovisioningtests)
-4. [Steps to Unit Test HR-DrivenProvisioning](##steps-to-unit-test-hrdrivenprovisioning)
-   - [1. Setting Up the Testing Environment](##1-setting-up-the-testing-environment)
-   - [2. Generating Test Cases](##2-generating-test-cases)
-   - [3. Executing Tests](##3-executing-tests)
-5. [Refactoring the Test Script](##refactoring-the-test-script)
-   - [Adding Maester Functionality](##adding-maester-functionality)
-   - [Updating TestResult Configuration](##updating-testresult-configuration)
-   - [Modifying Test Cases for Maester Visualization](##modifying-test-cases-for-maester-visualization)
-6. [Full Script: Invoke-HRTests.ps1](##full-script-invoke-hrtestsps1)
-7. [Conclusion](##conclusion)
-
+1. [Introduction](#introduction)
+2. [Understanding Unit Testing](#understanding-unit-testing)
+   - [Why Unit Test HR-Driven Provisioning?](#why-unit-test-hr-driven-provisioning)
+3. [Introducing Maester and HRProvisioningTests](#introducing-maester-and-hrprovisioningtests-powershell-module)
+   - [Maester](#maester)
+   - [HRProvisioningTests](#hrprovisioningtests)
+4. [Steps to Unit Test HR-Driven Provisioning](#steps-to-unit-test-hr-driven-provisioning)
+   - [1. Setting Up the Testing Environment](#1-setting-up-the-testing-environment)
+   - [2. Generating Test Cases](#2-generating-test-cases)
+   - [3. Executing Tests Refactoring the Test Script](#3-executing-tests-refactoring-the-test-script)
+   - [4. Presenting Results to Non-Technical Stakeholders](#4-presenting-results-to-non-technical-stakeholders)
+5. [Conclusion](#conclusion)
 
 ## Introduction
 
@@ -38,7 +33,7 @@ In IAM integration, ensuring the accuracy and reliability of [HR-driven provisio
 
 Unit testing involves testing individual software components in isolation to ensure they perform as expected. This method helps catch bugs early, reducing the cost of fixing them and ensuring a high-quality final product.
 
-#### Why Unit Test HR-Driven Provisioning?
+### Why Unit Test HR-Driven Provisioning?
 
 Unit testing HR-driven provisioning is essential because it ensures that digital identities are created accurately and reliably, based on the information from the HR system Microsoft states:
 
@@ -46,32 +41,28 @@ Unit testing HR-driven provisioning is essential because it ensures that digital
 
 By unit testing HR-driven provisioning, you can:
 
-* Identify and fix bugs early in the development process.
-* Ensure that each component of the provisioning system performs as expected.
-* Maintain the security and integrity of your Microsoft 365 environment.
-* Gain the confidence of stakeholders by demonstrating the reliability and accuracy of the provisioning process.
+- Identify and fix bugs early in the development process.
+- Ensure that each component of the provisioning system performs as expected.
+- Maintain the security and integrity of your Microsoft 365 environment.
+- Gain the confidence of stakeholders by demonstrating the reliability and accuracy of the provisioning process.
 
 Incorporating unit tests helps reduce the cost of fixing issues later on and contributes to delivering a high-quality final product.
 
 In HR-driven integrations with Entra ID or Active Directory, complex attribute mappings can be considered as individual units to test.
 
-
-
 ## Introducing Maester and HRProvisioningTests Powershell Module
 
-#### Maester
+### Maester
 
 According to one of the creators of Maester, [**Thomas Naunheim**](https://www.cloud-architekt.net/), Maester is a PowerShell-based test automation framework designed to help you monitor and maintain the security configuration of your Microsoft 365 environment. It provides a user-friendly interface and powerful features to create comprehensive test cases that cover a wide range of scenarios.
 
-#### HRProvisioningTests
+### HRProvisioningTests
 
-HRProvisioningTests is a PowerShell module that enhances Pester Tests by generating pre-built Data driven Test Suite and utilities for HR-driven provisioning systems. Martin Rubrik, the creator, has thoroughly explained its functionality in his blog: [unit testing your HR driven provisioning rules ](https://martin.rublik.eu/2024/05/23/pester-and-HR-provisioning.html##extracting-the-attribute-mappings-from-the-provisioning-schema)
+HRProvisioningTests is a PowerShell module that enhances Pester Tests by generating pre-built Data driven Test Suite and utilities for HR-driven provisioning systems. Martin Rubrik, the creator, has thoroughly explained its functionality in his blog: [unit testing your HR driven provisioning rules](https://martin.rublik.eu/2024/05/23/pester-and-HR-provisioning.html##extracting-the-attribute-mappings-from-the-provisioning-schema)
 
 ## Steps to Unit Test HR-Driven Provisioning
 
-
-
-#### 1. Setting Up the Testing Environment
+### 1. Setting Up the Testing Environment
 
 Begin by setting up your development environment with Installing Maester, Pester and HRProvisioningTests Module.
 
@@ -81,7 +72,7 @@ Install-Module Pester -SkipPublisherCheck -Force
 Install-Module Maester
 ```
 
-#### 2. Generating Test Cases
+### 2. Generating Test Cases
 
 Create a test suite by connecting to MgGraph, specifying the HR Provisioning app's display name, and defining an output directory:
 
@@ -117,14 +108,14 @@ $pesterConfig = New-PesterConfiguration @{
 Invoke-Pester -Configuration $pesterConfig
 Write-Host "Pester report saved to: $outFile"
 ```
-#### 3. Executing Tests Refactoring the Test Script
+
+### 3. Executing Tests Refactoring the Test Script
 
 The **Invoke-HRTests.ps1** script needs to be modified to include the Maester functionality. One of the major benefits of Maester is the HTML Test report it produces, which facilitates easy access to Test Insights. Enhance the script to include Maester's HTML report generation capabilities:
 
 I took the inspiration from the [Invoke-Maester.ps1](https://github.com/maester365/maester/blob/d67de01cd7286e4207a9fa6fdcef5b646517247c/powershell/public/Invoke-Maester.ps1) the Maester Module to refactor the Invoke-HRTests.ps1 file.
 
 First we set the path for Test Results HTML Output path.
-
 
 ```powershell
 $outHTMLFile = "$PSScriptRoot\test-results\$((Get-Date).ToString('yyyy-MM-yy_hh-mm-ss'))-TestResults.html"
@@ -140,6 +131,7 @@ $output = Get-MtHtmlReport -MaesterResults $maesterResults
 $output | Out-File -FilePath $outHTMLFile -Encoding UTF8
 Write-Host "🔥 Maester test report generated at $outHTMLFile"
 ```
+
 Generated **Invoke-HRTests.ps1** has a default Pester Configuration. For integrating with Pester I make small changes to it. I need to add Passthru Run configuration.
 
 ```powershell
@@ -149,16 +141,15 @@ Run = @{
 }
 ```
 
-
 I have changed the TestResult Output Format to Junit. But this is optional. I prefer Junit for my CI/CD build.
 
 ```powershell
 TestResult = @{
-			OutputFormat  = 'JUnitXml' ##Changed to JunitXML
-			TestSuiteName = "$($config.HRApplicationDisplayName) Tests"
-			Enabled       = $true
-			OutputPath    = "$outFile" ##Set the Path to the test-results folder
-		}
+OutputFormat  = 'JUnitXml' ##Changed to JunitXML
+TestSuiteName = "$($config.HRApplicationDisplayName) Tests"
+Enabled       = $true
+OutputPath    = "$outFile" ##Set the Path to the test-results folder
+}
 ```
 
 Now it is time to invoke the Pester Tests. Here we need to explicitly define the function **ConvertTo-MtMaesterResult** as this is an internal function in Maester module.
@@ -172,7 +163,6 @@ ResultDetail    = $null
 ```
 
 Here is the refactored code.
-
 
 ```powershell
 $pesterResults = Invoke-Pester -Configuration $pesterConfig ## Store the Pester Results in a variable
@@ -201,7 +191,6 @@ Describe 'givenName' -Tag "HR", "givenName" {
 Now it is time to Invoke the test.
 
 ![A screenshot of a computerDescription automatically generated](/assets/img/HRTest5.png)
-
 
 Here is the complete **Invoke-HRTests.ps1** file.
 
@@ -450,14 +439,9 @@ try {
 catch {
 	throw $_
 }
-
-
-
 ```
 
-And Pester unit test file for givenName.
-
-**givenName.tests.ps1**
+And Pester unit test file for givenName **givenName.tests.ps1**.
 
 ```powershell
 ##givenName.tests.ps1
@@ -512,15 +496,11 @@ Additionally, by clicking on the Info Button associated with each test, stakehol
 
 Communicating these results in a simplified and business-focused manner ensures that non-technical stakeholders can appreciate the value of these tests and understand their impact on the organization. This approach bridges the gap between technical and non-technical audiences, fostering a shared understanding of the importance of unit testing in maintaining the integrity of HR-driven provisioning systems.
 
-
-
 ![A screenshot of a computerDescription automatically generated](/assets/img/HRTest8.png)
 
 They can filter the test results to only show failed test results to dig deeper. Click on the Info Button to see the details about the test cases.
 
 ![A screenshot of a computerDescription automatically generated](/assets/img/HRTest9.png)
-
-
 ![A screenshot of a computerDescription automatically generated](/assets/img/HRTest10.png)
 
 ## Conclusion
