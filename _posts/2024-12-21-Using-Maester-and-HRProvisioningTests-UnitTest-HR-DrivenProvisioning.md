@@ -65,7 +65,7 @@ According to one of the creators of Maester, [**Thomas Naunheim**](https://www.c
 
 #### HRProvisioningTests
 
-HRProvisioningTests is a PowerShell module that enhances Pester Tests by generating pre-built Data driven Test Suite and utilities for HR-driven provisioning systems. Martin Rubrik, the creator, has thoroughly explained its functionality in his blog: [unit testing your HR driven provisioning rules | flesh shapes the day.](https://martin.rublik.eu/2024/05/23/pester-and-HR-provisioning.html##extracting-the-attribute-mappings-from-the-provisioning-schema)
+HRProvisioningTests is a PowerShell module that enhances Pester Tests by generating pre-built Data driven Test Suite and utilities for HR-driven provisioning systems. Martin Rubrik, the creator, has thoroughly explained its functionality in his blog: [unit testing your HR driven provisioning rules ](https://martin.rublik.eu/2024/05/23/pester-and-HR-provisioning.html##extracting-the-attribute-mappings-from-the-provisioning-schema)
 
 ## Steps to Unit Test HR-Driven Provisioning
 
@@ -108,7 +108,9 @@ We also have a Test Script: Invoke-HRTests.ps1 that created as part of the Test 
 
 ```powershell
 $pesterConfig = New-PesterConfiguration @{
-  Run = @{ Container = New-PesterContainer -Path "$PSScriptRoot\Tests" }
+  Run = @{ 
+   Container = New-PesterContainer -Path "$PSScriptRoot\Tests" 
+   }
   Output = @{ Verbosity = 'Detailed' }
 }
 
@@ -139,6 +141,7 @@ $output | Out-File -FilePath $outHTMLFile -Encoding UTF8
 Write-Host "🔥 Maester test report generated at $outHTMLFile"
 ```
 Generated **Invoke-HRTests.ps1** has a default Pester Configuration. For integrating with Pester I make small changes to it. I need to add Passthru Run configuration.
+
 ```powershell
 Run = @{
     Container = New-PesterContainer -Path "$PSScriptRoot/Tests"
@@ -161,12 +164,14 @@ TestResult = @{
 Now it is time to invoke the Pester Tests. Here we need to explicitly define the function **ConvertTo-MtMaesterResult** as this is an internal function in Maester module.
 Great thing about Maester module is that source code is available online and we can stand on the shoulder of the Giants and reuse the same code.
 
-I only have to make a small modification. I set the Result Detail to Null as we do not have access to internal module variables and we do not need any details.
+I only have to make a small modification. I set the Result Detail to ``$null`` as we do not have access to internal module variables.
 
 ```powershell
 ##ResultDetail    = $__MtSession.TestResultDetail[$test.ExpandedName] ## I need to Remove this internal variable
 ResultDetail    = $null
 ```
+
+Here is the refactored code.
 
 
 ```powershell
