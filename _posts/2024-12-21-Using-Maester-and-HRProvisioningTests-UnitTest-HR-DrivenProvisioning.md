@@ -1,37 +1,47 @@
+---
+layout: post
+title: Using Maester and HRProvisioningTests to Unit Test Your HR DrivenProvisioning
+subtitle: A Comprehensive Guide and Simplified Results for Non-Technical Stakeholders
+cover-img: assets/img/HRTest10.png
+thumbnail-img: assets/img/HRTest10.png
+share-img: assets/img/HRTest10.png
+tags: [ EntraID , IAM , Pester , HR, Powershell ]
+
+---
 
 
-Using Maester and HRProvisioningTests to Unit Test Your HRDrivenProvisioning
+## Using Maester and HRProvisioningTests to Unit Test Your HR DrivenProvisioning
 
 A Comprehensive Guide and Simplified Results for Non-Technical Stakeholders
-# Table of Contents
+## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Understanding Unit Testing](#understanding-unit-testing)
-   - [Why Unit Test HR-Driven Provisioning?](#why-unit-test-hr-driven-provisioning)
-3. [Introducing Maester and HRProvisioningTests](#introducing-maester-and-hrprovisioningtests)
-   - [Maester](#maester)
-   - [HRProvisioningTests](#hrprovisioningtests)
-4. [Steps to Unit Test HR-DrivenProvisioning](#steps-to-unit-test-hrdrivenprovisioning)
-   - [1. Setting Up the Testing Environment](#1-setting-up-the-testing-environment)
-   - [2. Generating Test Cases](#2-generating-test-cases)
-   - [3. Executing Tests](#3-executing-tests)
-5. [Refactoring the Test Script](#refactoring-the-test-script)
-   - [Adding Maester Functionality](#adding-maester-functionality)
-   - [Updating TestResult Configuration](#updating-testresult-configuration)
-   - [Modifying Test Cases for Maester Visualization](#modifying-test-cases-for-maester-visualization)
-6. [Full Script: Invoke-HRTests.ps1](#full-script-invoke-hrtestsps1)
-7. [Conclusion](#conclusion)
+1. [Introduction](##introduction)
+2. [Understanding Unit Testing](##understanding-unit-testing)
+   - [Why Unit Test HR-Driven Provisioning?](##why-unit-test-hr-driven-provisioning)
+3. [Introducing Maester and HRProvisioningTests](##introducing-maester-and-hrprovisioningtests)
+   - [Maester](##maester)
+   - [HRProvisioningTests](##hrprovisioningtests)
+4. [Steps to Unit Test HR-DrivenProvisioning](##steps-to-unit-test-hrdrivenprovisioning)
+   - [1. Setting Up the Testing Environment](##1-setting-up-the-testing-environment)
+   - [2. Generating Test Cases](##2-generating-test-cases)
+   - [3. Executing Tests](##3-executing-tests)
+5. [Refactoring the Test Script](##refactoring-the-test-script)
+   - [Adding Maester Functionality](##adding-maester-functionality)
+   - [Updating TestResult Configuration](##updating-testresult-configuration)
+   - [Modifying Test Cases for Maester Visualization](##modifying-test-cases-for-maester-visualization)
+6. [Full Script: Invoke-HRTests.ps1](##full-script-invoke-hrtestsps1)
+7. [Conclusion](##conclusion)
 
 
-# Introduction
+## Introduction
 
 In IAM integration, ensuring the accuracy and reliability of [HR-driven provisioning systems](https://learn.microsoft.com/en-us/entra/identity/app-provisioning/what-is-hr-driven-provisioning) is crucial. Gaining the confidence of all stakeholders is a continuous effort, with unit testing being crucial. This guide explains how to use Maester and HRProvisioningTests for unit testing HR-driven provisioning, and presents results for non-technical stakeholders.
 
-# Understanding Unit Testing
+## Understanding Unit Testing
 
 Unit testing involves testing individual software components in isolation to ensure they perform as expected. This method helps catch bugs early, reducing the cost of fixing them and ensuring a high-quality final product.
 
-## Why Unit Test HR-Driven Provisioning?
+#### Why Unit Test HR-Driven Provisioning?
 
 Unit testing HR-driven provisioning is essential because it ensures that digital identities are created accurately and reliably, based on the information from the HR system. According to Microsoft, "HR-driven provisioning creates digital identities based on the HR system. The HR system becomes the authority for these identities and often starts many provisioning processes. For instance, when a new employee is added to the HR system, it triggers the creation of a user account in Active Directory, which Microsoft Entra Connect then provisions to Microsoft Entra ID."
 
@@ -48,21 +58,21 @@ In case of HR Driven Integration with Entra ID or Active Directory, we can consi
 
 
 
-# Introducing Maester and HRProvisioningTests
+## Introducing Maester and HRProvisioningTests
 
-## Maester
+#### Maester
 
 According to one of the creators of Maester, [**Thomas Naunheim**](https://www.cloud-architekt.net/), Maester is a PowerShell-based test automation framework designed to help you monitor and maintain the security configuration of your Microsoft 365 environment. It provides a user-friendly interface and powerful features to create comprehensive test cases that cover a wide range of scenarios.
 
-## HRProvisioningTests
+#### HRProvisioningTests
 
-HRProvisioningTests is a PowerShell module that enhances Pester Tests by generating pre-built test cases and utilities for HR-driven provisioning systems. Martin Rubrik, the creator, has thoroughly explained its functionality in his blog: [unit testing your HR driven provisioning rules | flesh shapes the day.](https://martin.rublik.eu/2024/05/23/pester-and-HR-provisioning.html#extracting-the-attribute-mappings-from-the-provisioning-schema)
+HRProvisioningTests is a PowerShell module that enhances Pester Tests by generating pre-built test cases and utilities for HR-driven provisioning systems. Martin Rubrik, the creator, has thoroughly explained its functionality in his blog: [unit testing your HR driven provisioning rules | flesh shapes the day.](https://martin.rublik.eu/2024/05/23/pester-and-HR-provisioning.html##extracting-the-attribute-mappings-from-the-provisioning-schema)
 
-# Steps to Unit Test HR-DrivenProvisioning
+## Steps to Unit Test HR-DrivenProvisioning
 
 Unit testing HRDrivenProvisioning using Maester and HRProvisioningTests involves several key steps:
 
-## 1. Setting Up the Testing Environment
+#### 1. Setting Up the Testing Environment
 
 Begin by setting up your development environment with Installing Maester, Pester and HRProvisioningTests Module.
 
@@ -75,7 +85,7 @@ Install-Module Maester
 
 ```
 
-## 2. Generating Test Cases
+#### 2. Generating Test Cases
 
 To create a test suite, connect to MgGraph to read the schema, provide the HR Provisioning app's display name, and specify an empty output directory to avoid overwriting existing test suites. Follow these steps:
 
@@ -141,7 +151,7 @@ Write-Host "Pester report saved to: $outFile"
 
 ```
 
-## 3. Executing Tests
+#### 3. Executing Tests
 
 The **Invoke-HRTests.ps1** script needs to be modified to include the Maester functionality. One of the major benefits of Maester is the HTML Test report it produces, which facilitates easy access to Test Insights. We will not need expensive or paid tools for that.
 
@@ -151,7 +161,7 @@ First we set the Output HTML File Path.
 
 ```powershell
 
-#Set HTML Output Path
+##Set HTML Output Path
 
 $outHTMLFile = "$PSScriptRoot\test-results\$((Get-Date).tostring('yyyy-MM-yy\_hh-mm-ss'))-TestResults.html"
 
@@ -161,7 +171,7 @@ This is optional, comment it out if you feel to keep historical test results.
 
 ```
 
-#Remove Old Test Results
+##Remove Old Test Results
 
 Get-ChildItem -Path "$PSScriptRoot\test-results" |
 
@@ -175,7 +185,7 @@ Generated **Invoke-HRTests.ps1** has a default Pester Configuration. For integra
 
 Run    = @{
 			Container = New-PesterContainer -Path "$PSScriptRoot\Tests" 
-			PassThru  = $true #Added PassThru to Convert the PesterResults to a variable
+			PassThru  = $true ##Added PassThru to Convert the PesterResults to a variable
 		}
 
 ```
@@ -184,10 +194,10 @@ I have changed the TestResult Output Format to Junit. But this is optional. I pr
 ```powershell
 
 TestResult = @{
-			OutputFormat  = 'JUnitXml' #Changed to JunitXML
+			OutputFormat  = 'JUnitXml' ##Changed to JunitXML
 			TestSuiteName = "$($config.HRApplicationDisplayName) Tests"
 			Enabled       = $true
-			OutputPath    = "$outFile" #Set the Path to the test-results folder
+			OutputPath    = "$outFile" ##Set the Path to the test-results folder
 		}
 
 ```
@@ -199,7 +209,7 @@ I only have to make a small modification. I set the Result Detail to Null as we 
 
 ```powershell
 
-#ResultDetail    = $__MtSession.TestResultDetail[$test.ExpandedName] # I need to Remove this internal variable
+##ResultDetail    = $__MtSession.TestResultDetail[$test.ExpandedName] ## I need to Remove this internal variable
 ResultDetail    = $null
 
 ```
@@ -207,16 +217,16 @@ ResultDetail    = $null
 
 ```powershell
 
-$pesterResults = Invoke-Pester -Configuration $pesterConfig # Store the Pester Results in a variable
+$pesterResults = Invoke-Pester -Configuration $pesterConfig ## Store the Pester Results in a variable
 	Write-Host "🔥  Pester report saved to: $outFile"
 
-	$maesterResults = ConvertTo-MtMaesterResult $PesterResults  # Convert the Pester Results to Maester Results
+	$maesterResults = ConvertTo-MtMaesterResult $PesterResults  ## Convert the Pester Results to Maester Results
 	
 	$output = Get-MtHtmlReport -MaesterResults $maesterResults 
 	$output | Out-File -FilePath $outHTMLFile -Encoding UTF8
 	Write-Host "🔥 Maester test report generated at $outHTMLFile" 
 
-	Invoke-Item $outHTMLFile | Out-Null #Optional
+	Invoke-Item $outHTMLFile | Out-Null ##Optional
 
 	Write-Host "`nTests Passed ✅: $($pesterResults.PassedCount), " -NoNewline -ForegroundColor Green
 	Write-Host "Failed ❌: $($pesterResults.FailedCount), " -NoNewline -ForegroundColor Red
@@ -248,17 +258,17 @@ Now it is time to Invoke the test.
 Here is the complete **Invoke-HRTests.ps1** file.
 
 ```powershell
-#Region Maester Internal Helper Functions
+##Region Maester Internal Helper Functions
 
-<#
+<##
 .SYNOPSIS
   Converts Pester results to the Maester test results format which includes additional information.
-#>
+##>
 
 function ConvertTo-MtMaesterResult {
 	[CmdletBinding()]
 	param(
-		# The Pester test results returned from Invoke-Pester -PassThru
+		## The Pester test results returned from Invoke-Pester -PassThru
 		[Parameter(Mandatory = $true)]
 		[psobject] $PesterResults
 	)
@@ -295,9 +305,9 @@ function ConvertTo-MtMaesterResult {
 		if (Test-MtConnection Graph) {
 			$mgContext = Get-MgContext
 			return $mgContext.Account
-			#} elseif (Test-MtConnection Teams) {
-			#    $tenant = Get-CsTenant #ToValidate: N/A
-			#    return $tenant.DisplayName
+			##} elseif (Test-MtConnection Teams) {
+			##    $tenant = Get-CsTenant ##ToValidate: N/A
+			##    return $tenant.DisplayName
 		}
 		else {
 			return 'Account (not connected to Graph)'
@@ -305,17 +315,17 @@ function ConvertTo-MtMaesterResult {
 	}
 
 	function GetTestsSorted() {
-		# Show passed and failed tests first by name then show not run tests
+		## Show passed and failed tests first by name then show not run tests
 		$activeTests = $PesterResults.Tests | Where-Object { $_.Result -eq 'Passed' -or $_.Result -eq 'Failed' } | Sort-Object -Property Name
 		$inactiveTests = $PesterResults.Tests | Where-Object { $_.Result -ne 'Passed' -and $_.Result -ne 'Failed' } | Sort-Object -Property Name
 
-		# Convert to array and add, if not when only one object is returned it doesn't create an array with all items.
+		## Convert to array and add, if not when only one object is returned it doesn't create an array with all items.
 		return @($activeTests) + @($inactiveTests)
 	}
 
 	function GetFormattedDate($date) {
 		if (!$IsCoreCLR) {
-			# Prevent 5.1 date format to json issue
+			## Prevent 5.1 date format to json issue
 			return $date.ToString('o')
 		}
 		else {
@@ -331,14 +341,14 @@ function ConvertTo-MtMaesterResult {
 		return 'Unknown'
 	}
 
-	#if(Test-MtConnection Graph) { #ToValidate: Issue with -SkipGraphConnect
-	#    $mgContext = Get-MgContext
-	#}
+	##if(Test-MtConnection Graph) { ##ToValidate: Issue with -SkipGraphConnect
+	##    $mgContext = Get-MgContext
+	##}
 
-	#$tenantId = $mgContext.TenantId ?? "Tenant ID (not connected to Graph)"
+	##$tenantId = $mgContext.TenantId ?? "Tenant ID (not connected to Graph)"
 	$tenantId = GetTenantId
 	$tenantName = GetTenantName
-	#$account = $mgContext.Account ?? "Account (not connected to Graph)"
+	##$account = $mgContext.Account ?? "Account (not connected to Graph)"
 	$account = GetAccount
 
 	$currentVersion = ((Get-Module -Name Maester).Version | Select-Object -Last 1).ToString()
@@ -353,10 +363,10 @@ function ConvertTo-MtMaesterResult {
 		$helpUrl = ''
 
 		$start = $name.IndexOf('See https')
-		# Get the Help Url from the message and the ID
+		## Get the Help Url from the message and the ID
 		if ($start -gt 0) {
-			$helpUrl = $name.Substring($start + 4).Trim() #Strip away the "See https://maester.dev" part
-			$name = $name.Substring(0, $start).Trim() #Strip away the "See https://maester.dev" part
+			$helpUrl = $name.Substring($start + 4).Trim() ##Strip away the "See https://maester.dev" part
+			$name = $name.Substring(0, $start).Trim() ##Strip away the "See https://maester.dev" part
 		}
 		$mtTestInfo = [PSCustomObject]@{
 			Name            = $name
@@ -367,7 +377,7 @@ function ConvertTo-MtMaesterResult {
 			ScriptBlockFile = $test.ScriptBlock.File
 			ErrorRecord     = $test.ErrorRecord
 			Block           = $test.Block.ExpandedName
-			#ResultDetail    = $__MtSession.TestResultDetail[$test.ExpandedName] # I need to Remove this internal variable
+			##ResultDetail    = $__MtSession.TestResultDetail[$test.ExpandedName] ## I need to Remove this internal variable
 			ResultDetail    = $null
 		}
 		$mtTests += $mtTestInfo
@@ -424,7 +434,7 @@ function ConvertTo-MtMaesterResult {
 
 
 
-#Main Region
+##Main Region
 try {
 	$context = Get-MgContext
 
@@ -439,7 +449,7 @@ try {
 		}
 	}
 
-	#Set Maester Activity and Progress
+	##Set Maester Activity and Progress
 	$maesterResults = $null    
     
 	
@@ -447,18 +457,18 @@ try {
 	
 	
 	$outFile = "$PSScriptRoot\test-results\$((Get-Date).tostring('yyyy-MM-yy_hh-mm-ss'))-TestResults.xml"
-	#Set HTML Output Path
+	##Set HTML Output Path
 
 	$outHTMLFile = "$PSScriptRoot\test-results\$((Get-Date).tostring('yyyy-MM-yy_hh-mm-ss'))-TestResults.html"
 
-	#Remove Old Test Results
+	##Remove Old Test Results
 	Get-ChildItem -Path "$PSScriptRoot\test-results" | 
 		ForEach-Object { Remove-Item -Path $_.FullName -Force }
 
 	$pesterConfig = New-PesterConfiguration @{
 		Run        = @{
 			Container = New-PesterContainer -Path "$PSScriptRoot\Tests" 
-			PassThru  = $true #Added PassThru to Convert the PesterResults to a variable
+			PassThru  = $true ##Added PassThru to Convert the PesterResults to a variable
 		}
 		Output     = @{
 			Verbosity           = 'None'
@@ -466,17 +476,17 @@ try {
 			
 		}
 		TestResult = @{
-			OutputFormat  = 'JUnitXml' #Changed to JunitXML
+			OutputFormat  = 'JUnitXml' ##Changed to JunitXML
 			TestSuiteName = "$($config.HRApplicationDisplayName) Tests"
 			Enabled       = $true
-			OutputPath    = "$outFile" #Set the Path to the test-results folder
+			OutputPath    = "$outFile" ##Set the Path to the test-results folder
 		}
 	}
 
-	$pesterResults = Invoke-Pester -Configuration $pesterConfig # Store the Pester Results in a variable
+	$pesterResults = Invoke-Pester -Configuration $pesterConfig ## Store the Pester Results in a variable
 	Write-Host "🔥  Pester report saved to: $outFile"
 
-	$maesterResults = ConvertTo-MtMaesterResult $PesterResults  # Convert the Pester Results to Maester Results
+	$maesterResults = ConvertTo-MtMaesterResult $PesterResults  ## Convert the Pester Results to Maester Results
 	
 	$output = Get-MtHtmlReport -MaesterResults $maesterResults 
 	$output | Out-File -FilePath $outHTMLFile -Encoding UTF8
@@ -502,11 +512,11 @@ And Pester unit test file for givenName.
 **givenName.tests.ps1**
 
 ```
-#givenName.tests.ps1
+##givenName.tests.ps1
 
 Describe 'givenName' -Tag "HR","givenName" {
 
-# load the json config files
+## load the json config files
 
 $testConfig=@()
 
@@ -528,7 +538,7 @@ $testConfig+=$ht
 
 }
 
-# for each test structure: test Parsing, Evaluation and Expected result
+## for each test structure: test Parsing, Evaluation and Expected result
 
 It "When: '<Description>', it returns: '<ExpectedResult>'" -ForEach $testConfig {
 
@@ -572,7 +582,7 @@ $retval.EvaluationResult | Should -Be $ExpectedResult
 
 ```
 
-## 4. Presenting Results to Non-Technical Stakeholders
+#### 4. Presenting Results to Non-Technical Stakeholders
 
 Maester provides detailed reports that highlight which tests failed and why, making it easier to pinpoint and address issues. To communicate the results of unit tests to non-technical stakeholders, we can share the generated html file and stakeholders can open the Test Result in the preferred browser.
 
@@ -599,6 +609,6 @@ They can filter the test results to only show failed test results to dig deeper.
 
 ![A screenshot of a computerDescription automatically generated](/assets/img/HRTest10.png)
 
-# Conclusion
+## Conclusion
 
 Unit testing HRDrivenProvisioning using Maester and HRProvisioningTests is crucial for ensuring the reliability and efficiency of HR processes. By following the steps outlined above, IAM Engineers can create robust test cases that validate their provisioning logic. Moreover, presenting the results in a simplified and business-focused manner helps non-technical stakeholders appreciate the value of these tests and understand their impact on the organization.
