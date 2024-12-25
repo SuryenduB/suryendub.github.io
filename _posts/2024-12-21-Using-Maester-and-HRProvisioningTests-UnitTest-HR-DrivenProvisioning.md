@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Using Maester and HRProvisioningTests to Unit Test Your HR-Driven Provisioning"
-subtitle: "Create Simplified Test Results for Non-Technical Stakeholders"
+subtitle: "Develop easy-to-understand test results for non-technical stakeholders to facilitate HR-driven provisioning."
 cover-img: assets/img/HRTest10.png
 thumbnail-img: assets/img/HRTest10.png
 share-img: assets/img/HRTest10.png
