@@ -11,7 +11,7 @@
 
 # Name of website
 title: MIM And Beyond
-title: My website
+
 
 # Your name to show in the footer
 author: Suryendu Bhattacharyya
@@ -49,24 +49,17 @@ round-avatar: true
 #####################################
 
 # Select the social network links that you want to show in the footer.
-# You can change the order that they show up on the page by changing the order here.
-# You can change the order that they show up on the page by changing the order here.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "suryendubbhattacharyya@gmail.com"
   rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  facebook: deanattali
-  github: daattali
-  twitter: daattali
-  patreon: DeanAttali
-  youtube: "@daattali"
-  whatsapp: 15551212
-  youtube: "@daattali"
-  whatsapp: 15551212
+  github: suryendub
+  twitter: crookedbong
+  bluesky: crookedbong.bsky.social
+  
 #  medium: yourname
-#  reddit: yourname or r/yoursubreddit
-#  reddit: yourname or r/yoursubreddit
-#  linkedin: daattali
+#  reddit: yourname
+  linkedin: "suryendub"
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
@@ -79,20 +72,11 @@ social-network-links:
 #  telegram: yourname
 #  calendly: yourname
 #  mastodon: instance.url/@username
-#  bluesky: yourname
-#  bluesky: yourname
 #  ORCID: your ORCID ID
 #  google-scholar: your google scholar
-#  discord: "invite_code" or "users/userid" or "invite/invite_code"
+#  discord: invite/invite_code or users/userid 
 #  kaggle: yourname
 #  hackerrank: yourname
-#  gitlab: yourname
-#  itchio: yourname
-#  untappd: yourname
-#  gitlab: yourname
-#  itchio: yourname
-#  untappd: yourname
-
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
 rss-description: Microsoft Entra Identity Blog from a SysAdmin
@@ -112,7 +96,7 @@ share-links-active:
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
 url-pretty: "MIMAndBeyond"
-url-pretty: "MyWebsite.com"
+
 
 # Add the website title to the title of every page
 title-on-all-pages: true
@@ -123,8 +107,7 @@ excerpt_length: 50
 # Whether or not to show an excerpt for every blog post in the feed page
 feed_show_excerpt: true
 
-# Add the website title to the title of every page
-title-on-all-pages: true
+
 
 # Whether or not to show a list of tags below each post preview in the feed page
 feed_show_tags: true
@@ -153,9 +136,6 @@ page-col: "#FFFFFF"
 text-col: "#404040"
 link-col: "#008AFF"
 hover-col: "#0085A1"
-navbar-col: "#EAEAEA"
-navbar-text-col: "#404040"
-navbar-border-col: "#DDDDDD"
 navbar-col: "#EAEAEA"
 navbar-text-col: "#404040"
 navbar-border-col: "#DDDDDD"
@@ -337,5 +317,4 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
 
-# Beautiful Jekyll / Dean Attali
-# 2fc73a3a967e97599c9763d05e564189
+
