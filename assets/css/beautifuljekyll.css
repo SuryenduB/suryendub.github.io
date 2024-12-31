@@ -428,6 +428,9 @@ footer a {
 footer .footer-links a {
   color: var(--text-col);
 }
+footer .footer-links .fa-inverse {
+  color: var(--page-col);
+}
 
 
 footer a:hover,

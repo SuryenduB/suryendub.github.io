@@ -11,6 +11,7 @@
 
 # Name of website
 title: MIM And Beyond
+title: My website
 
 # Your name to show in the footer
 author: Suryendu Bhattacharyya
@@ -49,6 +50,7 @@ round-avatar: true
 
 # Select the social network links that you want to show in the footer.
 # You can change the order that they show up on the page by changing the order here.
+# You can change the order that they show up on the page by changing the order here.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "suryendubbhattacharyya@gmail.com"
@@ -59,7 +61,10 @@ social-network-links:
   patreon: DeanAttali
   youtube: "@daattali"
   whatsapp: 15551212
+  youtube: "@daattali"
+  whatsapp: 15551212
 #  medium: yourname
+#  reddit: yourname or r/yoursubreddit
 #  reddit: yourname or r/yoursubreddit
 #  linkedin: daattali
 #  xing: yourname
@@ -75,11 +80,15 @@ social-network-links:
 #  calendly: yourname
 #  mastodon: instance.url/@username
 #  bluesky: yourname
+#  bluesky: yourname
 #  ORCID: your ORCID ID
 #  google-scholar: your google scholar
-#  discord: invite/invite_code or users/userid 
+#  discord: "invite_code" or "users/userid" or "invite/invite_code"
 #  kaggle: yourname
 #  hackerrank: yourname
+#  gitlab: yourname
+#  itchio: yourname
+#  untappd: yourname
 #  gitlab: yourname
 #  itchio: yourname
 #  untappd: yourname
@@ -103,6 +112,10 @@ share-links-active:
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
 url-pretty: "MIMAndBeyond"
+url-pretty: "MyWebsite.com"
+
+# Add the website title to the title of every page
+title-on-all-pages: true
 
 # Excerpt word length - Truncate the excerpt of each post on the feed page to the specified number of words
 excerpt_length: 50
@@ -143,6 +156,9 @@ hover-col: "#0085A1"
 navbar-col: "#EAEAEA"
 navbar-text-col: "#404040"
 navbar-border-col: "#DDDDDD"
+navbar-col: "#EAEAEA"
+navbar-text-col: "#404040"
+navbar-border-col: "#DDDDDD"
 footer-col: "#EAEAEA"
 footer-text-col: "#777777"
 footer-link-col: "#404040"
@@ -175,6 +191,8 @@ gtag: "G-WTK44QM5H0"
 
 # Fill in your Google Analytics ID to track your website using Google Analytics
 #google_analytics: ""
+# Fill in your Google Analytics tag ID (or "Measurement ID") to track your website usage
+#gtag: "G-XXXXXXXXXX"
 
 # Fill in your Cloudflare Analytics beacon token to track your website using Cloudflare Analytics
 #cloudflare_analytics: ""
@@ -189,6 +207,11 @@ gtag: "G-WTK44QM5H0"
 #  site_id: "9"
 #  uri: "demo.wiki.pro"
 #  opt-out: true
+
+# Google Universal Analytics ID -- deprecated
+# As of July 2023 this is no longer supported by Google! If you are still using `google_analytics`,
+# you should switch to using the `gtag` field above instead.
+#google_analytics: "UA-XXXXXXXX-X"
 
 # Google Universal Analytics ID -- deprecated
 # As of July 2023 this is no longer supported by Google! If you are still using `google_analytics`,
@@ -223,18 +246,25 @@ commentbox: "5769843806568448-proj" # Project ID, e.g. "5694267682979840-proj"
 # Using Staticman requires advanced knowledge, please consult
 # https://github.com/eduardoboucas/staticman/ and https://staticman.net/ for further
 # instructions. For any support with staticman please direct questions to staticman and
+# section commented if you aren't using reCaptcha for spam protection.
+# Using Staticman requires advanced knowledge, please consult
+# https://github.com/eduardoboucas/staticman/ and https://staticman.net/ for further
+# instructions. For any support with staticman please direct questions to staticman and
 # not to BeautifulJekyll.
 #staticman:
 #  repository : # GitHub username/repository eg. "daattali/beautiful-jekyll"
 #  branch     : master # If you're not using `master` branch, then you also need to update the `branch` parameter in `staticman.yml`
 #  endpoint   : # URL of your deployment, with a trailing slash eg. "https://<your-api>/v3/entry/github/"
 #  reCaptcha:   # (optional, set these parameters in `staticman.yml` as well)
+#  reCaptcha:   # (optional, set these parameters in `staticman.yml` as well)
 #    siteKey  : # You need to apply for a site key on Google
 #    secret   : # Encrypt your password by going to https://<your-own-api>/v3/encrypt/<your-site-secret>
 
 # To use giscus comments:
 # (0) Uncomment the following giscus section, (1) Enable Discussions in your GitHub repository,
+# (0) Uncomment the following giscus section, (1) Enable Discussions in your GitHub repository,
 # (2) Install the giscus app in your repository (details at https://giscus.app),
+# (3) Fill in *all* the parameters below
 # (3) Fill in *all* the parameters below
 # See more details about giscus and each of the following parameters at https://giscus.app
 #giscus:
