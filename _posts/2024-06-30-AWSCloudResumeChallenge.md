@@ -4,7 +4,7 @@ title: AWS Cloud Resume Challenge
 subtitle:  Deploying Serverless Architecture  AWS Cloud Resume Challenge
 cover-img: assets/img/diagram-export-30-06-2024-12_37_32.png
 thumbnail-img: assets/img/diagram-export-30-06-2024-12_37_32.png
-share-img: assets/img/diagram-export-30-06-2024-12_37_32.png
+share-img: /assets/img/diagram-export-30-06-2024-12_37_32.png
 tags: [ AWS, Serverless , Cloud , Lambda , Python  ]
 
 ---
@@ -774,6 +774,5 @@ Our static website is updated with the data received from the API.
 
 
 ![image.png](https://eraser.imgix.net/workspaces/7OcfHDLApaYdyNfGqDF5/hh36HxBYWmZcVCRSmWUltROL3fF3/TUaJJhQBBECI3_ROHQ-Ox.png?ixlib=js-3.7.0 "image.png")
-
 
 

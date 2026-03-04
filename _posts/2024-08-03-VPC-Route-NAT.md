@@ -3,7 +3,7 @@ layout: post
 title: AWS Cookbook 2.4 Connecting VPC to the Internet Using NAT Gateway
 cover-img: assets/img/VPCNATDesign.png
 thumbnail-img: assets/img/VPCNATDesign.png
-share-img: assets/img/VPCNATDesign.png
+share-img: /assets/img/VPCNATDesign.png
 tags: [ AWS , IAM , Networking , Permissions, NAT ]
 
 ---

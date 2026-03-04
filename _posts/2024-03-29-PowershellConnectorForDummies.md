@@ -4,7 +4,7 @@ title: Unlocking the Mysteries of the Entra PowerShell Connector, A Beginner’s
 subtitle:  Unlocking the Mysteries of Entra PowerShell Connector, A Beginner's Guide to Entra ID Powershell Connector
 cover-img: assets/img/download.png
 thumbnail-img: assets/img/download.png
-share-img: assets/img/download.png
+share-img: /assets/img/download.png
 tags: [ Powershell MA,  EntraID , Powershell , Powershell Connector, IGA, ECMA  ]
 
 ---

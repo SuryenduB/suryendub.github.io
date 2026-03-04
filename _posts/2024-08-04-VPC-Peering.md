@@ -3,7 +3,7 @@ layout: post
 title: AWS Cookbook 2.11 Peering Two VPCs Together
 cover-img: assets/img/VPCPeering2.png
 thumbnail-img: assets/img/VPCPeering2.png
-share-img: assets/img/VPCPeering2.png
+share-img: /assets/img/VPCPeering2.png
 tags: [ AWS , IAM , Networking , Permissions, Peering ]
 
 ---
