@@ -95,12 +95,12 @@ share-links-active:
   twitter: true
   facebook: true
   linkedin: true
-  reddit: true
   vk: false
   reddit: false
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
+url: "https://suryendub.github.io"
 url-pretty: "MIMAndBeyond"
 
 
@@ -300,8 +300,8 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      comments: true  # add comments to all blog posts
-      social-share: true # add social media sharing buttons to all blog posts
+      comments: false  # enable on selected posts only
+      social-share: false # enable on selected posts only
   -
     scope:
       path: "" # any file that's not a post will be a "page" layout by default
@@ -320,6 +320,6 @@ exclude:
   - docs/
 
 plugins:
+  - jekyll-remote-theme
   - jekyll-paginate
   - jekyll-sitemap
-
